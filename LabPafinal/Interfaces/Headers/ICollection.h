@@ -1,6 +1,4 @@
 #include "./IIterator.h"
-#ifndef _ICOLLECTION_H
-#define	_ICOLLECTION_H
 
 /**
  * Interfaz de colecciones

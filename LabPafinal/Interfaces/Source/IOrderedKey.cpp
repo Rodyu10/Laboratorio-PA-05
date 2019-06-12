@@ -1,6 +1,6 @@
 #include <stdexcept>
 
-#include "../Headers/OrderedKey.h"
+#include "../Headers/IOrderedKey.h"
 
 bool OrderedKey::equals(IKey* k) const
 {

@@ -6,8 +6,9 @@ CFLAGS= -c -Wall
 all: Lab
 
 
-Lab: main.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrederdKey.o
-	$(CC) main.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrederdKey.o -o Lab
+
+Lab: main.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
+	$(CC) main.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o Lab
 
 main.o : main.cpp
 	$(CC) $(CFLAGS) main.cpp
@@ -57,23 +58,38 @@ DtCredito.o: ./Datatypes/Source/DtCredito.cpp ./Datatypes/Headers/DtCredito.h
 DtDebito.o: ./Datatypes/Source/DtDebito.cpp ./Datatypes/Headers/DtDebito.h 
 	$(CC) $(CFLAGS) ./Datatypes/Source/DtDebito.cpp
 
-ICollectible.o: ./Datatypes/Source/ICollectible.cpp ./Datatypes/Headers/ICollectible.h 
-	$(CC) $(CFLAGS) ./Datatypes/Source/ICollectible.cpp
+ICollectible.o: ./Interfaces/Source/ICollectible.cpp ./Interfaces/Headers/ICollectible.h 
+	$(CC) $(CFLAGS) ./Interfaces/Source/ICollectible.cpp
 
-ICollection.o: ./Interfaces/Source/ICollection.cpp ./Datatypes/Headers/ICollection.h 
-	$(CC) $(CFLAGS) ./Datatypes/Source/ICollection.cpp
+ICollection.o: ./Interfaces/Source/ICollection.cpp ./Interfaces/Headers/ICollection.h 
+	$(CC) $(CFLAGS) ./Interfaces/Source/ICollection.cpp
 
-IIterator.o: ./Interfaces/Source/IIterator.cpp ./Datatypes/Headers/IIterator.h 
-	$(CC) $(CFLAGS) ./Datatypes/Source/IIterator.cpp
+IIterator.o: ./Interfaces/Source/IIterator.cpp ./Interfaces/Headers/IIterator.h 
+	$(CC) $(CFLAGS) ./Interfaces/Source/IIterator.cpp
 
-IDictionary.o: ./Interfaces/Source/IDictionary.cpp ./Datatypes/Headers/IDictionary.h 
-	$(CC) $(CFLAGS) ./Datatypes/Source/IDictionary.cpp
+IDictionary.o: ./Interfaces/Source/IDictionary.cpp ./Interfaces/Headers/IDictionary.h 
+	$(CC) $(CFLAGS) ./Interfaces/Source/IDictionary.cpp
 
-IKey.o: ./Interfaces/Source/IKey.cpp ./Datatypes/Headers/IKey.h 
-	$(CC) $(CFLAGS) ./Datatypes/Source/IKey.cpp
+IKey.o: ./Interfaces/Source/IKey.cpp ./Interfaces/Headers/IKey.h 
+	$(CC) $(CFLAGS) ./Interfaces/Source/IKey.cpp
 
-IOrederdKey.o: ./Interfaces/Source/IOrderedKey.cpp ./Datatypes/Headers/IOrederedKey.h 
-	$(CC) $(CFLAGS) ./Datatypes/Source/IOrderedKey.cpp
+#IOrederdKey.o: ./Interfaces/Source/IOrderedKey.cpp ./Interfaces/Headers/IOrderedKey.h 
+#	$(CC) $(CFLAGS) ./Interfaces/Source/IOrderedKey.cpp
+
+List.o: ./Collections/List.cpp ./Collections/List.h
+	$(CC) $(CFLAGS) ./Collections/List.cpp
+
+ListIterator.o: ./Collections/ListIterator.cpp ./Collections/ListIterator.h
+	$(CC) $(CFLAGS) ./Collections/ListIterator.cpp
+
+ListNode.o: ./Collections/ListNode.cpp ./Collections/ListNode.h
+	$(CC) $(CFLAGS) ./Collections/ListNode.cpp
+
+OrderedDictionary.o: ./Collections/OrderedDictionary.cpp ./Collections/OrderedDictionary.h
+	$(CC) $(CFLAGS) ./Collections/OrderedDictionary.cpp
+
+OrderedDictionaryEntry.o: ./Collections/OrderedDictionaryEntry.cpp ./Collections/OrderedDictionaryEntry.h
+	$(CC) $(CFLAGS) ./Collections/OrderedDictionaryEntry.cpp
 
 clean:
 	rm -rf *o Lab

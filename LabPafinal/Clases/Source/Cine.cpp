@@ -16,10 +16,10 @@ Cine::Cine(int nro, string dir){
 
 /*list Cine::getListaCines(){
   // MUESTRA TODOS LOS CINES
-}
-DtCine Cine::getCine() const{
-  // MUESRTA EL DT
 }*/
+DtCine Cine::getCine() const{
+  return DtCine (this->NroCine,this->Dir);
+}
 
 int Cine::getNroCine() const{
   return this->NroCine;

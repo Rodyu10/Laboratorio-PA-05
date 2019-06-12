@@ -1,17 +1,20 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../../Interfaces/Headers/ICollectible.h"
+#include "../../Interfaces/Headers/ICollection.h"
 #include "../../Datatypes/Headers/DtFuncion.h"
 
 using namespace std;
 
-class Funcion{
+class Funcion : public ICollectible{
 
   private:
      int NroFuncion;
      int NroSala;
      DtFecha Fecha;
      int Horario;
+     ICollection * reservas;
   public:
      Funcion();
      Funcion(int, int, DtFecha, int);
