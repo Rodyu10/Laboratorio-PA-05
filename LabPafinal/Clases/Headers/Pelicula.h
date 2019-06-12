@@ -1,17 +1,20 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Datatypes/Headers/DtPelicula.h"
+#include "../../Interfaces/Headers/ICollectible.h"
 
 using namespace std;
 
-class Pelicula{
+class Pelicula : public ICollectible{
 
   private:
       string Titulo;
       string Poster;
       string Sinopsis;
       float Puntaje;
+      IDictionary * funcionesP;
   public:
       Pelicula();
       Pelicula(string, string, string, float);

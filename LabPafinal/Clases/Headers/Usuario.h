@@ -1,10 +1,11 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../../Interfaces/Headers/ICollectible.h"
 
 using namespace std;
 
-class Usuario{
+class Usuario : public ICollectible{
 
   private:
 

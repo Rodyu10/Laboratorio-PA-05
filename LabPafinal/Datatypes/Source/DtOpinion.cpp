@@ -12,10 +12,6 @@ DtOpinion::DtOpinion(float puntaje){
   this->puntaje = puntaje;
 }
 
-DtOpinion DtOpinion::getPuntaje() const{
-   return DtOpinion(this->puntaje);
-}
-
 float DtOpinion::getPuntaje() const{
   return this->puntaje;
 }

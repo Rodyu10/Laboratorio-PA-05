@@ -6,5 +6,5 @@ ICollectible::ICollectible(){
 
 ICollectible::~ICollectible()
 {
-  
+
 }

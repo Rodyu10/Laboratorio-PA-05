@@ -12,11 +12,6 @@ Opinion::Opinion(float puntaje){
   this->puntaje = puntaje;
   }
 
-
-DtOpinion Opinion::getPuntaje() const{
-   return DtOpinion(this->puntaje);
-}
-
 float Opinion::getPuntaje() const{
   return this->puntaje;
 }

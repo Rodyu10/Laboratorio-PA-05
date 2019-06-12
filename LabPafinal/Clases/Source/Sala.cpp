@@ -11,7 +11,7 @@ Sala::Sala(){
 Sala::Sala(int NroSala, int Capacidad){
   this->NroSala = NroSala;
   this->Capacidad = Capacidad;
-  }
+}
 
 
 DtSala Sala::getSala() const{

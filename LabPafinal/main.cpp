@@ -6,5 +6,5 @@
 using namespace std;
 
 int main(){
-  cout << "HOla chaval hay donas mexicanas" <<endl;
+  cout << "HOla chaval hay donas mexicanas " <<endl;
 }

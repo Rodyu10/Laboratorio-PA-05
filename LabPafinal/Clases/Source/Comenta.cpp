@@ -12,11 +12,6 @@ Comenta::Comenta(string comentario){
   this->comentario = comentario;
   }
 
-
-DtComenta Comenta::getComentario() const{
-   return DtComenta(this->comentario);
-}
-
 string Comenta::getComentario() const{
   return this->comentario;
 }

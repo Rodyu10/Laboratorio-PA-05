@@ -1,7 +1,7 @@
 #ifndef ORDEREDKEY_H
 #define	ORDEREDKEY_H
 
-#include "./IKey.h"
+#include "./IDictionary.h"
 
 // Resultado de la comparación entre objetos de la clase OrderedKey
 enum ComparisonRes { LESSER, EQUAL, GREATER };

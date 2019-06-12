@@ -1,9 +1,11 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../../Interfaces/Headers/ICollectible.h"
+
 using namespace std;
 
-class Reserva{
+class Reserva : public ICollectible{
   private:
       int CantAsientos;
       float Costo;

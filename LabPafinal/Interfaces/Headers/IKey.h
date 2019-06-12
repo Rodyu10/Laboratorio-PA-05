@@ -1,5 +1,7 @@
-class IKey
-{
+
+
+class IKey{
+
 public:
     /**
      *  Retorna true sii this es igual al argumento

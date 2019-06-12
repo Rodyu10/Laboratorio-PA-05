@@ -13,10 +13,6 @@ DtSala::DtSala(int NroSala, int Capacidad){
   this->Capacidad = Capacidad;
 }
 
-DtSala DtSala::getNroSala() const{
-   return DtSala(this->NroSala, this->Capacidad);
-}
-
 int DtSala::getNroSala() const{
   return this->NroSala;
 }

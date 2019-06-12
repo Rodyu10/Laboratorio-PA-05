@@ -2,10 +2,11 @@
 #include <stdlib.h>
 
 #include "../../Datatypes/Headers/DtSala.h"
+#include "../../Interfaces/Headers/ICollectible.h"
 
 using namespace std;
 
-class Sala{
+class Sala : public ICollectible{
 
   private:
       int NroSala, Capacidad;
@@ -13,13 +14,14 @@ class Sala{
       Sala();
       Sala(int,int);
 
+      DtSala getSala() const;
 
-      int NroSala() const;
+      int getNroSala() const;
       int getCapacidad()const;
 
       void setNroSala(int);
       void setCapacidad(int);
-      
+
       ~Sala();
 
 };

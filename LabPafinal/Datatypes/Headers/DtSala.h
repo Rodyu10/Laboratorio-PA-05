@@ -3,11 +3,10 @@
 
 using namespace std;
 
-class DtSala{
+class DtSala {
 
   private:
-      int NroSala;
-      int Capacidad;
+      int NroSala, Capacidad;
   public:
       DtSala();
       DtSala(int,int);
@@ -15,6 +14,6 @@ class DtSala{
       int getNroSala() const;
       int getCapacidad()const;
 
-      virtual~DtSala();
+      virtual ~DtSala();
 
 };
