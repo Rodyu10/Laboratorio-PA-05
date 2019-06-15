@@ -1,6 +1,6 @@
 #ifndef _ICOLLECTIBLE_H
 #define	_ICOLLECTIBLE_H
-
+#pragma once
 /**
  *  Elemento de la colección
  */

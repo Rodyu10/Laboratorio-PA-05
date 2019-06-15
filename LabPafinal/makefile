@@ -7,11 +7,20 @@ all: Lab
 
 
 
-Lab: main.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o Sala.o Comenta.o Opinion.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
-	$(CC) main.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o  Sala.o Comenta.o Opinion.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o Lab
+Lab: main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o Sala.o Comenta.o Opinion.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
+	$(CC) main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o  Sala.o Comenta.o Opinion.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o Lab
 
-main.o : main.cpp
-	$(CC) $(CFLAGS) main.cpp
+main.o : main.cpp cabezales.h
+	$(CC) $(CFLAGS) main.cpp cabezales.h
+
+Sistema.o: ./Clases/Source/Sistema.cpp  ./Clases/Headers/Sistema.h
+	$(CC) $(CFLAGS) ./Clases/Source/Sistema.cpp
+
+String.o: ./String.cpp  ./String.h
+	$(CC) $(CFLAGS) ./String.cpp
+
+Integer.o: ./Integer.cpp  ./Integer.h
+	$(CC) $(CFLAGS) ./Integer.cpp
 
 Cine.o: ./Clases/Source/Cine.cpp  ./Clases/Headers/Cine.h
 	$(CC) $(CFLAGS) ./Clases/Source/Cine.cpp

@@ -1,3 +1,4 @@
+#pragma once
 #include "./IKey.h"
 #include "./ICollectible.h"
 #include "./IIterator.h"

@@ -1,6 +1,6 @@
 #ifndef ORDEREDKEY_H
 #define	ORDEREDKEY_H
-
+#pragma once
 #include "./IDictionary.h"
 
 // Resultado de la comparación entre objetos de la clase OrderedKey

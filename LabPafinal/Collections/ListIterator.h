@@ -1,6 +1,6 @@
 #ifndef LISTITERATOR_H
 #define	LISTITERATOR_H
-
+#pragma once
 #include "./ListNode.h"
 
 

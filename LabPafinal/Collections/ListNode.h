@@ -1,6 +1,6 @@
 #ifndef LISTNODE_H
 #define	LISTNODE_H
-
+#pragma once
 #include "../Interfaces/Headers/ICollection.h"
 #include <cstddef>
 
