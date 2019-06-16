@@ -6,19 +6,20 @@
  *  Implementación simple del datatype String que hereda tanto de ICollectible
  *  como de HashedKey
  */
-class String: public ICollectible, public OrderedKey
-{
-private:
-    char *s;
-public:
-    // construye el Datatype a partir de un puntero a caracter
-    String(const char *s = "");
 
-    // da el valor del string
-    const char *getValue() const;
+ #include <string>
+ using std::string;
 
-    ComparisonRes compare(OrderedKey *k) const;
+ //#include "interfaces/OrderedKey.h"
 
-    virtual ~String();
+ struct StringKey : public OrderedKey {
+ public:
+     StringKey(string str);
 
-};
+     ComparisonRes compare(OrderedKey* k) const;
+
+     ~StringKey() {}
+
+ private:
+     string s;
+ };

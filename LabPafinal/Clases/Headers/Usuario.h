@@ -3,6 +3,9 @@
 #include <stdlib.h>
 
 #include "../../Interfaces/Headers/ICollectible.h"
+#include "../../String.h"
+#include "../../Integer.h"
+
 
 using namespace std;
 
@@ -19,7 +22,7 @@ class Usuario : public ICollectible{
     Usuario();
     Usuario(string,string,string);
 
-    bool verificarPass();
+    bool verificarPass(string, string);
 
     string getNick() const;
     string getUrl() const;

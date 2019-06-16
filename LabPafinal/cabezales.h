@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
 
+
+#include "./Clases/Headers/Sistema.h"
 #include "./Clases/Headers/Cine.h"
 #include "./Clases/Headers/Comenta.h"
 #include "./Clases/Headers/Credito.h"

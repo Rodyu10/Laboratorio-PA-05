@@ -10,8 +10,7 @@ using namespace std;
 int main(){
   system("clear");
   menu();
-  //OrderedDictionary* users=new OrderedDictionary();
-
+  Sistema* sis = Sistema::getInstance();
   int op = opcion();
     while (op!=0)
     {
@@ -30,13 +29,7 @@ int main(){
               cin >> foto;
               cout << "Ingrese su contrasenia" << endl;
               cin >> pass;
-              /*Usuario* u=new Usuario(nick,pass,foto);
-              String* n= new String(nick);
-              if(users->member(n))
-              throw invalid_argument("El nombre ya esta en uso");
-              else
-              users->add(n,u);
-              */
+              sis->RegistrarUsuario(nick,foto,pass);
             }
             catch(exception &e){
             cout << e.what() << endl;
@@ -51,13 +44,13 @@ int main(){
               string nick,pass;
               cout << " Ingrese su usuario" << endl;
               cin >> nick;
-              /*if(usuario no existe)
-              throw invalid_argument("El nombre de usuario es incorrecto");*/
-
               cout << "Ingrese su contrasenia" << endl;
               cin >> pass;
-              /*if(pass incorrecta)
-              throw invalid_argument("La contrasenia es incorrecta");*/
+              sis->IniciarSesion(nick,pass);
+
+              getchar();
+              getchar();
+              system("clear");
               menu2();
               int opc = opcion2();
                 while (opc!=0)
@@ -84,6 +77,12 @@ int main(){
                       }
                       break;
                     }
+                    cout << "Presione enter para continuar" << endl;
+                    getchar();
+                    getchar();
+                    system("clear");
+                    menu2 ();
+                    op = opcion2();
                 }
             }catch(exception &e){
             cout << e.what() << endl;

@@ -2,7 +2,12 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../../Clases/Headers/Usuario.h"
 #include "../../Interfaces/Headers/IDictionary.h"
+#include "../../Interfaces/Headers/IKey.h"
+#include "../../Collections/OrderedDictionary.h"
+#include "../../String.h"
+#include "../../Integer.h"
 
 using namespace std;
 
@@ -16,9 +21,8 @@ class Sistema  {
  public:
    static Sistema* getInstance();
    void RegistrarUsuario(string, string, string);
-   ~Sistema();
-   void agregarUsuario(string nickname, string fotoperfil, string Pass);
-   void IniciarSesion(string Nickname, string Pass);
+   bool VerificarSesion(string, string);
+   void IniciarSesion(string,string);
    void ListarTitulos();
    void Eliminar(string Titulo);
    void ListarPeliculas();
@@ -31,4 +35,5 @@ class Sistema  {
    void CrearReserva();
    void Eliminar2(string Titulo);
    void SeleccionTitulo(string Titulo);
+   ~Sistema();
 };

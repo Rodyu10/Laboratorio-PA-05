@@ -2,38 +2,57 @@
 #include <stdlib.h>
 
 #include "../Headers/Sistema.h"
-#include "../../String.h"
 
 using namespace std;
 
-/*void Sistema::RegistrarUsuario(string nickname, string fotodeperfil, string pass){
-  IKey* key = new IKeyString(nickname);
-  if(Usuario->member(Key)){
-    Usuario->add(Key.new Usuario(nickname,fotodeperfil,pass));
+Sistema::Sistema(){
+  usuarios=new OrderedDictionary();
+}
+
+Sistema* Sistema::instance = nullptr;
+
+Sistema* Sistema::getInstance(){
+    if(instance == nullptr){
+      instance = new Sistema();
+    }
+    return instance;
+}
+
+void Sistema::RegistrarUsuario(string nickname, string fotodeperfil, string pass){
+ StringKey* llave = new StringKey(nickname);
+ if(!usuarios->member(llave)){
+   Usuario* u=new Usuario(nickname,fotodeperfil,pass);
+   usuarios->add(llave,u);
+ }
+ else{
+    delete llave;
+    throw invalid_argument("El usuario ya existe");
+ }
+}
+
+bool Sistema::VerificarSesion(string nickname, string pass){
+  StringKey* llave = new StringKey(nickname);
+  if(usuarios->member(llave)){
+    Usuario* u=(Usuario*) usuarios->find(llave);
+    if(u->getPass()==pass){
+      return true;
+    }
+    else{
+      throw invalid_argument("Password incorrecto");
+    }
   }
   else{
-    delete Key;
-    throw invalid_argument("El usuario ya existe");
+    throw invalid_argument("El usuario es incorrecto");
   }
-}*/
+}
 
-/*void Sistema::IniciarSesion(string Nickname, string Pass){
-  String* key = new String(Nickname);
-  Usuarios* U = new Usuarios(Nickname, Pass);
-  Usuarios->add(U,key);
-}*/
-
-// void Sistema::agregarUsuario(string nickname, string fotoperfil, string Pass){
-//   String* Key = new String(nickname);
-//   if(!Usuario->member(Key)){
-//     Usuarios->add(Key,new Usuario(nickname,fotoperfil,Pass));
-//   }
-//   else{
-//     delete Key;
-//     throw invalid_argument("El usuario ya existe");
-//   }
-// }
-
+void Sistema::IniciarSesion(string nickname, string pass){
+  if(VerificarSesion(nickname,pass)){
+    cout << "==========================================" << endl;
+    cout << "    INICIO CORRECTAMENTE LA SESION" << endl;
+    cout << "==========================================" << endl;
+  }
+}
 
 // void Sistema::ListarTitulos(Pelicula::Titulo){
 //   IKey* key = new KeyInteger(Titulo);
