@@ -27,7 +27,7 @@ int main(){
               cin >> nick;
               cout << "Ingrese su foto de perfil" << endl;
               cin >> foto;
-              cout << "Ingrese su contrasenia" << endl;
+              cout << "Ingrese su contraseña" << endl;
               cin >> pass;
               sis->RegistrarUsuario(nick,foto,pass);
             }
@@ -44,7 +44,7 @@ int main(){
               string nick,pass;
               cout << " Ingrese su usuario" << endl;
               cin >> nick;
-              cout << "Ingrese su contrasenia" << endl;
+              cout << "Ingrese su contraseña" << endl;
               cin >> pass;
               sis->IniciarSesion(nick,pass);
 
@@ -85,6 +85,102 @@ int main(){
                     op = opcion2();
                 }
             }catch(exception &e){
+            cout << e.what() << endl;
+            }
+          }
+          break;
+        case 3:{
+            try{
+              cout << "==========================================" << endl;
+              cout << "               ALTA CINE" << endl;
+              cout << "==========================================" << endl;
+              // CODE
+            }
+            catch(exception &e){
+            cout << e.what() << endl;
+            }
+          }
+          break;
+        case 4:{
+            try{
+              cout << "==========================================" << endl;
+              cout << "              ALTA FUNCION" << endl;
+              cout << "==========================================" << endl;
+              // CODE
+            }
+            catch(exception &e){
+            cout << e.what() << endl;
+            }
+          }
+          break;
+        case 5:{
+            try{
+              cout << "==========================================" << endl;
+              cout << "              CREAR RESERVA" << endl;
+              cout << "==========================================" << endl;
+              // CODE
+            }
+            catch(exception &e){
+            cout << e.what() << endl;
+            }
+          }
+          break;
+        case 6:{
+            try{
+              cout << "==========================================" << endl;
+              cout << "            PUNTUAR PELICULA" << endl;
+              cout << "==========================================" << endl;
+              // CODE
+            }
+            catch(exception &e){
+            cout << e.what() << endl;
+            }
+          }
+          break;
+        case 7:{
+            try{
+              cout << "==========================================" << endl;
+              cout << "            ELIMINAR PELICULA" << endl;
+              cout << "==========================================" << endl;
+              // CODE
+            }
+            catch(exception &e){
+            cout << e.what() << endl;
+            }
+          }
+          break;
+        case 8:{
+            try{
+              cout << "==========================================" << endl;
+              cout << "            COMENTAR PELICULA" << endl;
+              cout << "==========================================" << endl;
+              // CODE
+            }
+            catch(exception &e){
+            cout << e.what() << endl;
+            }
+          }
+          break;
+        case 9:{
+            try{
+              cout << "==========================================" << endl;
+              cout << "        VER INFORMACION DE PELICULA" << endl;
+              cout << "==========================================" << endl;
+              // CODE
+            }
+            catch(exception &e){
+            cout << e.what() << endl;
+            }
+          }
+          break;
+        case 10:{
+            try{
+              cout << "==========================================" << endl;
+              cout << "  VER COMENTARIOS Y PUNTAJES DE PELICULA" << endl;
+              cout << "==========================================" << endl;
+              // CODE
+            }
+            catch(exception &e){
             cout << e.what() << endl;
             }
           }

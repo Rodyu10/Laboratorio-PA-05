@@ -2,8 +2,8 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "../../Datatypes/Headers/DtSala.h"
 #include "../../Interfaces/Headers/ICollectible.h"
+#include "../../Datatypes/Headers/DtSala.h"
 
 using namespace std;
 

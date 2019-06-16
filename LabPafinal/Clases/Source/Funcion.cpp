@@ -1,6 +1,3 @@
-#include <iostream>
-#include <stdlib.h>
-
 #include "../Headers/Funcion.h"
 
 using namespace std;

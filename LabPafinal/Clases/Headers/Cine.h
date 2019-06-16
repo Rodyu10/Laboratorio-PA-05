@@ -6,7 +6,6 @@
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Datatypes/Headers/DtCine.h"
 
-
 using namespace std;
 
 class Cine : public ICollectible{

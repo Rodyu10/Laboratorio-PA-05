@@ -1,10 +1,6 @@
 #pragma once
 #include "./ICollectible.h"
 
-
-#ifndef _IITERATOR_H
-#define	_IITERATOR_H
-
 /**
  * Interfaz de iteradores
  */
@@ -29,5 +25,3 @@ public:
 
     virtual ~IIterator();
 };
-
-#endif	/* _IITERATOR_H */

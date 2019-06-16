@@ -1,6 +1,3 @@
-#include <iostream>
-#include <stdlib.h>
-
 #include "../Headers/Debito.h"
 
 using namespace std;

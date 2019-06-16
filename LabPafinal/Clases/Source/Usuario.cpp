@@ -1,13 +1,4 @@
-#include <iostream>
-#include <stdlib.h>
-
 #include "../Headers/Usuario.h"
-#include "../../Interfaces/Headers/ICollectible.h"
-#include "../../Interfaces/Headers/IDictionary.h"
-#include "../../Interfaces/Headers/IIterator.h"
-#include "../../Interfaces/Headers/IKey.h"
-#include "../../Interfaces/Headers/IOrderedKey.h"
-#include "../../Interfaces/Headers/ICollection.h"
 
 using namespace std;
 
@@ -22,7 +13,7 @@ Usuario::Usuario(string nickname, string fotoperfil, string contrasenia){
 }
 
 bool Usuario::verificarPass(string nick, string pass){
-  
+
  return 0;
 }
 

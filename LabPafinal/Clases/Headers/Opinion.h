@@ -2,8 +2,6 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "../../Datatypes/Headers/DtOpinion.h"
-
 using namespace std;
 
 class Opinion{

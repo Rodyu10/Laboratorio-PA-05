@@ -1,6 +1,3 @@
-#include <iostream>
-#include <stdlib.h>
-
 #include "../Headers/DtUsuario.h"
 
 using namespace std;

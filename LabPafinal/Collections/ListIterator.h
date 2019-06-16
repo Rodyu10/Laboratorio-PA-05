@@ -1,5 +1,3 @@
-#ifndef LISTITERATOR_H
-#define	LISTITERATOR_H
 #pragma once
 #include "./ListNode.h"
 
@@ -17,5 +15,3 @@ private:
     ListNode *current;
     bool disposeHeadOnDelete;
 };
-
-#endif	/* LISTITERATOR_H */

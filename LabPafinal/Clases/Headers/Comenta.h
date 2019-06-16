@@ -2,8 +2,6 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "../../Datatypes/Headers/DtComenta.h"
-
 using namespace std;
 
 class Comenta{

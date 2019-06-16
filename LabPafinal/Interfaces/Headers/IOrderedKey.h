@@ -1,5 +1,3 @@
-#ifndef ORDEREDKEY_H
-#define	ORDEREDKEY_H
 #pragma once
 #include "./IDictionary.h"
 
@@ -29,5 +27,3 @@ public:
 
     virtual ~OrderedKey();
 };
-
-#endif	/* ORDEREDKEY_H */

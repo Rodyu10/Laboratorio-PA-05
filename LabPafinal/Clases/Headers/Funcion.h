@@ -5,6 +5,7 @@
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Interfaces/Headers/ICollection.h"
 #include "../../Datatypes/Headers/DtFuncion.h"
+#include "../../Datatypes/Headers/DtFecha.h"
 
 using namespace std;
 

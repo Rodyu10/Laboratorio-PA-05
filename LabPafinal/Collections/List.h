@@ -1,5 +1,3 @@
-#ifndef LIST_H
-#define	LIST_H
 #pragma once
 #include "./ListNode.h"
 
@@ -54,5 +52,3 @@ public:
      */
     virtual ~List();
 };
-
-#endif	/* LIST_H */

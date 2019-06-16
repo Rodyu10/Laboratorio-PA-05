@@ -1,5 +1,3 @@
-#ifndef _ICOLLECTIBLE_H
-#define	_ICOLLECTIBLE_H
 #pragma once
 /**
  *  Elemento de la colección
@@ -14,5 +12,3 @@ protected:
 public:
     virtual ~ICollectible();
 };
-
-#endif	/* _ICOLLECTIBLE_H */
