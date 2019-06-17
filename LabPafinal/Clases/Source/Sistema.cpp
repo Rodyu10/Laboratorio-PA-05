@@ -4,6 +4,8 @@ using namespace std;
 
 Sistema::Sistema(){
   usuarios=new OrderedDictionary();
+  cines=new OrderedDictionary();
+  peliculas=new OrderedDictionary();
 }
 
 Sistema* Sistema::instance = nullptr;
@@ -51,6 +53,18 @@ void Sistema::IniciarSesion(string nickname, string pass){
   }
 }
 
+void Sistema::AltaCine(int nro, string direc){
+  Integer* llave = new Integer(nro);
+  Cine* c=new Cine(nro, direc);
+  cines->add(llave,c);
+}
+
+void Sistema::AltaPelicula(string tit, string pos, string sinop, float puntaj){
+  StringKey* llave = new StringKey(tit);
+  Pelicula* p=new Pelicula(tit,pos,sinop,puntaj);
+  peliculas->add(llave,p);
+}
+
 // void Sistema::ListarTitulos(Pelicula::Titulo){
 //   IKey* key = new KeyInteger(Titulo);
 //   ICollectible* p = Peliculas->find(key);
@@ -59,7 +73,7 @@ void Sistema::IniciarSesion(string nickname, string pass){
 //     throw invalid_argument("No hay Peliculas");
 //   }
 //   Peliculas->add(key);
-// }
+//}
 //
 // void Sistema::Eliminar(Pelicula::Titulo){
 //   IKey* key = new KeyInteger(Titulo);

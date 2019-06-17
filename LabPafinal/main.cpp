@@ -11,6 +11,9 @@ int main(){
   system("clear");
   menu();
   Sistema* sis = Sistema::getInstance();
+  sis->RegistrarUsuario("root","123","123");
+  sis->AltaCine(1,"Alvariza");
+  sis->AltaPelicula("El entierro de la anaconda cabezona","123","123",0);
   int op = opcion();
     while (op!=0)
     {
