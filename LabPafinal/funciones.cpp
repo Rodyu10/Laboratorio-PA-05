@@ -8,7 +8,7 @@ using namespace std;
 void menu()
 {
   cout << "====================================" << endl;
-  cout << "                MENU" << endl;
+  cout << "                MENU PRINCIPAL" << endl;
   cout << "====================================" << endl;
   cout << "1-Registrar Usuario" << endl;
   cout << "2-Iniciar Sesion" << endl;
@@ -16,14 +16,22 @@ void menu()
   cout << "====================================" << endl;
 }
 
-void menu2()
+void menuDos()
 {
   cout << "====================================" << endl;
-  cout << "                MENU2" << endl;
+  cout << "                MENU" << endl;
   cout << "====================================" << endl;
   cout << "1-Listar Titulos" << endl;
   cout << "2-Listar Cines" << endl;
-  cout << "0-Salir" << endl;
+  cout << "3-Alta Cine" << endl;
+  cout << "4-Alta Funcion" << endl;
+  cout << "5-Crear Reserva" << endl;
+  cout << "6-Puntuar Pelicula" << endl;
+  cout << "7-Eliminar Pelicula" << endl;
+  cout << "8-Comentar Pelicula" << endl;
+  cout << "9-Ver informacion de Pelicula" << endl;
+  cout << "10-Ver comentarios y puntaje de Pelicula" << endl;
+  cout << "0-Volver al menu principal" << endl;
   cout << "====================================" << endl;
 }
 
@@ -39,7 +47,7 @@ int opcion()
     return op;
 }
 
-int opcion2()
+int opcionDos()
 {
     int op;
     do
@@ -47,6 +55,6 @@ int opcion2()
         cout << "Ingrese Opción: " << endl;
         cin >> op;
     }
-    while ((op < 0) || (op > 2));
+    while ((op < 0) || (op > 10));
     return op;
 }

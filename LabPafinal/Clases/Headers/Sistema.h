@@ -28,7 +28,7 @@ class Sistema  {
    void AltaCine(int,string);
    void AltaPelicula(string,string,string,float);
    void ListarTitulos();
-   void Eliminar(string Titulo);
+   void EliminarPelicula(string Titulo);
    void ListarPeliculas();
    void SeleccionPelicula(string Titulo);
    void ListarCines();

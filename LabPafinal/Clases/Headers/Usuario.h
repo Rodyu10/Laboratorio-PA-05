@@ -22,7 +22,7 @@ class Usuario : public ICollectible{
     Usuario();
     Usuario(string,string,string);
 
-    bool verificarPass(string, string);
+    bool verificarPass(string);
 
     string getNick() const;
     string getUrl() const;

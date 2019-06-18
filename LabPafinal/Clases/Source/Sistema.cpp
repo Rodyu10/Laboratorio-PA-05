@@ -33,7 +33,7 @@ bool Sistema::VerificarSesion(string nickname, string pass){
   StringKey* llave = new StringKey(nickname);
   if(usuarios->member(llave)){
     Usuario* u=(Usuario*) usuarios->find(llave);
-    if(u->getPass()==pass){
+    if(u->verificarPass(pass)){
       return true;
     }
     else{
@@ -55,46 +55,74 @@ void Sistema::IniciarSesion(string nickname, string pass){
 
 void Sistema::AltaCine(int nro, string direc){
   Integer* llave = new Integer(nro);
-  Cine* c=new Cine(nro, direc);
-  cines->add(llave,c);
+  if(!cines->member(llave)){
+    Cine* c=new Cine(nro, direc);
+    cines->add(llave,c);
+  }
+  else{
+    throw invalid_argument("El nro de cine ya existe");
+  }
 }
 
 void Sistema::AltaPelicula(string tit, string pos, string sinop, float puntaj){
   StringKey* llave = new StringKey(tit);
-  Pelicula* p=new Pelicula(tit,pos,sinop,puntaj);
-  peliculas->add(llave,p);
+  if(!peliculas->member(llave)){
+    Pelicula* p=new Pelicula(tit,pos,sinop,puntaj);
+    peliculas->add(llave,p);
+  }
+  else{
+    throw invalid_argument("La pelicula ya existe");
+  }
 }
 
-// void Sistema::ListarTitulos(Pelicula::Titulo){
-//   IKey* key = new KeyInteger(Titulo);
-//   ICollectible* p = Peliculas->find(key);
-//   delete key;
-//   if(p==NULL){
-//     throw invalid_argument("No hay Peliculas");
-//   }
-//   Peliculas->add(key);
-//}
-//
-// void Sistema::Eliminar(Pelicula::Titulo){
-//   IKey* key = new KeyInteger(Titulo);
-//   ICollectible* p = Peliculas->find(key);
-//   delete key;
-//   if(p==NULL){
-//     throw invalid_argument("No hay Peliculas");
-//   }
-//   Peliculas->remove(key);
-//   delete p;
-// }
+ void Sistema::ListarTitulos(){
+   IIterator* i=peliculas->getIterator();
+   if(i->hasCurrent()){
+     while(i->hasCurrent()){
+       Pelicula* p = (Pelicula*) i->getCurrent();
+       cout << p->getTitulo() << endl;
+       cout <<"-----------------" << endl;
+       i->next();
+     }
+     delete i;
+   }
+   else{
+     throw invalid_argument("No hay Peliculas");
+   }
+}
 
-/*void Sistema::ListarPeliculas(DtPelicula::DtPelicula){
-  //Dudas
-}*/
+void Sistema::ListarCines(){
+  IIterator* i=cines->getIterator();
+  if(i->hasCurrent()){
+    while(i->hasCurrent()){
+      Cine* c = (Cine*) i->getCurrent();
+      cout <<"Nro de Cine: " << c->getNroCine() << endl;
+      cout <<"Direccion: " << c->getDir() << endl;
+      cout <<"-----------------" << endl;
+      i->next();
+    }
+    delete i;
+  }
+  else{
+    throw invalid_argument("No hay Cines");
+  }
+}
+
+void Sistema::EliminarPelicula(string Titulo){
+   StringKey* llave = new StringKey(Titulo);
+   if(!peliculas->member(llave)){
+     throw invalid_argument("No existe la pelicula");
+     delete llave;
+   }
+   else{
+   Pelicula* p = (Pelicula*) peliculas->find(llave);
+   peliculas->remove(llave);
+   cout << "Pelicula eliminada" << endl;
+   delete p;
+   }
+}
 
 // void Sistema::SeleccionPelicula(Pelicula::Titulo){
-//
-// }
-
-// void Sistema::ListarCines(DtCine::DtCine){
 //
 // }
 

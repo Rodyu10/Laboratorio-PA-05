@@ -13,7 +13,10 @@ int main(){
   Sistema* sis = Sistema::getInstance();
   sis->RegistrarUsuario("root","123","123");
   sis->AltaCine(1,"Alvariza");
-  sis->AltaPelicula("El entierro de la anaconda cabezona","123","123",0);
+  sis->AltaCine(2,"PropioChine");
+  sis->AltaPelicula("Austin Power vs Doctor Malito","123","123",0);
+  sis->AltaPelicula("Macaco","123","123",0);
+  sis->AltaPelicula("Austin Power vs Doctor Malito la 2","123","123",0);
   int op = opcion();
     while (op!=0)
     {
@@ -54,8 +57,8 @@ int main(){
               getchar();
               getchar();
               system("clear");
-              menu2();
-              int opc = opcion2();
+              menuDos();
+              int opc = opcionDos();
                 while (opc!=0)
                 {
                   system("clear");
@@ -63,7 +66,10 @@ int main(){
                   {
                     case 1:{
                         try{
-                            cout << "LISTA PELIS" << endl;
+                          cout << "==========================================" << endl;
+                          cout << "               LISTA TITULOS" << endl;
+                          cout << "==========================================" << endl;
+                          sis->ListarTitulos();
                         }
                         catch(exception &e){
                         cout << e.what() << endl;
@@ -72,118 +78,130 @@ int main(){
                       break;
                     case 2:{
                         try{
-                            cout << "LISTA CINES" << endl;
+                          cout << "==========================================" << endl;
+                          cout << "               LISTA CINES" << endl;
+                          cout << "==========================================" << endl;
+                          sis->ListarCines();
                         }
                         catch(exception &e){
                         cout << e.what() << endl;
                         }
                       }
                       break;
-                    }
+                    case 3:{
+                          try{
+                            cout << "==========================================" << endl;
+                            cout << "               ALTA CINE" << endl;
+                            cout << "==========================================" << endl;
+                            string dir;
+                            int nro;
+                            cout << " Ingrese el numero del cine" << endl;
+                            cin >> nro;
+                            cout << "Ingrese la direccion del cine" << endl;
+                            cin >> dir;
+                            sis->AltaCine(nro,dir);
+                          }
+                          catch(exception &e){
+                          cout << e.what() << endl;
+                          }
+                        }
+                        break;
+                    case 4:{
+                          try{
+                            cout << "==========================================" << endl;
+                            cout << "              ALTA FUNCION" << endl;
+                            cout << "==========================================" << endl;
+                            // CODE
+                          }
+                          catch(exception &e){
+                          cout << e.what() << endl;
+                          }
+                        }
+                        break;
+                    case 5:{
+                          try{
+                            cout << "==========================================" << endl;
+                            cout << "              CREAR RESERVA" << endl;
+                            cout << "==========================================" << endl;
+                            // CODE
+                          }
+                          catch(exception &e){
+                          cout << e.what() << endl;
+                          }
+                        }
+                        break;
+                    case 6:{
+                          try{
+                            cout << "==========================================" << endl;
+                            cout << "            PUNTUAR PELICULA" << endl;
+                            cout << "==========================================" << endl;
+                            // CODE
+                          }
+                          catch(exception &e){
+                          cout << e.what() << endl;
+                          }
+                        }
+                        break;
+                    case 7:{
+                          try{
+                            cout << "==========================================" << endl;
+                            cout << "            ELIMINAR PELICULA" << endl;
+                            cout << "==========================================" << endl;
+                            string t;
+                            cout << "Ingrese el titulo de la pelicula que desea eliminar" << endl;
+                            cin >> t;
+                            sis->EliminarPelicula(t);
+                          }
+                          catch(exception &e){
+                          cout << e.what() << endl;
+                          }
+                        }
+                        break;
+                    case 8:{
+                          try{
+                            cout << "==========================================" << endl;
+                            cout << "            COMENTAR PELICULA" << endl;
+                            cout << "==========================================" << endl;
+                            // CODE
+                          }
+                          catch(exception &e){
+                          cout << e.what() << endl;
+                          }
+                        }
+                        break;
+                    case 9:{
+                          try{
+                            cout << "==========================================" << endl;
+                            cout << "        VER INFORMACION DE PELICULA" << endl;
+                            cout << "==========================================" << endl;
+                            // CODE
+                          }
+                          catch(exception &e){
+                          cout << e.what() << endl;
+                          }
+                        }
+                        break;
+                    case 10:{
+                          try{
+                            cout << "==========================================" << endl;
+                            cout << "  VER COMENTARIOS Y PUNTAJES DE PELICULA" << endl;
+                            cout << "==========================================" << endl;
+                            // CODE
+                          }
+                          catch(exception &e){
+                          cout << e.what() << endl;
+                          }
+                        }
+                      break;
+                  }
                     cout << "Presione enter para continuar" << endl;
                     getchar();
                     getchar();
                     system("clear");
-                    menu2 ();
-                    op = opcion2();
+                    menuDos ();
+                    opc = opcionDos();
                 }
             }catch(exception &e){
-            cout << e.what() << endl;
-            }
-          }
-          break;
-        case 3:{
-            try{
-              cout << "==========================================" << endl;
-              cout << "               ALTA CINE" << endl;
-              cout << "==========================================" << endl;
-              // CODE
-            }
-            catch(exception &e){
-            cout << e.what() << endl;
-            }
-          }
-          break;
-        case 4:{
-            try{
-              cout << "==========================================" << endl;
-              cout << "              ALTA FUNCION" << endl;
-              cout << "==========================================" << endl;
-              // CODE
-            }
-            catch(exception &e){
-            cout << e.what() << endl;
-            }
-          }
-          break;
-        case 5:{
-            try{
-              cout << "==========================================" << endl;
-              cout << "              CREAR RESERVA" << endl;
-              cout << "==========================================" << endl;
-              // CODE
-            }
-            catch(exception &e){
-            cout << e.what() << endl;
-            }
-          }
-          break;
-        case 6:{
-            try{
-              cout << "==========================================" << endl;
-              cout << "            PUNTUAR PELICULA" << endl;
-              cout << "==========================================" << endl;
-              // CODE
-            }
-            catch(exception &e){
-            cout << e.what() << endl;
-            }
-          }
-          break;
-        case 7:{
-            try{
-              cout << "==========================================" << endl;
-              cout << "            ELIMINAR PELICULA" << endl;
-              cout << "==========================================" << endl;
-              // CODE
-            }
-            catch(exception &e){
-            cout << e.what() << endl;
-            }
-          }
-          break;
-        case 8:{
-            try{
-              cout << "==========================================" << endl;
-              cout << "            COMENTAR PELICULA" << endl;
-              cout << "==========================================" << endl;
-              // CODE
-            }
-            catch(exception &e){
-            cout << e.what() << endl;
-            }
-          }
-          break;
-        case 9:{
-            try{
-              cout << "==========================================" << endl;
-              cout << "        VER INFORMACION DE PELICULA" << endl;
-              cout << "==========================================" << endl;
-              // CODE
-            }
-            catch(exception &e){
-            cout << e.what() << endl;
-            }
-          }
-          break;
-        case 10:{
-            try{
-              cout << "==========================================" << endl;
-              cout << "  VER COMENTARIOS Y PUNTAJES DE PELICULA" << endl;
-              cout << "==========================================" << endl;
-              // CODE
-            }
-            catch(exception &e){
             cout << e.what() << endl;
             }
           }
