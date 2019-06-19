@@ -63,13 +63,15 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "               ALTA CINE" << endl;
                             cout << "==========================================" << endl;
-                            string dir;
-                            int nro;
-                            cout << " Ingrese el numero del cine" << endl;
-                            cin >> nro;
-                            cout << "Ingrese la direccion del cine" << endl;
-                            cin >> dir;
-                            sis->AltaCine(nro,dir);
+                            if(sis->esAdmin(nick)){
+                              string dir;
+                              int nro;
+                              cout << " Ingrese el numero del cine" << endl;
+                              cin >> nro;
+                              cout << "Ingrese la direccion del cine" << endl;
+                              cin >> dir;
+                              sis->AltaCine(nro,dir);
+                            }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
@@ -81,7 +83,9 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "              ALTA FUNCION" << endl;
                             cout << "==========================================" << endl;
-                            // CODE
+                            if(sis->esAdmin(nick)){
+                              // CODE
+                            }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
@@ -117,10 +121,12 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "            ELIMINAR PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            string t;
-                            cout << "Ingrese el titulo de la pelicula que desea eliminar" << endl;
-                            cin >> t;
-                            sis->EliminarPelicula(t);
+                            if(sis->esAdmin(nick)){
+                              string t;
+                              cout << "Ingrese el titulo de la pelicula que desea eliminar" << endl;
+                              cin >> t;
+                              sis->EliminarPelicula(t);
+                            }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
@@ -163,6 +169,29 @@ int main(){
                           }
                         }
                       break;
+                    case 9:{
+                            try{
+                              cout << "==========================================" << endl;
+                              cout << "               ALTA PELICULA" << endl;
+                              cout << "==========================================" << endl;
+                              if(sis->esAdmin(nick)){
+                                string t,p,s;
+                                float prom =0;
+
+                                cout << "Ingrese el titulo de la pelicula" << endl;
+                                cin >> t;
+                                cout << "Ingrese el poster de la pelicula" << endl;
+                                cin >> p;
+                                cout << "Ingrese la sinopsis de la pelicula" << endl;
+                                cin >> s;
+                                sis->AltaPelicula(t,p,s,prom);
+                              }
+                            }
+                            catch(exception &e){
+                            cout << e.what() << endl;
+                            }
+                          }
+                        break;
                   }
                     cout << "Presione enter para continuar" << endl;
                     getchar();

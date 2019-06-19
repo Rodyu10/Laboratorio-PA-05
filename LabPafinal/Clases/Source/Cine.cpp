@@ -11,9 +11,20 @@ Cine::Cine(int nro, string dir){
   this->Dir = dir;
 }
 
-/*list Cine::getListaCines(){
-  // MUESTRA TODOS LOS CINES
-}*/
+void Cine::agregarSalas(int nro, int cap){
+  cout << " AACAAAAAA" << endl;
+    Integer* llave = new Integer(nro);
+    if(!salas->member(llave)){
+      cout << " AACAAAAAA2222" << endl;
+      Sala* s = new Sala(nro,cap);
+      salas->add(llave,s);
+      cout << " AACAAAAA45454545554A" << endl;
+    }
+    else{
+      throw invalid_argument ("La sala ya existe");
+    }
+}
+
 DtCine Cine::getCine() const{
   return DtCine (this->NroCine,this->Dir);
 }

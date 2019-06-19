@@ -29,6 +29,7 @@ void menuDos()
   cout << "6-Comentar Pelicula" << endl;
   cout << "7-Ver informacion de Pelicula" << endl;
   cout << "8-Ver comentarios y puntaje de Pelicula" << endl;
+  cout << "9-Alta Pelicula" << endl;
   cout << "0-Volver al menu principal" << endl;
   cout << "====================================" << endl;
 }
@@ -53,6 +54,6 @@ int opcionDos()
         cout << "Ingrese Opción: " << endl;
         cin >> op;
     }
-    while ((op < 0) || (op > 8));
+    while ((op < 0) || (op > 9));
     return op;
 }

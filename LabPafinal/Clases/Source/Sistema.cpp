@@ -59,6 +59,26 @@ void Sistema::AltaCine(int nro, string direc){
   if(!cines->member(llave)){
     Cine* c=new Cine(nro, direc);
     cines->add(llave,c);
+    string res;
+    cout << "Desea agregar salas al cine ?" << endl;
+    cin >> res;
+    int aux = 1;
+    while(aux == 1){
+      if(res == "y" || res == "Y"){
+        int nro,ca;
+        cout << "Ingrese el numero de la Sala" << endl;
+        cin >> nro;
+        cout << "Ingrese la capacidad de la Sala" << endl;
+        cin >> ca;
+        c->agregarSalas(nro,ca);
+
+        cout << "Desea agregar salas al cine ?" << endl;
+        cin >> res;
+      }
+      else{
+        aux=0;
+      }
+    }
   }
   else{
     throw invalid_argument("El nro de cine ya existe");
@@ -89,7 +109,7 @@ void Sistema::precarga(){
   Cine* c=new Cine(1,"Alvariza");
   Integer* intllave = new Integer(c->getNroCine());
   cines->add(intllave,c);
-  c=new Cine(1,"Alvariza");
+  c=new Cine(2,"PuntaShopping");
   intllave = new Integer(c->getNroCine());
   cines->add(intllave,c);
 }

@@ -4,7 +4,8 @@
 
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Datatypes/Headers/DtSala.h"
-
+#include "../../Collections/OrderedDictionary.h"
+#include "../../Interfaces/Headers/IDictionary.h"
 using namespace std;
 
 class Sala : public ICollectible{
