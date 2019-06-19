@@ -11,12 +11,6 @@ int main(){
   system("clear");
   menu();
   Sistema* sis = Sistema::getInstance();
-  sis->RegistrarUsuario("root","123","123");
-  sis->AltaCine(1,"Alvariza");
-  sis->AltaCine(2,"PropioChine");
-  sis->AltaPelicula("Austin Power vs Doctor Malito","123","123",0);
-  sis->AltaPelicula("Macaco","123","123",0);
-  sis->AltaPelicula("Austin Power vs Doctor Malito la 2","123","123",0);
   int op = opcion();
     while (op!=0)
     {

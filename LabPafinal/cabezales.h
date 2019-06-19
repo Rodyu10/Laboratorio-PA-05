@@ -49,3 +49,4 @@ void menu();
 int opcion();
 void menu2();
 int opcion2();
+void precarga();

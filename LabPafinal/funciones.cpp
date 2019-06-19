@@ -58,3 +58,12 @@ int opcionDos()
     while ((op < 0) || (op > 10));
     return op;
 }
+
+void precarga() {
+  sis->RegistrarUsuario("root","123","123");
+  sis->AltaCine(1,"Alvariza");
+  sis->AltaCine(2,"PropioChine");
+  sis->AltaPelicula("Austin Power vs Doctor Malito","123","123",0);
+  sis->AltaPelicula("Macaco","123","123",0);
+  sis->AltaPelicula("Austin Power vs Doctor Malito la 2","123","123",0);
+}
