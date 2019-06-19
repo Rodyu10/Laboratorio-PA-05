@@ -86,6 +86,35 @@ void Sistema::AltaCine(int nro, string direc){
   }
 }
 
+void Sistema::AltaFuncion(){//(int nroF, int nroS, DtFecha fecha, int hor ){
+  ListarTitulos();
+  string t;
+  int n;
+  cout << "Eliga la pelicula deseada" << endl;
+  cin >> t;
+  StringKey* llave = new StringKey(t);
+  if(peliculas->member(llave))
+  {
+    system("clear");
+    ListarCines();
+    cout << "Eliga el cine deseado" << endl;
+    cin >> n;
+    system("clear");
+    Integer* key = new Integer(n);
+    if(cines->member(key)){
+      Cine* aux = (Cine*) cines->find(key);
+      aux->listarSalas(aux);
+      aux->agregarFuncion(aux);
+    }
+    else{
+        throw invalid_argument("El cine no existe");
+    }
+  }
+  else{
+    throw invalid_argument("La pelicula no existe");
+  }
+}
+
 void Sistema::AltaPelicula(string tit, string pos, string sinop, float puntaj){
   StringKey* llave = new StringKey(tit);
   if(!peliculas->member(llave)){
@@ -104,6 +133,9 @@ void Sistema::precarga(){
   llave = new StringKey("Austin Power vs Doctor Malito la 2");
   p=new Pelicula("Austin Power vs Doctor Malito la 2","123","123",0);
   peliculas->add(llave,p);
+  llave = new StringKey("Chuky");
+  p=new Pelicula("Chuky","123","123",0);
+  peliculas->add(llave,p);
   Usuario* u=new Usuario("root","123","123");
   StringKey* user = new StringKey(u->getNick());
   usuarios->add(user,u);
@@ -118,6 +150,7 @@ void Sistema::precarga(){
  void Sistema::ListarTitulos(){
    IIterator* i=peliculas->getIterator();
    if(i->hasCurrent()){
+     cout << "==========LISTA PELICULAS=========="<<endl;
      while(i->hasCurrent()){
        Pelicula* p = (Pelicula*) i->getCurrent();
        cout << p->getTitulo() << endl;
@@ -149,6 +182,7 @@ bool Sistema::esAdmin(string nick){
 void Sistema::ListarCines(){
   IIterator* i=cines->getIterator();
   if(i->hasCurrent()){
+    cout << "==========LISTA CINES=========="<<endl;
     while(i->hasCurrent()){
       Cine* c = (Cine*) i->getCurrent();
       cout <<"Nro de Cine: " << c->getNroCine() << endl;

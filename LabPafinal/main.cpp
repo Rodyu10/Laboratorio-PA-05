@@ -84,7 +84,7 @@ int main(){
                             cout << "              ALTA FUNCION" << endl;
                             cout << "==========================================" << endl;
                             if(sis->esAdmin(nick)){
-                              // CODE
+                              sis->AltaFuncion();
                             }
                           }
                           catch(exception &e){

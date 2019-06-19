@@ -5,6 +5,8 @@
 #include "../../Clases/Headers/Usuario.h"
 #include "../../Clases/Headers/Cine.h"
 #include "../../Clases/Headers/Pelicula.h"
+#include "../../Clases/Headers/Funcion.h"
+#include "../../Datatypes/Headers/DtFecha.h"
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/IKey.h"
 #include "../../Collections/OrderedDictionary.h"
@@ -27,6 +29,7 @@ class Sistema  {
    void IniciarSesion(string,string);
    void AltaCine(int,string);
    void AltaPelicula(string,string,string,float);
+   void AltaFuncion();//(int, int, DtFecha, int);
    void precarga();
    void ListarTitulos();
    void EliminarPelicula(string Titulo);
