@@ -51,15 +51,17 @@ void Sistema::IniciarSesion(string nickname, string pass){
   }
 }
 
-// void Sistema::ListarTitulos(Pelicula::Titulo){
-//   IKey* key = new KeyInteger(Titulo);
-//   ICollectible* p = Peliculas->find(key);
-//   delete key;
-//   if(p==NULL){
-//     throw invalid_argument("No hay Peliculas");
-//   }
-//   Peliculas->add(key);
-// }
+void Sistema::ListarTitulos(string titulo){
+  // IKey* key = new KeyInteger(Titulo);
+   // ICollectible* p =(peliculas*) peliculas->add(titulo);
+  // delete key;
+  // titulo="Mcaco";
+  cout << titulo <<endl;
+  // if(p==NULL){
+  //   throw invalid_argument("No hay Peliculas");
+  // }
+  // Peliculas->add(key);
+}
 //
 // void Sistema::Eliminar(Pelicula::Titulo){
 //   IKey* key = new KeyInteger(Titulo);

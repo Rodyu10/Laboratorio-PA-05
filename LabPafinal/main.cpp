@@ -61,6 +61,9 @@ int main(){
                     case 1:{
                         try{
                             cout << "LISTA PELIS" << endl;
+                            string titulo;
+                            titulo="MACCACO";
+                            sis->ListarTitulos(titulo);
                         }
                         catch(exception &e){
                         cout << e.what() << endl;

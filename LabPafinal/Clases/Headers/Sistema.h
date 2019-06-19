@@ -23,7 +23,7 @@ class Sistema  {
    void RegistrarUsuario(string, string, string);
    bool VerificarSesion(string, string);
    void IniciarSesion(string,string);
-   void ListarTitulos();
+   void ListarTitulos(string titulo);
    void Eliminar(string Titulo);
    void ListarPeliculas();
    void SeleccionPelicula(string Titulo);
