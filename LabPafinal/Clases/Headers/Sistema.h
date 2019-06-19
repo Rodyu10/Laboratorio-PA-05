@@ -27,10 +27,12 @@ class Sistema  {
    void IniciarSesion(string,string);
    void AltaCine(int,string);
    void AltaPelicula(string,string,string,float);
+   void precarga();
    void ListarTitulos();
    void EliminarPelicula(string Titulo);
    void ListarPeliculas();
    void SeleccionPelicula(string Titulo);
+   bool esAdmin(string);
    void ListarCines();
    void SeleccionCine(int NroCine);
    void ListarFunciones(int NroFuncion);

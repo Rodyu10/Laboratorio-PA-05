@@ -13,6 +13,7 @@ Sistema* Sistema::instance = nullptr;
 Sistema* Sistema::getInstance(){
     if(instance == nullptr){
       instance = new Sistema();
+      instance->precarga();
     }
     return instance;
 }
@@ -75,6 +76,24 @@ void Sistema::AltaPelicula(string tit, string pos, string sinop, float puntaj){
   }
 }
 
+void Sistema::precarga(){
+  Pelicula* p=new Pelicula("Austin Power vs Doctor Malito","123","123",0);
+  StringKey* llave = new StringKey(p->getTitulo());
+  peliculas->add(llave,p);
+  llave = new StringKey("Austin Power vs Doctor Malito la 2");
+  p=new Pelicula("Austin Power vs Doctor Malito la 2","123","123",0);
+  peliculas->add(llave,p);
+  Usuario* u=new Usuario("root","123","123");
+  StringKey* user = new StringKey(u->getNick());
+  usuarios->add(user,u);
+  Cine* c=new Cine(1,"Alvariza");
+  Integer* intllave = new Integer(c->getNroCine());
+  cines->add(intllave,c);
+  c=new Cine(1,"Alvariza");
+  intllave = new Integer(c->getNroCine());
+  cines->add(intllave,c);
+}
+
  void Sistema::ListarTitulos(){
    IIterator* i=peliculas->getIterator();
    if(i->hasCurrent()){
@@ -89,6 +108,21 @@ void Sistema::AltaPelicula(string tit, string pos, string sinop, float puntaj){
    else{
      throw invalid_argument("No hay Peliculas");
    }
+}
+
+bool Sistema::esAdmin(string nick){
+  StringKey* llave = new StringKey(nick);
+  if(usuarios->member(llave)){
+    Usuario* u = (Usuario*) usuarios->find(llave);
+    if(u->getNick() =="root"){
+      return true;
+    }
+    else{
+      delete u;
+      throw invalid_argument("El usuario no tiene permiso para acceder a esta funcion");
+    }
+  }
+  return 0;
 }
 
 void Sistema::ListarCines(){
