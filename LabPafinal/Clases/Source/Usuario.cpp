@@ -12,9 +12,13 @@ Usuario::Usuario(string nickname, string fotoperfil, string contrasenia){
   this->contrasenia = contrasenia;
 }
 
-bool Usuario::verificarPass(string nick, string pass){
-
- return 0;
+bool Usuario::verificarPass(string pass){
+  if(this->contrasenia == pass){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 string Usuario::getNick() const {

@@ -3,6 +3,8 @@
 #include <stdlib.h>
 
 #include "../../Clases/Headers/Usuario.h"
+#include "../../Clases/Headers/Cine.h"
+#include "../../Clases/Headers/Pelicula.h"
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/IKey.h"
 #include "../../Collections/OrderedDictionary.h"
@@ -23,8 +25,10 @@ class Sistema  {
    void RegistrarUsuario(string, string, string);
    bool VerificarSesion(string, string);
    void IniciarSesion(string,string);
-   void ListarTitulos(string titulo);
-   void Eliminar(string Titulo);
+   void AltaCine(int,string);
+   void AltaPelicula(string,string,string,float);
+   void ListarTitulos();
+   void EliminarPelicula(string Titulo);
    void ListarPeliculas();
    void SeleccionPelicula(string Titulo);
    void ListarCines();
