@@ -60,7 +60,7 @@ void Sistema::AltaCine(int nro, string direc){
     Cine* c=new Cine(nro, direc);
     cines->add(llave,c);
     string res;
-    cout << "Desea agregar salas al cine ?" << endl;
+    cout << "Desea agregar salas al cine ? (Y o N)" << endl;
     cin >> res;
     int aux = 1;
     while(aux == 1){
@@ -72,8 +72,9 @@ void Sistema::AltaCine(int nro, string direc){
         cin >> ca;
         c->agregarSalas(nro,ca);
 
-        cout << "Desea agregar salas al cine ?" << endl;
+        cout << "Desea agregar salas al cine (Y o N)?" << endl;
         cin >> res;
+        system("clear");
       }
       else{
         aux=0;

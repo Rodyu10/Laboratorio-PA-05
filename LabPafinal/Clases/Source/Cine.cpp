@@ -3,22 +3,20 @@
 using namespace std;
 
 Cine::Cine(){
-
 }
 
 Cine::Cine(int nro, string dir){
   this->NroCine = nro;
   this->Dir = dir;
+  salas =new OrderedDictionary();
 }
 
 void Cine::agregarSalas(int nro, int cap){
-  cout << " AACAAAAAA" << endl;
     Integer* llave = new Integer(nro);
     if(!salas->member(llave)){
-      cout << " AACAAAAAA2222" << endl;
       Sala* s = new Sala(nro,cap);
       salas->add(llave,s);
-      cout << " AACAAAAA45454545554A" << endl;
+      cout << "Sala agregada" << endl;
     }
     else{
       throw invalid_argument ("La sala ya existe");

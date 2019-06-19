@@ -2,12 +2,12 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../../Clases/Headers/Sala.h"
+#include "../../Datatypes/Headers/DtCine.h"
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Interfaces/Headers/IDictionary.h"
-#include "../../Datatypes/Headers/DtCine.h"
-#include "../../Collections/OrderedDictionary.h"
-#include "../../Clases/Headers/Sala.h"
 #include "../../Interfaces/Headers/IKey.h"
+#include "../../Collections/OrderedDictionary.h"
 #include "../../Integer.h"
 
 using namespace std;

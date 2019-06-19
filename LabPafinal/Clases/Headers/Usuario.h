@@ -3,8 +3,8 @@
 #include <stdlib.h>
 
 #include "../../Interfaces/Headers/ICollectible.h"
-#include "../../String.h"
-#include "../../Integer.h"
+//#include "../../String.h"
+//#include "../../Integer.h"
 
 
 using namespace std;
