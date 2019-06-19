@@ -59,30 +59,6 @@ int main(){
                   switch(opc)
                   {
                     case 1:{
-                        try{
-                          cout << "==========================================" << endl;
-                          cout << "               LISTA TITULOS" << endl;
-                          cout << "==========================================" << endl;
-                          sis->ListarTitulos();
-                        }
-                        catch(exception &e){
-                        cout << e.what() << endl;
-                        }
-                      }
-                      break;
-                    case 2:{
-                        try{
-                          cout << "==========================================" << endl;
-                          cout << "               LISTA CINES" << endl;
-                          cout << "==========================================" << endl;
-                          sis->ListarCines();
-                        }
-                        catch(exception &e){
-                        cout << e.what() << endl;
-                        }
-                      }
-                      break;
-                    case 3:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "               ALTA CINE" << endl;
@@ -100,7 +76,7 @@ int main(){
                           }
                         }
                         break;
-                    case 4:{
+                    case 2:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "              ALTA FUNCION" << endl;
@@ -112,7 +88,7 @@ int main(){
                           }
                         }
                         break;
-                    case 5:{
+                    case 3:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "              CREAR RESERVA" << endl;
@@ -124,7 +100,7 @@ int main(){
                           }
                         }
                         break;
-                    case 6:{
+                    case 4:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "            PUNTUAR PELICULA" << endl;
@@ -136,7 +112,7 @@ int main(){
                           }
                         }
                         break;
-                    case 7:{
+                    case 5:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "            ELIMINAR PELICULA" << endl;
@@ -151,7 +127,7 @@ int main(){
                           }
                         }
                         break;
-                    case 8:{
+                    case 6:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "            COMENTAR PELICULA" << endl;
@@ -163,7 +139,7 @@ int main(){
                           }
                         }
                         break;
-                    case 9:{
+                    case 7:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "        VER INFORMACION DE PELICULA" << endl;
@@ -175,7 +151,7 @@ int main(){
                           }
                         }
                         break;
-                    case 10:{
+                    case 8:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "  VER COMENTARIOS Y PUNTAJES DE PELICULA" << endl;
