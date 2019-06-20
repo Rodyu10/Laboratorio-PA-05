@@ -138,7 +138,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "            COMENTAR PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            // CODE
+                            sis->ComentarPelicula();
                           }
                           catch(exception &e){
                           cout << e.what() << endl;

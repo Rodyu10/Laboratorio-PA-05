@@ -29,7 +29,8 @@ class Sistema  {
    void IniciarSesion(string,string);
    void AltaCine(int,string);
    void AltaPelicula(string,string,string,float);
-   void AltaFuncion();//(int, int, DtFecha, int);
+   void AltaFuncion();
+   void ComentarPelicula();
    void precarga();
    void ListarTitulos();
    void EliminarPelicula(string Titulo);

@@ -86,15 +86,14 @@ void Sistema::AltaCine(int nro, string direc){
   }
 }
 
-void Sistema::AltaFuncion(){//(int nroF, int nroS, DtFecha fecha, int hor ){
+void Sistema::AltaFuncion(){
   ListarTitulos();
   string t;
   int n;
   cout << "Eliga la pelicula deseada" << endl;
   cin >> t;
   StringKey* llave = new StringKey(t);
-  if(peliculas->member(llave))
-  {
+  if(peliculas->member(llave)) {
     system("clear");
     ListarCines();
     cout << "Eliga el cine deseado" << endl;
@@ -112,6 +111,22 @@ void Sistema::AltaFuncion(){//(int nroF, int nroS, DtFecha fecha, int hor ){
   }
   else{
     throw invalid_argument("La pelicula no existe");
+  }
+}
+
+void Sistema::ComentarPelicula(){
+  ListarTitulos();
+  string t;
+  cout << "Eliga la pelicula deseada" << endl;
+  cin >> t;
+  StringKey* llave = new StringKey(t);
+  if(peliculas->member(llave)){
+      Pelicula* aux = (Pelicula*) peliculas->find(llave);
+      aux->ListarComentarios(aux);
+      aux->agregarComentario(aux);
+  }
+  else{
+    throw invalid_argument("Pelicula incorrecta");
   }
 }
 
@@ -169,14 +184,17 @@ bool Sistema::esAdmin(string nick){
   if(usuarios->member(llave)){
     Usuario* u = (Usuario*) usuarios->find(llave);
     if(u->getNick() =="root"){
+      delete u;
+      delete llave;
       return true;
     }
     else{
-      delete u;
       throw invalid_argument("El usuario no tiene permiso para acceder a esta funcion");
     }
+    delete u;
+    delete llave;
   }
-  return 0;
+  return false;
 }
 
 void Sistema::ListarCines(){

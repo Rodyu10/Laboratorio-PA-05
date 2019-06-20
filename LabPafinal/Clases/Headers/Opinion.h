@@ -2,9 +2,12 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../../Interfaces/Headers/ICollectible.h"
+#include "../../Interfaces/Headers/IDictionary.h"
+
 using namespace std;
 
-class Opinion{
+class Opinion : public ICollectible{
 
   private:
     float puntaje;

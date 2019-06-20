@@ -4,7 +4,11 @@
 
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/ICollectible.h"
+#include "../../Collections/OrderedDictionary.h"
 #include "../../Datatypes/Headers/DtPelicula.h"
+#include "../../Clases/Headers/Comenta.h"
+#include "../../String.h"
+#include "../../Integer.h"
 
 using namespace std;
 
@@ -16,13 +20,16 @@ class Pelicula : public ICollectible{
       string Sinopsis;
       float Puntaje;
       IDictionary * funcionesP;
+      //IDictionary * opiniones;
+      IDictionary* comentarios;
   public:
       Pelicula();
       Pelicula(string, string, string, float);
 
-      //list getListaPeliculas();
       DtPelicula getPelicula() const;
 
+      void ListarComentarios(ICollectible * obj);
+      void agregarComentario(ICollectible * obj);
       string getTitulo() const;
       string getPoster()const;
       string getSinopsis() const;
