@@ -109,7 +109,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "            PUNTUAR PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            // CODE
+                            sis->PuntuarPelicula(nick);
                           }
                           catch(exception &e){
                           cout << e.what() << endl;

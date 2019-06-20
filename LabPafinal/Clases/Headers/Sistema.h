@@ -31,6 +31,7 @@ class Sistema  {
    void AltaPelicula(string,string,string,float);
    void AltaFuncion();
    void ComentarPelicula();
+   void PuntuarPelicula(string);
    void precarga();
    void ListarTitulos();
    void EliminarPelicula(string Titulo);

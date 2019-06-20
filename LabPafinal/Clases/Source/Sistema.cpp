@@ -129,6 +129,20 @@ void Sistema::ComentarPelicula(){
     throw invalid_argument("Pelicula incorrecta");
   }
 }
+void Sistema::PuntuarPelicula(string user){
+  ListarTitulos();
+  string t;
+  cout << "Elija la pelicula deseada" << endl;
+  cin >> t;
+  StringKey* llave = new StringKey(t);
+  if(peliculas->member(llave)){
+      Pelicula* aux = (Pelicula*) peliculas->find(llave);
+      aux->agregarPuntaje(aux,user);
+  }
+  else{
+    throw invalid_argument("Pelicula incorrecta");
+  }
+}
 
 void Sistema::AltaPelicula(string tit, string pos, string sinop, float puntaj){
   StringKey* llave = new StringKey(tit);
@@ -184,15 +198,11 @@ bool Sistema::esAdmin(string nick){
   if(usuarios->member(llave)){
     Usuario* u = (Usuario*) usuarios->find(llave);
     if(u->getNick() =="root"){
-      delete u;
-      delete llave;
       return true;
     }
     else{
       throw invalid_argument("El usuario no tiene permiso para acceder a esta funcion");
     }
-    delete u;
-    delete llave;
   }
   return false;
 }

@@ -11,6 +11,7 @@ Pelicula::Pelicula(string titulo, string poster, string sinopsis, float puntaje)
   this->Sinopsis = sinopsis;
   this->Puntaje = puntaje;
   comentarios =new OrderedDictionary();
+  opiniones =new OrderedDictionary();
 }
 
 void Pelicula::ListarComentarios(ICollectible * obj){
@@ -52,6 +53,49 @@ void Pelicula::agregarComentario(ICollectible * obj){
       cout << "Comentario incorrecto" << endl;
     }
   }
+}
+
+void Pelicula::agregarPuntaje(ICollectible * objP, string user){
+  IIterator* i= opiniones->getIterator();
+  bool aux = false;
+  string auxi;
+  if(i->hasCurrent()){
+        cout << "==========LISTA PUNTAJES=========="<<endl;
+        while(i->hasCurrent()){
+          Opinion* o = (Opinion*) i->getCurrent();
+          cout <<"Usuario: "<< o->getUser() <<"/   Puntaje: " << o->getPuntaje() << endl;
+          cout <<"-----------------" << endl;
+          if(o->getUser() == user){
+            // REMPLAZA PUNTAJE SI YA HABIA PUNTUADO;
+            aux = true;
+            float p;
+            cout << "Ingrese el puntaje para remplazar" << endl;
+            cin >> p;
+            o->setPuntaje(p);
+          }
+          i->next();
+        }
+        if(aux == false){
+          // PUNTUACION NUEVA SI YA HAY PUNTAJES
+          float p;
+          cout << "Ingrese el nuevo puntaje" << endl;
+          cin >> p;
+          Opinion* op = new Opinion(p,user);
+          StringKey* llave = new StringKey(user);
+          opiniones->add(llave,op);
+        }
+   }
+   else{
+    // PUNTUACION NUEVA
+    cout << "La pelicula no contiene ningun puntaje aun" << endl;
+    float p;
+    cout << "Ingrese el nuevo puntaje" << endl;
+    cin >> p;
+    StringKey* llave = new StringKey(user);
+    Opinion* op = new Opinion(p,user);
+    opiniones->add(llave,op);
+    }
+      delete i;
 }
 
 DtPelicula Pelicula::getPelicula() const{

@@ -7,6 +7,8 @@
 #include "../../Collections/OrderedDictionary.h"
 #include "../../Datatypes/Headers/DtPelicula.h"
 #include "../../Clases/Headers/Comenta.h"
+#include "../../Clases/Headers/Opinion.h"
+#include "../../Clases/Headers/Usuario.h"
 #include "../../String.h"
 #include "../../Integer.h"
 
@@ -19,8 +21,8 @@ class Pelicula : public ICollectible{
       string Poster;
       string Sinopsis;
       float Puntaje;
-      IDictionary * funcionesP;
-      //IDictionary * opiniones;
+      //IDictionary* funcionesP;
+      IDictionary* opiniones;
       IDictionary* comentarios;
   public:
       Pelicula();
@@ -30,7 +32,8 @@ class Pelicula : public ICollectible{
 
       void ListarComentarios(ICollectible * obj);
       void agregarComentario(ICollectible * obj);
-      string getTitulo() const;
+      void agregarPuntaje(ICollectible * obj, string);
+      string getTitulo()const;
       string getPoster()const;
       string getSinopsis() const;
       float getPuntaje() const;
