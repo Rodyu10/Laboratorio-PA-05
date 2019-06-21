@@ -8,8 +8,9 @@ Cine::Cine(){
 Cine::Cine(int nro, string dir){
   this->NroCine = nro;
   this->Dir = dir;
-  salas =new OrderedDictionary();
-  funciones =new OrderedDictionary();
+  salas = new OrderedDictionary();
+  funciones = new OrderedDictionary();
+  peliculas = new OrderedDictionary();
 }
 
 void Cine::agregarSalas(int nro, int cap){
@@ -44,12 +45,14 @@ void Cine::listarSalas(ICollectible* obj){
 
 void Cine::agregarPelicula(string Titulo, ICollectible* peli){
   StringKey* llave = new StringKey(Titulo);
-  if(peliculas->member(llave)){
+  if(!peliculas->member(llave)){
       peliculas->add(llave,peli);
-      return;
   }
-  delete llave;
-  throw invalid_argument("Este cine ya contiene esta pelicula");
+  else
+  {
+    delete llave;
+    throw invalid_argument("Este cine ya contiene esta pelicula");
+  }
 }
 
 void Cine::agregarFuncion(ICollectible* obj){

@@ -42,7 +42,7 @@ int main(){
               cout << "             INICIAR SESION" << endl;
               cout << "==========================================" << endl;
               string nick,pass;
-              cout << " Ingrese su usuario" << endl;
+              cout << "Ingrese su usuario" << endl;
               cin >> nick;
               cout << "Ingrese su contraseña" << endl;
               cin >> pass;
@@ -60,13 +60,13 @@ int main(){
                   {
                     case 1:{
                           try{
-                            cout << "==========================================" << endl;
-                            cout << "               ALTA CINE" << endl;
-                            cout << "==========================================" << endl;
+                            cout << "==========================================================" << endl;
+                            cout << "                       ALTA CINE" << endl;
+                            cout << "==========================================================" << endl;
                             if(sis->esAdmin(nick)){
                               string dir;
                               int nro;
-                              cout << " Ingrese el numero del cine" << endl;
+                              cout << "Ingrese el numero del cine" << endl;
                               cin >> nro;
                               cout << "Ingrese la direccion del cine" << endl;
                               cin >> dir;
@@ -80,9 +80,9 @@ int main(){
                         break;
                     case 2:{
                           try{
-                            cout << "==========================================" << endl;
-                            cout << "              ALTA FUNCION" << endl;
-                            cout << "==========================================" << endl;
+                            cout << "==========================================================" << endl;
+                            cout << "                     ALTA FUNCION" << endl;
+                            cout << "==========================================================" << endl;
                             if(sis->esAdmin(nick)){
                               sis->AltaFuncion();
                             }
@@ -94,18 +94,21 @@ int main(){
                         break;
                       case 3:{
                             try{
-                              cout << "==========================================" << endl;
-                              cout << "               ALTA PELICULA" << endl;
-                              cout << "==========================================" << endl;
+                              cout << "==========================================================" << endl;
+                              cout << "                    ALTA PELICULA" << endl;
+                              cout << "==========================================================" << endl;
                               if(sis->esAdmin(nick)){
                                 string t,p,s;
                                 int cine;
                                 cout << "Ingrese el titulo de la pelicula" << endl;
-                                cin >> t;
+                                getchar();
+                                getline(cin,t);
                                 cout << "Ingrese el poster de la pelicula" << endl;
-                                cin >> p;
+                                getchar();
+                                getline(cin,p);
                                 cout << "Ingrese la sinopsis de la pelicula" << endl;
-                                cin >> s;
+                                getchar();
+                                getline(cin,s);
                                 cout << "Ingrese el numero del cine" << endl;
                                 cin >> cine;
                                 sis->AltaPelicula(t,p,s,cine);

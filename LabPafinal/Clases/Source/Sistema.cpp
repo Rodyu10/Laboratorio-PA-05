@@ -165,31 +165,36 @@ void Sistema::AltaPelicula(string tit, string pos, string sinop, int cine){
       Pelicula* p=new Pelicula(tit,pos,sinop,0);
       c->agregarPelicula(tit,p);
       delete intllave;
-      return;
   }
-  delete intllave;
-  throw invalid_argument("No existe el numero del cine seleccionado");
+  else
+  {
+    delete intllave;
+    throw invalid_argument("No existe el numero del cine seleccionado");
+  }
 }
 
 void Sistema::precarga(){
+  Cine* c1=new Cine(1,"Alvariza");
+  Integer* intllave = new Integer(c1->getNroCine());
+  cines->add(intllave,c1);
+  Cine *c2=new Cine(2,"PuntaShopping");
+  intllave = new Integer(c2->getNroCine());
+  cines->add(intllave,c2);
   Pelicula* p=new Pelicula("Austin Power vs Doctor Malito","123","123",0);
   StringKey* llave = new StringKey(p->getTitulo());
   peliculas->add(llave,p);
+  c1->agregarPelicula(p->getTitulo(),p);
   llave = new StringKey("Austin Power vs Doctor Malito la 2");
   p=new Pelicula("Austin Power vs Doctor Malito la 2","123","123",0);
   peliculas->add(llave,p);
+  c2->agregarPelicula(p->getTitulo(),p);
   llave = new StringKey("Chuky");
   p=new Pelicula("Chuky","123","123",0);
   peliculas->add(llave,p);
+  c1->agregarPelicula(p->getTitulo(),p);
   Usuario* u=new Usuario("root","123","123");
   StringKey* user = new StringKey(u->getNick());
   usuarios->add(user,u);
-  Cine* c=new Cine(1,"Alvariza");
-  Integer* intllave = new Integer(c->getNroCine());
-  cines->add(intllave,c);
-  c=new Cine(2,"PuntaShopping");
-  intllave = new Integer(c->getNroCine());
-  cines->add(intllave,c);
 }
 
  void Sistema::ListarTitulos(){

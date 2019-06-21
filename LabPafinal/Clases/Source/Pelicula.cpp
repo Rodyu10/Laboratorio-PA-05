@@ -10,6 +10,7 @@ Pelicula::Pelicula(string titulo, string poster, string sinopsis, float puntaje)
   this->Poster = poster;
   this->Sinopsis = sinopsis;
   this->Puntaje = puntaje;
+  funciones =new OrderedDictionary();
   comentarios =new OrderedDictionary();
   opiniones =new OrderedDictionary();
 }
