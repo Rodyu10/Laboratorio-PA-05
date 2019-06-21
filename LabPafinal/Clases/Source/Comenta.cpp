@@ -29,9 +29,9 @@ void Comenta::ListarComentariosResp(ICollectible * obj){
     cout << "          ========== RESPUESTAS =========="<<endl;
     while(i->hasCurrent()){
       Comenta* com = (Comenta*) i->getCurrent();
-      cout <<           com->getUsers()<< ":" << "   "<< com->getComentario() << endl;
+      cout <<"          "<< com->getUsers()<< ":" << "   "<< com->getComentario() << endl;
       cout <<"          -----------------" << endl;
-      cout << "          ================================"<<endl;
+      cout <<"          ================================"<<endl;
       i->next();
     }
     delete i;

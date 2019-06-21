@@ -18,10 +18,6 @@ string Opinion::getUser(){
     return this->user;
 }
 
-/*float Opinion::getUser() const{
-  return this->user;
-}*/
-
 void Opinion::setPuntaje(float puntaje){
   this->puntaje = puntaje;
 }

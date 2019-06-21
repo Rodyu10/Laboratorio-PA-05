@@ -2,6 +2,9 @@
 
 using namespace std;
 
+int Cant = 0;
+float Suma = 0;
+
 Sistema::Sistema(){
   usuarios=new OrderedDictionary();
   cines=new OrderedDictionary();
@@ -138,7 +141,12 @@ void Sistema::PuntuarPelicula(string user){
   StringKey* llave = new StringKey(t);
   if(peliculas->member(llave)){
       Pelicula* aux = (Pelicula*) peliculas->find(llave);
-      aux->agregarPuntaje(aux,user);
+      float p,promedio;
+      p = aux->agregarPuntaje(aux,user);
+      Cant++;
+      Suma = Suma + p;
+      promedio = (float) Suma / Cant;
+      aux->setPuntaje(promedio);
   }
   else{
     throw invalid_argument("Pelicula incorrecta");
@@ -227,7 +235,7 @@ void Sistema::VerComentariosPuntaje(){
     if(peliculas->member(llave)){
         Pelicula* aux = (Pelicula*) peliculas->find(llave);
         float p = aux-> getPuntaje();
-        aux->MostrarComentariosPuntajes(aux,t,p);
+        aux->MostrarComentariosPuntajes(aux,t,p,Cant);
     }
     delete i;
   }

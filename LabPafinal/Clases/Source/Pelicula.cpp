@@ -2,9 +2,6 @@
 
 using namespace std;
 
-int Cant = 0;
-float Suma = 0;
-
 Pelicula::Pelicula(){
 }
 
@@ -62,7 +59,7 @@ void Pelicula::agregarComentario(ICollectible * obj, string nick){
 }
 
 
-void Pelicula::agregarPuntaje(ICollectible * objP, string user){
+float Pelicula::agregarPuntaje(ICollectible * objP, string user){
   IIterator* i= opiniones->getIterator();
   bool aux = false;
   string auxi;
@@ -79,6 +76,8 @@ void Pelicula::agregarPuntaje(ICollectible * objP, string user){
             cout << "Ingrese el puntaje para remplazar" << endl;
             cin >> p;
             o->setPuntaje(p);
+            delete i;
+            return p;
           }
           i->next();
         }
@@ -90,8 +89,8 @@ void Pelicula::agregarPuntaje(ICollectible * objP, string user){
           Opinion* op = new Opinion(p,user);
           StringKey* llave = new StringKey(user);
           opiniones->add(llave,op);
-          /*Cant++;
-          Suma = Suma + p;*/
+          delete i;
+          return p;
         }
    }
    else{
@@ -103,21 +102,30 @@ void Pelicula::agregarPuntaje(ICollectible * objP, string user){
     StringKey* llave = new StringKey(user);
     Opinion* op = new Opinion(p,user);
     opiniones->add(llave,op);
-    /*cant++;
-    Suma = Suma + p;
-    float promedio;
-    promedio = (float) Suma / Cant;*/
+    delete i;
+    return p;
     }
-      delete i;
+  return 0;
 }
 
-void Pelicula::MostrarComentariosPuntajes(ICollectible* obj, string t, float p){
+void Pelicula::MostrarComentariosPuntajes(ICollectible* obj, string t, float p, int cant){
   system("clear");
   cout << t << endl;
-  cout << "Puntaje promedio: "<< p << " < Cantidad de usuarios que la puntuaron >"<< endl;
+  cout << "Puntaje promedio: "<< p <<  " (" << cant << " usuarios)"<< endl;
+  cout << "=================================" << endl;
   ListarComentarios(obj);
-  // PUNTAJES
-  //nickname : puntaje
+  cout << "=================================" << endl;
+  cout << " PUNTAJES " << endl;
+  IIterator* i= opiniones->getIterator();
+  if(i->hasCurrent()){
+      while(i->hasCurrent()){
+      Opinion* o = (Opinion*) i->getCurrent();
+      cout << o->getUser()<<":" << o->getPuntaje() << endl;
+      cout <<"--------------------------------------" << endl;
+      i->next();
+      }
+      delete i;
+    }
 }
 
 DtPelicula Pelicula::getPelicula() const{
