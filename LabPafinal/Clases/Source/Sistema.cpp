@@ -114,7 +114,7 @@ void Sistema::AltaFuncion(){
   }
 }
 
-void Sistema::ComentarPelicula(){
+void Sistema::ComentarPelicula(string nick){
   ListarTitulos();
   string t;
   cout << "Eliga la pelicula deseada" << endl;
@@ -123,12 +123,13 @@ void Sistema::ComentarPelicula(){
   if(peliculas->member(llave)){
       Pelicula* aux = (Pelicula*) peliculas->find(llave);
       aux->ListarComentarios(aux);
-      aux->agregarComentario(aux);
+      aux->agregarComentario(aux,nick);
   }
   else{
     throw invalid_argument("Pelicula incorrecta");
   }
 }
+
 void Sistema::PuntuarPelicula(string user){
   ListarTitulos();
   string t;
@@ -205,6 +206,34 @@ bool Sistema::esAdmin(string nick){
     }
   }
   return false;
+}
+
+void Sistema::VerComentariosPuntaje(){
+  IIterator* i=peliculas->getIterator();
+  if(i->hasCurrent()){
+    cout << "==========LISTA PELICULAS=========="<<endl;
+    while(i->hasCurrent()){
+      Pelicula* p = (Pelicula*) i->getCurrent();
+      cout << p->getTitulo() << endl;
+      cout <<"-----------------" << endl;
+      cout << p->getPoster() << endl;
+      cout <<"-----------------" << endl;
+      i->next();
+    }
+    string t;
+    cout << "Elija la pelicula deseada" << endl;
+    cin >> t;
+    StringKey* llave = new StringKey(t);
+    if(peliculas->member(llave)){
+        Pelicula* aux = (Pelicula*) peliculas->find(llave);
+        float p = aux-> getPuntaje();
+        aux->MostrarComentariosPuntajes(aux,t,p);
+    }
+    delete i;
+  }
+  else{
+    throw invalid_argument("No hay Peliculas");
+  }
 }
 
 void Sistema::ListarCines(){

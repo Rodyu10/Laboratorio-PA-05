@@ -14,11 +14,14 @@ class Comenta : public ICollectible{
   private:
     string comentario;
     IDictionary * comentariosResp;
+    string users;
   public:
       Comenta();
-      Comenta(string);
+      Comenta(string, string);
 
-      void agregarRespuesta(ICollectible * obj);
+      void ListarComentariosResp(ICollectible * obj);
+      void agregarRespuesta(ICollectible * obj,string nick);
+      string getUsers() const;
       string getComentario() const;
 
       void setComentario(string);

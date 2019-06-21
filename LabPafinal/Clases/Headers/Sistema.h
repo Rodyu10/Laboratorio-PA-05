@@ -30,12 +30,13 @@ class Sistema  {
    void AltaCine(int,string);
    void AltaPelicula(string,string,string,float);
    void AltaFuncion();
-   void ComentarPelicula();
+   void ComentarPelicula(string);
    void PuntuarPelicula(string);
    void precarga();
    void ListarTitulos();
    void EliminarPelicula(string Titulo);
    void ListarPeliculas();
+   void VerComentariosPuntaje();
    Pelicula* SeleccionPelicula(string Titulo);
    bool esAdmin(string);
    void ListarCines();

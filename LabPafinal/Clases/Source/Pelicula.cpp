@@ -2,6 +2,9 @@
 
 using namespace std;
 
+int Cant = 0;
+float Suma = 0;
+
 Pelicula::Pelicula(){
 }
 
@@ -20,8 +23,11 @@ void Pelicula::ListarComentarios(ICollectible * obj){
     cout << "==========LISTA COMENTARIOS=========="<<endl;
     while(i->hasCurrent()){
       Comenta* com = (Comenta*) i->getCurrent();
-      cout <<"Comentario: "<< com->getComentario() << endl;
-      cout <<"-----------------" << endl;
+      cout << com->getUsers()<< ": " << "   "<< com->getComentario() << endl;
+      cout <<"------------------------------------------------------" << endl;
+      StringKey* llave = new StringKey (com->getComentario());
+      Comenta* c =(Comenta*) comentarios->find(llave);
+      c->ListarComentariosResp(c);
       i->next();
     }
     delete i;
@@ -31,7 +37,7 @@ void Pelicula::ListarComentarios(ICollectible * obj){
   }
 }
 
-void Pelicula::agregarComentario(ICollectible * obj){
+void Pelicula::agregarComentario(ICollectible * obj, string nick){
   string com;
   cout <<"Elija un comentario si lo desea, de lo contrario presione 'N' " << endl;
   cin >> com;
@@ -40,20 +46,21 @@ void Pelicula::agregarComentario(ICollectible * obj){
     cout << "Ingrese un nuevo comentario" << endl;
     cin >> com;
     StringKey* key = new StringKey(com);
-    Comenta* c = new Comenta(com);
+    Comenta* c = new Comenta(com,nick);
     comentarios->add(key,c);
     cout << "Comentario agregado" << endl;
   }
   else {
     if(comentarios->member(llave)){
     Comenta* c = (Comenta*) comentarios->find(llave);
-    c->agregarRespuesta(c);
+    c->agregarRespuesta(c,nick);
     }
     else{
       cout << "Comentario incorrecto" << endl;
     }
   }
 }
+
 
 void Pelicula::agregarPuntaje(ICollectible * objP, string user){
   IIterator* i= opiniones->getIterator();
@@ -83,6 +90,8 @@ void Pelicula::agregarPuntaje(ICollectible * objP, string user){
           Opinion* op = new Opinion(p,user);
           StringKey* llave = new StringKey(user);
           opiniones->add(llave,op);
+          /*Cant++;
+          Suma = Suma + p;*/
         }
    }
    else{
@@ -94,8 +103,21 @@ void Pelicula::agregarPuntaje(ICollectible * objP, string user){
     StringKey* llave = new StringKey(user);
     Opinion* op = new Opinion(p,user);
     opiniones->add(llave,op);
+    /*cant++;
+    Suma = Suma + p;
+    float promedio;
+    promedio = (float) Suma / Cant;*/
     }
       delete i;
+}
+
+void Pelicula::MostrarComentariosPuntajes(ICollectible* obj, string t, float p){
+  system("clear");
+  cout << t << endl;
+  cout << "Puntaje promedio: "<< p << " < Cantidad de usuarios que la puntuaron >"<< endl;
+  ListarComentarios(obj);
+  // PUNTAJES
+  //nickname : puntaje
 }
 
 DtPelicula Pelicula::getPelicula() const{

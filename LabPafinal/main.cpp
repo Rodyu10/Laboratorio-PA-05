@@ -155,7 +155,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "            COMENTAR PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            sis->ComentarPelicula();
+                            sis->ComentarPelicula(nick);
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
@@ -179,7 +179,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "  VER COMENTARIOS Y PUNTAJES DE PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            // CODE
+                            sis->VerComentariosPuntaje();
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
