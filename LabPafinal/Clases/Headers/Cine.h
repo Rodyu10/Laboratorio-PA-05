@@ -30,6 +30,7 @@ class Cine : public ICollectible{
       void agregarSalas(int, int);
       void listarSalas(ICollectible* obj);
       void agregarFuncion(ICollectible* obj);
+      void agregarPelicula(string Titulo, ICollectible* Peli);
       bool verificarPelicula(string Titulo);
       DtCine getCine() const;
 

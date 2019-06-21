@@ -153,15 +153,22 @@ void Sistema::PuntuarPelicula(string user){
   }
 }
 
-void Sistema::AltaPelicula(string tit, string pos, string sinop, float puntaj){
-  StringKey* llave = new StringKey(tit);
-  if(!peliculas->member(llave)){
-    Pelicula* p=new Pelicula(tit,pos,sinop,puntaj);
-    peliculas->add(llave,p);
+void Sistema::AltaPelicula(string tit, string pos, string sinop, int cine){
+  Integer* intllave = new Integer(cine);
+  if(cines->member(intllave)){
+      StringKey* llave = new StringKey(tit);
+      if(!peliculas->member(llave)){
+        Pelicula* p=new Pelicula(tit,pos,sinop,0);
+        peliculas->add(llave,p);
+      }
+      Cine* c = (Cine*) cines->find(intllave);
+      Pelicula* p=new Pelicula(tit,pos,sinop,0);
+      c->agregarPelicula(tit,p);
+      delete intllave;
+      return;
   }
-  else{
-    throw invalid_argument("La pelicula ya existe");
-  }
+  delete intllave;
+  throw invalid_argument("No existe el numero del cine seleccionado");
 }
 
 void Sistema::precarga(){
@@ -303,6 +310,7 @@ Pelicula* Sistema::SeleccionPelicula(string Titulo){
     throw invalid_argument("No existe la película seleccionada");
   }
   Pelicula* peli = (Pelicula*) peliculas->find(llave);
+  delete llave;
   return peli;
 }
 
@@ -313,12 +321,13 @@ Cine* Sistema::SeleccionCine(int NroCine){
     throw invalid_argument("No existe el cine seleccionado");
   }
   Cine* c = (Cine*) cines->find(llave);
+  delete llave;
   return c;
 }
 
-// void Sistema::ListarFunciones(Funcion::NroFuncion){
-//
-// }
+void Sistema::ListarFunciones(int NroFuncion){
+
+}
 
 // float Sistema::PagaCredito(string NombreFinanciera, int CantAsientos){
 //

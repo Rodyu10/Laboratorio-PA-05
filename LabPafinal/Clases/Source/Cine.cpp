@@ -40,8 +40,17 @@ void Cine::listarSalas(ICollectible* obj){
         throw invalid_argument("No hay Salas");
       }
       delete i;
-  }
+}
 
+void Cine::agregarPelicula(string Titulo, ICollectible* peli){
+  StringKey* llave = new StringKey(Titulo);
+  if(peliculas->member(llave)){
+      peliculas->add(llave,peli);
+      return;
+  }
+  delete llave;
+  throw invalid_argument("Este cine ya contiene esta pelicula");
+}
 
 void Cine::agregarFuncion(ICollectible* obj){
     int nroS;

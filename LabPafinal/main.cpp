@@ -92,7 +92,31 @@ int main(){
                           }
                         }
                         break;
-                    case 3:{
+                      case 3:{
+                            try{
+                              cout << "==========================================" << endl;
+                              cout << "               ALTA PELICULA" << endl;
+                              cout << "==========================================" << endl;
+                              if(sis->esAdmin(nick)){
+                                string t,p,s;
+                                int cine;
+                                cout << "Ingrese el titulo de la pelicula" << endl;
+                                cin >> t;
+                                cout << "Ingrese el poster de la pelicula" << endl;
+                                cin >> p;
+                                cout << "Ingrese la sinopsis de la pelicula" << endl;
+                                cin >> s;
+                                cout << "Ingrese el numero del cine" << endl;
+                                cin >> cine;
+                                sis->AltaPelicula(t,p,s,cine);
+                              }
+                            }
+                            catch(exception &e){
+                            cout << e.what() << endl;
+                            }
+                          }
+                          break;
+                    case 4:{
                           try{
                             cout << "===========================================================" << endl;
                             cout << "                       CREAR RESERVA" << endl;
@@ -104,14 +128,16 @@ int main(){
                             if(pelicula!="s" || pelicula!="S")
                             {
                                 Pelicula* peli = sis->SeleccionPelicula(pelicula);
-                                cout << peli->getPoster() << endl;
-                                cout << peli->getSinopsis() << endl;
+                                cout << "Poster: " << peli->getPoster() << endl;
+                                cout << "Sinopsis:" << peli->getSinopsis() << endl;
                                 string op;
                                 cout << "¿Desea ver infomacion adicional o salir? (A) aceptar (S) salir" << endl;
                                 cin >> op;
                                 if(op!="s" || op!="S")
                                 {
-
+                                    int nroCine = stoi(op);
+                                    Cine* cine = sis->SeleccionCine(nroCine);
+                                    sis->ListarFunciones(cine->getNroCine()); // Haciendola...
                                 }
                             }
                             throw invalid_argument("Se canceló la opeación");
@@ -121,7 +147,7 @@ int main(){
                           }
                         }
                         break;
-                    case 4:{
+                    case 5:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "            PUNTUAR PELICULA" << endl;
@@ -133,7 +159,7 @@ int main(){
                           }
                         }
                         break;
-                    case 5:{
+                    case 6:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "            ELIMINAR PELICULA" << endl;
@@ -150,7 +176,7 @@ int main(){
                           }
                         }
                         break;
-                    case 6:{
+                    case 7:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "            COMENTAR PELICULA" << endl;
@@ -162,7 +188,7 @@ int main(){
                           }
                         }
                         break;
-                    case 7:{
+                    case 8:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "        VER INFORMACION DE PELICULA" << endl;
@@ -174,7 +200,7 @@ int main(){
                           }
                         }
                         break;
-                    case 8:{
+                    case 9:{
                           try{
                             cout << "==========================================" << endl;
                             cout << "  VER COMENTARIOS Y PUNTAJES DE PELICULA" << endl;
@@ -186,29 +212,6 @@ int main(){
                           }
                         }
                       break;
-                    case 9:{
-                            try{
-                              cout << "==========================================" << endl;
-                              cout << "               ALTA PELICULA" << endl;
-                              cout << "==========================================" << endl;
-                              if(sis->esAdmin(nick)){
-                                string t,p,s;
-                                float prom =0;
-
-                                cout << "Ingrese el titulo de la pelicula" << endl;
-                                cin >> t;
-                                cout << "Ingrese el poster de la pelicula" << endl;
-                                cin >> p;
-                                cout << "Ingrese la sinopsis de la pelicula" << endl;
-                                cin >> s;
-                                sis->AltaPelicula(t,p,s,prom);
-                              }
-                            }
-                            catch(exception &e){
-                            cout << e.what() << endl;
-                            }
-                          }
-                        break;
                   }
                     cout << "Presione enter para continuar" << endl;
                     getchar();

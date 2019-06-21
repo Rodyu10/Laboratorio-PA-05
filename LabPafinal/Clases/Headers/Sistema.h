@@ -28,7 +28,7 @@ class Sistema  {
    bool VerificarSesion(string, string);
    void IniciarSesion(string,string);
    void AltaCine(int,string);
-   void AltaPelicula(string,string,string,float);
+   void AltaPelicula(string,string,string,int);
    void AltaFuncion();
    void ComentarPelicula(string);
    void PuntuarPelicula(string);

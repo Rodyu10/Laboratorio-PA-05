@@ -23,13 +23,13 @@ void menuDos()
   cout << "====================================" << endl;
   cout << "1-Alta Cine" << endl;
   cout << "2-Alta Funcion" << endl;
-  cout << "3-Crear Reserva" << endl;
-  cout << "4-Puntuar Pelicula" << endl;
-  cout << "5-Eliminar Pelicula" << endl;
-  cout << "6-Comentar Pelicula" << endl;
-  cout << "7-Ver informacion de Pelicula" << endl;
-  cout << "8-Ver comentarios y puntaje de Pelicula" << endl;
-  cout << "9-Alta Pelicula" << endl;
+  cout << "3-Alta Pelicula" << endl;
+  cout << "4-Crear Reserva" << endl;
+  cout << "5-Puntuar Pelicula" << endl;
+  cout << "6-Eliminar Pelicula" << endl;
+  cout << "7-Comentar Pelicula" << endl;
+  cout << "8-Ver informacion de Pelicula" << endl;
+  cout << "9-Ver comentarios y puntaje de Pelicula" << endl;
   cout << "0-Volver al menu principal" << endl;
   cout << "====================================" << endl;
 }
