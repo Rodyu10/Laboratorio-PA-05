@@ -23,10 +23,12 @@ int main(){
               cout << "             REGISTRAR USUARIO" << endl;
               cout << "==========================================" << endl;
               string nick,foto,pass;
-              cout << " Ingrese su nombre de usuario" << endl;
-              cin >> nick;
+              cout << "Ingrese su nombre de usuario" << endl;
+              getchar();
+              getline(cin,nick);
               cout << "Ingrese su foto de perfil" << endl;
-              cin >> foto;
+              getchar();
+              getline(cin,foto);
               cout << "Ingrese su contraseña" << endl;
               cin >> pass;
               sis->RegistrarUsuario(nick,foto,pass);
@@ -69,7 +71,8 @@ int main(){
                               cout << "Ingrese el numero del cine" << endl;
                               cin >> nro;
                               cout << "Ingrese la direccion del cine" << endl;
-                              cin >> dir;
+                              getchar();
+                              getline(cin,dir);
                               sis->AltaCine(nro,dir);
                             }
                           }
@@ -127,7 +130,8 @@ int main(){
                             sis->ListarTitulos();
                             string pelicula;
                             cout << "Ingrese el título de la película o escriba (S) para salir" << endl;
-                            cin >> pelicula;
+                            getchar();
+                            getline(cin,pelicula);
                             if(pelicula!="s" || pelicula!="S")
                             {
                                 Pelicula* peli = sis->SeleccionPelicula(pelicula);
@@ -170,7 +174,8 @@ int main(){
                             if(sis->esAdmin(nick)){
                               string t;
                               cout << "Ingrese el titulo de la pelicula que desea eliminar" << endl;
-                              cin >> t;
+                              getchar();
+                              getline(cin,t);
                               sis->EliminarPelicula(t);
                             }
                           }

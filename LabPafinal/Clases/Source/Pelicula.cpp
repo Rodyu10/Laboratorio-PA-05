@@ -26,11 +26,13 @@ void Pelicula::ListarComentarios(ICollectible * obj){
       StringKey* llave = new StringKey (com->getComentario());
       Comenta* c =(Comenta*) comentarios->find(llave);
       c->ListarComentariosResp(c);
+      delete llave;
       i->next();
     }
     delete i;
   }
   else{
+    delete i;
     cout << "La pelicula no tiene comentarios aun" << endl;
   }
 }
@@ -66,6 +68,7 @@ Comenta* Pelicula::BuscarComentario(ICollectible * objP, string com){
   StringKey* llave = new StringKey(com);
   if (comentarios->member(llave)){
     Comenta* c = (Comenta*) comentarios->find(llave);
+    delete llave;
     return c;
   }
   else{
@@ -77,12 +80,14 @@ Comenta* Pelicula::BuscarComentario(ICollectible * objP, string com){
           StringKey* llave = new StringKey (come->getComentario());
           Comenta* c =(Comenta*) comentarios->find(llave);
           c->BuscarRespuestas(c,com);
+          delete llave;
           i->next();
           }
           delete i;
       }
     }
     else{
+      delete llave;
       throw invalid_argument("Comentario no existe");
     }
   }

@@ -21,6 +21,7 @@ void Cine::agregarSalas(int nro, int cap){
       cout << "Sala agregada" << endl;
     }
     else{
+      delete llave;
       throw invalid_argument ("La sala ya existe");
     }
 }
@@ -36,17 +37,19 @@ void Cine::listarSalas(ICollectible* obj){
         cout <<"-----------------" << endl;
         i->next();
         }
+        delete i;
       }
       else{
+        delete i;
         throw invalid_argument("No hay Salas");
       }
-      delete i;
 }
 
 void Cine::agregarPelicula(string Titulo, ICollectible* peli){
   StringKey* llave = new StringKey(Titulo);
   if(!peliculas->member(llave)){
       peliculas->add(llave,peli);
+      cout << "Pelicula agregada exitosamente" << endl;
   }
   else
   {
@@ -82,20 +85,28 @@ void Cine::agregarFuncion(ICollectible* obj){
         cout <<"Funcion agregada exitosamente" << endl;
       }
       else{
+        delete fecha;
+        delete f;
+        delete key;
         throw invalid_argument("Ya existe la funcion");
       }
     }
     else{
+        delete llave;
         throw invalid_argument("Sala incorrecta");
     }
 }
 
 bool Cine::verificarPelicula(string Titulo){
   StringKey* llave = new StringKey(Titulo);
-  if(!peliculas->member(llave))
-  return true;
-  else
-  return false;
+  if(!peliculas->member(llave)){
+    delete llave;
+    return true;
+  }
+  else{
+    delete llave;
+    return false;
+  }
 }
 
 

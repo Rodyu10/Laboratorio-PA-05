@@ -26,6 +26,7 @@ void Sistema::RegistrarUsuario(string nickname, string fotodeperfil, string pass
  if(!usuarios->member(llave)){
    Usuario* u=new Usuario(nickname,fotodeperfil,pass);
    usuarios->add(llave,u);
+   cout << "Usuario registrado exitosamente" << endl;
  }
  else{
     delete llave;
@@ -38,13 +39,16 @@ bool Sistema::VerificarSesion(string nickname, string pass){
   if(usuarios->member(llave)){
     Usuario* u=(Usuario*) usuarios->find(llave);
     if(u->verificarPass(pass)){
+      delete llave;
       return true;
     }
     else{
+      delete llave;
       throw invalid_argument("Password incorrecto");
     }
   }
   else{
+    delete llave;
     throw invalid_argument("El usuario es incorrecto");
   }
 }
@@ -85,6 +89,7 @@ void Sistema::AltaCine(int nro, string direc){
     }
   }
   else{
+    delete llave;
     throw invalid_argument("El nro de cine ya existe");
   }
 }
@@ -93,13 +98,13 @@ void Sistema::AltaFuncion(){
   ListarTitulos();
   string t;
   int n;
-  cout << "Eliga la pelicula deseada" << endl;
+  cout << "Elija la pelicula deseada" << endl;
   cin >> t;
   StringKey* llave = new StringKey(t);
   if(peliculas->member(llave)) {
     system("clear");
     ListarCines();
-    cout << "Eliga el cine deseado" << endl;
+    cout << "Elija el cine deseado" << endl;
     cin >> n;
     system("clear");
     Integer* key = new Integer(n);
@@ -109,10 +114,13 @@ void Sistema::AltaFuncion(){
       aux->agregarFuncion(aux);
     }
     else{
+        delete key;
+        delete llave;
         throw invalid_argument("El cine no existe");
     }
   }
   else{
+    delete llave;
     throw invalid_argument("La pelicula no existe");
   }
 }
@@ -120,7 +128,7 @@ void Sistema::AltaFuncion(){
 void Sistema::ComentarPelicula(string nick){
   ListarTitulos();
   string t;
-  cout << "Eliga la pelicula deseada" << endl;
+  cout << "Elija la pelicula deseada" << endl;
   cin >> t;
   StringKey* llave = new StringKey(t);
   if(peliculas->member(llave)){
@@ -129,6 +137,7 @@ void Sistema::ComentarPelicula(string nick){
       aux->agregarComentario(aux,nick);
   }
   else{
+    delete llave;
     throw invalid_argument("Pelicula incorrecta");
   }
 }
@@ -149,6 +158,7 @@ void Sistema::PuntuarPelicula(string user){
       aux->setPuntaje(promedio);
   }
   else{
+    delete llave;
     throw invalid_argument("Pelicula incorrecta");
   }
 }
@@ -210,6 +220,7 @@ void Sistema::precarga(){
      delete i;
    }
    else{
+     delete i;
      throw invalid_argument("No hay Peliculas");
    }
 }
@@ -219,9 +230,11 @@ bool Sistema::esAdmin(string nick){
   if(usuarios->member(llave)){
     Usuario* u = (Usuario*) usuarios->find(llave);
     if(u->getNick() =="root"){
+      delete llave;
       return true;
     }
     else{
+      delete llave;
       throw invalid_argument("El usuario no tiene permiso para acceder a esta funcion");
     }
   }
@@ -249,9 +262,11 @@ void Sistema::VerComentariosPuntaje(){
         float p = aux-> getPuntaje();
         aux->MostrarComentariosPuntajes(aux,t,p,Cant);
     }
+    delete llave;
     delete i;
   }
   else{
+    delete i;
     throw invalid_argument("No hay Peliculas");
   }
 }
@@ -270,6 +285,7 @@ void Sistema::ListarCines(){
     delete i;
   }
   else{
+    delete i;
     throw invalid_argument("No hay Cines");
   }
 }
@@ -290,6 +306,7 @@ void Sistema::ListarCines(string Titulo){
     delete i;
   }
   else{
+    delete i;
     throw invalid_argument("No hay Cines");
   }
 }
