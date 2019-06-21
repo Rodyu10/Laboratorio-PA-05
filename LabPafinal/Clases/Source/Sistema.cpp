@@ -225,6 +225,26 @@ void Sistema::ListarCines(){
   }
 }
 
+void Sistema::ListarCines(string Titulo){
+  IIterator* i=cines->getIterator();
+  if(i->hasCurrent()){
+    cout << "==========LISTA CINES=========="<<endl;
+    while(i->hasCurrent()){
+      Cine* c = (Cine*) i->getCurrent();
+      if(!c->verificarPelicula(Titulo))
+      {
+        cout <<"Nro de Cine: " << c->getNroCine() << endl;
+        cout <<"Direccion: " << c->getDir() << endl << endl;
+      }
+      i->next();
+    }
+    delete i;
+  }
+  else{
+    throw invalid_argument("No hay Cines");
+  }
+}
+
 void Sistema::EliminarPelicula(string Titulo){
    StringKey* llave = new StringKey(Titulo);
    if(!peliculas->member(llave)){
@@ -239,13 +259,25 @@ void Sistema::EliminarPelicula(string Titulo){
    }
 }
 
-// void Sistema::SeleccionPelicula(Pelicula::Titulo){
-//
-// }
+Pelicula* Sistema::SeleccionPelicula(string Titulo){
+  StringKey* llave = new StringKey(Titulo);
+  if(!peliculas->member(llave)){
+    delete llave;
+    throw invalid_argument("No existe la película seleccionada");
+  }
+  Pelicula* peli = (Pelicula*) peliculas->find(llave);
+  return peli;
+}
 
-// void Sistema::SeleccionCine(Cine::NroCine){
-//
-// }
+Cine* Sistema::SeleccionCine(int NroCine){
+  Integer* llave = new Integer(NroCine);
+  if(!cines->member(llave)){
+    delete llave;
+    throw invalid_argument("No existe el cine seleccionado");
+  }
+  Cine* c = (Cine*) cines->find(llave);
+  return c;
+}
 
 // void Sistema::ListarFunciones(Funcion::NroFuncion){
 //

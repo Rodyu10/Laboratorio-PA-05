@@ -36,10 +36,11 @@ class Sistema  {
    void ListarTitulos();
    void EliminarPelicula(string Titulo);
    void ListarPeliculas();
-   void SeleccionPelicula(string Titulo);
+   Pelicula* SeleccionPelicula(string Titulo);
    bool esAdmin(string);
    void ListarCines();
-   void SeleccionCine(int NroCine);
+   void ListarCines(string Titulo);
+   Cine* SeleccionCine(int NroCine);
    void ListarFunciones(int NroFuncion);
    float PagaCredito(string NombreFinanciera, int CantAsientos);
    float PagaDebito(string NombreBanco, int CantAsientos);

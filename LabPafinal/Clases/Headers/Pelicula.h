@@ -21,7 +21,7 @@ class Pelicula : public ICollectible{
       string Poster;
       string Sinopsis;
       float Puntaje;
-      //IDictionary* funcionesP;
+      IDictionary* funciones;
       IDictionary* opiniones;
       IDictionary* comentarios;
   public:

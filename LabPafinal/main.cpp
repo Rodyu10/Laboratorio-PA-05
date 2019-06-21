@@ -94,10 +94,27 @@ int main(){
                         break;
                     case 3:{
                           try{
-                            cout << "==========================================" << endl;
-                            cout << "              CREAR RESERVA" << endl;
-                            cout << "==========================================" << endl;
-                            // CODE
+                            cout << "===========================================================" << endl;
+                            cout << "                       CREAR RESERVA" << endl;
+                            cout << "===========================================================" << endl;
+                            sis->ListarTitulos();
+                            string pelicula;
+                            cout << "Ingrese el título de la película o escriba (S) para salir" << endl;
+                            cin >> pelicula;
+                            if(pelicula!="s" || pelicula!="S")
+                            {
+                                Pelicula* peli = sis->SeleccionPelicula(pelicula);
+                                cout << peli->getPoster() << endl;
+                                cout << peli->getSinopsis() << endl;
+                                string op;
+                                cout << "¿Desea ver infomacion adicional o salir? (A) aceptar (S) salir" << endl;
+                                cin >> op;
+                                if(op!="s" || op!="S")
+                                {
+
+                                }
+                            }
+                            throw invalid_argument("Se canceló la opeación");
                           }
                           catch(exception &e){
                           cout << e.what() << endl;

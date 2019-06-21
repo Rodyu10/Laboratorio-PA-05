@@ -78,6 +78,15 @@ void Cine::agregarFuncion(ICollectible* obj){
     }
 }
 
+bool Cine::verificarPelicula(string Titulo){
+  StringKey* llave = new StringKey(Titulo);
+  if(!peliculas->member(llave))
+  return true;
+  else
+  return false;
+}
+
+
 DtCine Cine::getCine() const{
   return DtCine (this->NroCine,this->Dir);
 }
