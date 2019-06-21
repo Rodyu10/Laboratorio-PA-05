@@ -38,7 +38,7 @@ void Pelicula::agregarComentario(ICollectible * obj, string nick){
   string com;
   cout <<"Elija un comentario si lo desea, de lo contrario presione 'N' " << endl;
   cin >> com;
-  StringKey* llave = new StringKey(com);
+  //StringKey* llave = new StringKey(com);
   if(com == "N" || com == "n"){
     cout << "Ingrese un nuevo comentario" << endl;
     cin >> com;
@@ -48,16 +48,44 @@ void Pelicula::agregarComentario(ICollectible * obj, string nick){
     cout << "Comentario agregado" << endl;
   }
   else {
-    if(comentarios->member(llave)){
-    Comenta* c = (Comenta*) comentarios->find(llave);
-    c->agregarRespuesta(c,nick);
-    }
+    Comenta* co;
+    co = BuscarComentario(obj,com);
+    //if(comentarios->member(llave)){
+    //Comenta* c = (Comenta*) comentarios->find(llave);
+    cout <<"HOLA" << endl;
+    co->agregarRespuesta(co,nick);
+    /*}
     else{
       cout << "Comentario incorrecto" << endl;
-    }
+    }*/
   }
 }
 
+Comenta* Pelicula::BuscarComentario(ICollectible * objP, string com){
+  StringKey* llave = new StringKey(com);
+  if (comentarios->member(llave)){
+    Comenta* c = (Comenta*) comentarios->find(llave);
+    return c;
+  }
+  else{
+    if(!comentarios->isEmpty()){
+      IIterator* i = comentarios->getIterator();
+      if(i->hasCurrent()){
+        while(i->hasCurrent()){
+          Comenta* come = (Comenta*) i->getCurrent();
+          StringKey* llave = new StringKey (come->getComentario());
+          Comenta* c =(Comenta*) comentarios->find(llave);
+          c->BuscarRespuestas(c,com);
+          i->next();
+          }
+          delete i;
+      }
+    }
+    else{
+      throw invalid_argument("Comentario no existe");
+    }
+  }
+}
 
 float Pelicula::agregarPuntaje(ICollectible * objP, string user){
   IIterator* i= opiniones->getIterator();

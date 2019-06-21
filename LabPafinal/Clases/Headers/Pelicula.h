@@ -34,6 +34,7 @@ class Pelicula : public ICollectible{
       void agregarComentario(ICollectible * obj, string nick);
       float agregarPuntaje(ICollectible * obj, string);
       void MostrarComentariosPuntajes(ICollectible* obj, string t, float p, int cant);
+      Comenta* BuscarComentario(ICollectible * objC, string com);
       string getTitulo()const;
       string getPoster()const;
       string getSinopsis() const;

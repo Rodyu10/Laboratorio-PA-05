@@ -21,6 +21,7 @@ class Comenta : public ICollectible{
 
       void ListarComentariosResp(ICollectible * obj);
       void agregarRespuesta(ICollectible * obj,string nick);
+      Comenta* BuscarRespuestas(ICollectible* objR, string com);
       string getUsers() const;
       string getComentario() const;
 

@@ -48,6 +48,29 @@ void Comenta::agregarRespuesta(ICollectible* obj,string nick){
   cout << "Respuesta agregada" << endl;
 }
 
+Comenta* Comenta::BuscarRespuestas(ICollectible* objC, string com){
+  StringKey* llave = new StringKey(com);
+  if (comentariosResp->member(llave)){
+    Comenta* c = (Comenta*) comentariosResp->find(llave);
+    return c;
+  }
+  else{
+    if(!comentariosResp->isEmpty()){
+      IIterator* i = comentariosResp->getIterator();
+      if(i->hasCurrent()){
+        while(i->hasCurrent()){
+          Comenta* come = (Comenta*) i->getCurrent();
+          StringKey* llave = new StringKey (come->getComentario());
+          Comenta* c =(Comenta*) comentariosResp->find(llave);
+          c->BuscarRespuestas(c,com);
+          i->next();
+        }
+        delete i;
+      }
+    }
+  }
+}
+
 Comenta::~Comenta(){
   // ELIMINAR Comenta
 }
