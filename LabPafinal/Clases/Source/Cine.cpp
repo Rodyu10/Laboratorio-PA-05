@@ -25,7 +25,7 @@ void Cine::agregarSalas(int nro, int cap){
     }
 }
 
-void Cine::listarSalas(){
+void Cine::ListarSalas(){
     IIterator* i = salas->getIterator();
     cout << "=================LISTA SALAS================"<<endl;
     while(i->hasCurrent()){
@@ -40,6 +40,10 @@ void Cine::listarSalas(){
       i->next();
     }
     delete i;
+}
+
+void Cine::ListarFunciones(Pelicula *peli){
+    peli->ListarFunciones();
 }
 
 Sala* Cine::seleccionarSala(int NroSala){
@@ -75,7 +79,8 @@ void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *
         DtFecha f = DtFecha(fecha->getDia(),fecha->getMes(),fecha->getAnio());
         DtHora h = DtHora(hora->getHora(),hora->getMinutos(),hora->getSegundos());
         Funcion* fun = new Funcion(NroFuncion,NroSala,f,h);
-        fun->AsociarSalaPelicula(sala, peli);
+        peli->AsociarFuncion(fun);
+        fun->AsociarSala(sala);
         funciones->add(llave,fun);
         cout << "Funcion agregada exitosamente" << endl << endl;
     }

@@ -8,6 +8,7 @@
 #include "../../Datatypes/Headers/DtPelicula.h"
 #include "../../Clases/Headers/Comenta.h"
 #include "../../Clases/Headers/Opinion.h"
+#include "../../Clases/Headers/Funcion.h"
 #include "../../Clases/Headers/Usuario.h"
 #include "../../String.h"
 #include "../../Integer.h"
@@ -29,12 +30,13 @@ class Pelicula : public ICollectible{
       Pelicula(string, string, string, float);
 
       DtPelicula getPelicula() const;
-
       void ListarComentarios(ICollectible * obj);
+      void ListarFunciones();
       void agregarComentario(ICollectible * obj, string nick);
       float agregarPuntaje(ICollectible * obj, string);
       void MostrarComentariosPuntajes(ICollectible* obj, string t, float p, int cant);
       Comenta* BuscarComentario(ICollectible * objC, string com);
+      void AsociarFuncion(Funcion* funcion);
       string getTitulo()const;
       string getPoster()const;
       string getSinopsis() const;

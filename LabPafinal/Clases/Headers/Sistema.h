@@ -39,7 +39,7 @@ class Sistema  {
    void ListarPeliculas();
    void ListarCines();
    void ListarCines(string Titulo);
-   void ListarFunciones(int NroFuncion);
+   void ListarFunciones(Cine* cine, Pelicula* peli);
    void ListarSalas(Cine* cine);
    void EliminarPelicula(string Titulo);
    void Eliminar2(string Titulo);

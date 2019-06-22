@@ -37,6 +37,39 @@ void Pelicula::ListarComentarios(ICollectible * obj){
   }
 }
 
+void Pelicula::ListarFunciones(){
+  system("clear");
+  IIterator* i = funciones->getIterator();
+  cout << "=================LISTA FUNCIONES================"<<endl;
+  if(!funciones->isEmpty()){
+      while(i->hasCurrent()){
+        Funcion* fun = (Funcion*) i->getCurrent();
+        DtFecha fechaF = fun->getFecha();
+        int dia,mes,anio;
+        time_t fecha = time(NULL);
+        struct tm *tiempo = localtime(&fecha);
+        dia = tiempo->tm_mday;
+        mes = tiempo->tm_mon + 1;
+        anio= tiempo->tm_year + 1900;
+        DtFecha fechaActual = DtFecha(dia,mes,anio);
+        if(fechaActual<fechaF){
+          DtHora horaF = fun->getHorario();
+          cout << "Numero de Funcion: " << fun->getNroFuncion() << endl;
+          cout << "Numero de Sala: " << fun->getNroSala() << endl;
+          cout << "Fecha de la Funcion: " << fechaF.getDia() << "/" << fechaF.getMes() << "/" << fechaF.getAnio() << endl;
+          cout << "Hora de la Funcion: " << horaF.getHora() << ":" << horaF.getMinutos() << ":" << horaF.getSegundos() << endl;
+          cout << "==============================================="<<endl;
+        }
+        i->next();
+      }
+      delete i;
+  }
+  else{
+    delete i;
+    throw invalid_argument("No hay funciones para esta pelicula");
+  }
+}
+
 void Pelicula::agregarComentario(ICollectible * obj, string nick){
   string com;
   cout <<"Elija un comentario si lo desea, de lo contrario presione 'N' " << endl;
@@ -62,6 +95,11 @@ void Pelicula::agregarComentario(ICollectible * obj, string nick){
       cout << "Comentario incorrecto" << endl;
     }*/
   }
+}
+
+void Pelicula::AsociarFuncion(Funcion* funcion){
+  Integer* llave = new Integer(funcion->getNroFuncion());
+  funciones->add(llave,funcion);
 }
 
 Comenta* Pelicula::BuscarComentario(ICollectible * objP, string com){

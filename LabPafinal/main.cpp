@@ -153,27 +153,27 @@ int main(){
                             cout << "===========================================================" << endl;
                             sis->ListarTitulos();
                             string pelicula;
-                            cout << "Ingrese el título de la película o escriba (S) para salir" << endl;
+                            cout << "Ingrese el título de la película, (S) para salir" << endl;
                             getchar();
                             getline(cin,pelicula);
                             if(pelicula!="s" || pelicula!="S")
                             {
                                 Pelicula* peli = sis->SeleccionPelicula(pelicula);
-                                cout << "Poster: " << peli->getPoster() << endl;
+                                cout << endl << "Poster: " << peli->getPoster() << endl;
                                 cout << "Sinopsis:" << peli->getSinopsis() << endl;
                                 string op;
-                                cout << "¿Desea ver infomacion adicional? (Y) o (S) para salir" << endl;
+                                cout << endl<<"¿Desea ver infomacion adicional? (Y) o (N) para salir" << endl;
                                 cin >> op;
-                                if(op!="s" || op!="S")
+                                if(op!="n" || op!="N")
                                 {
                                     sis->ListarCines(pelicula);
-                                    cout << "Seleccione el numero del cine o (S) para salir" << endl;
+                                    cout << "Seleccione el numero del cine, (S) para salir" << endl;
                                     cin >> op;
                                     if(op!="s" || op!="S")
                                     {
-                                        int nroCine = stoi(op); // Casteo de string en int
+                                        int nroCine = stoi(op);
                                         Cine* cine = sis->SeleccionCine(nroCine);
-                                        sis->ListarFunciones(cine->getNroCine()); // Haciendola...
+                                        sis->ListarFunciones(cine,peli);
                                     }
                                 }
                             }

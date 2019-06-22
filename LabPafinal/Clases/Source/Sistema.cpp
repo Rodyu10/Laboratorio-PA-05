@@ -104,12 +104,13 @@ void Sistema::AltaFuncion(Cine* cine, Pelicula* peli, int NroSala){
     m = f.substr(0,f.find("/"));
     f = f.substr(f.find("/")+1,f.length()-2);
     DtFecha* fecha = new DtFecha(stoi(d),stoi(m),stoi(f));
-    cout << endl << "Ingrese la hora de la funcion: formato (HH:MM)" << endl;
+    cout << endl << "Ingrese la hora de la funcion: formato (HH:MM:SS)" << endl;
     cin >> num;
     h = num.substr(0,num.find(":"));
     num = num.substr(num.find(":")+1,num.length()-2);
     min = num.substr(0,num.find(":"));
-    DtHora* hora = new DtHora(stoi(h),stoi(min),00);
+    num = num.substr(num.find(":")+1,num.length()-2);
+    DtHora* hora = new DtHora(stoi(h),stoi(min),stoi(num));
     cine->agregarFuncion(peli,NroFuncion,NroSala,fecha,hora);
     delete fecha;
     delete hora;
@@ -233,11 +234,11 @@ void Sistema::ListarPeliculas(){
    system("clear");
    IIterator* i=peliculas->getIterator();
    if(i->hasCurrent()){
-       cout << "=================LISTA TITULOS================"<<endl;
+       cout << "=====================LISTA TITULOS===================="<<endl;
      while(i->hasCurrent()){
        Pelicula* p = (Pelicula*) i->getCurrent();
        cout << p->getTitulo() << endl;
-       cout << "==============================================" << endl;
+       cout << "======================================================" << endl;
        i->next();
      }
      delete i;
@@ -250,7 +251,7 @@ void Sistema::ListarPeliculas(){
 
 void Sistema::ListarSalas(Cine* cine){
   system("clear");
-  cine->listarSalas();
+  cine->ListarSalas();
 }
 
 bool Sistema::esAdmin(string nick){
@@ -322,13 +323,13 @@ void Sistema::ListarCines(string Titulo){
   system("clear");
   IIterator* i=cines->getIterator();
   if(i->hasCurrent()){
-    cout << "==========LISTA CINES=========="<<endl;
+      cout << "======================LISTA CINES====================="<<endl;
     while(i->hasCurrent()){
       Cine* c = (Cine*) i->getCurrent();
-      if(!c->verificarPelicula(Titulo))
-      {
-        cout <<"Nro de Cine: " << c->getNroCine() << endl;
-        cout <<"Direccion: " << c->getDir() << endl << endl;
+      if(!c->verificarPelicula(Titulo)){
+        cout <<"Numero de Cine: " << c->getNroCine() << endl;
+        cout <<"Direccion: " << c->getDir() << endl;
+        cout << "======================================================" << endl;
       }
       i->next();
     }
@@ -381,8 +382,9 @@ Sala* Sistema::SeleccionSala(Cine* cine, int NroSala){
   return sala;
 }
 
-void Sistema::ListarFunciones(int NroFuncion){
-
+void Sistema::ListarFunciones(Cine* cine, Pelicula* peli){
+  system("clear");
+  cine->ListarFunciones(peli);
 }
 
 // float Sistema::PagaCredito(string NombreFinanciera, int CantAsientos){

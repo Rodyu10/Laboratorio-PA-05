@@ -23,5 +23,19 @@ int DtFecha::getAnio() const {
   return this->anio;
 }
 
+bool DtFecha::operator<(DtFecha fecha){
+    if(this->anio < fecha.getAnio()){
+        return true;
+    }else if (this->anio == fecha.getAnio()){
+        if(this->mes < fecha.getMes()){
+            return true;
+        }else if (this->mes == fecha.getMes()){
+            if(this->dia < fecha.getDia())
+                return true;
+        }
+    }
+    return false;
+}
+
 DtFecha::~DtFecha(){
 }

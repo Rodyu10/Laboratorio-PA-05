@@ -29,7 +29,8 @@ class Cine : public ICollectible{
       Cine(int, string);
 
       void agregarSalas(int, int);
-      void listarSalas();
+      void ListarSalas();
+      void ListarFunciones(Pelicula* peli);
       Sala* seleccionarSala(int NroSala);
       void agregarFuncion(Pelicula * peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora);
       void agregarPelicula(string Titulo, ICollectible* Peli);

@@ -13,6 +13,7 @@ class DtFecha{
     int getDia() const;
     int getMes() const;
     int getAnio() const;
+    bool operator<(DtFecha fecha);
 
     virtual ~DtFecha();
 };

@@ -2,8 +2,8 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "../../Clases/Headers/Pelicula.h"
 #include "../../Clases/Headers/Sala.h"
+#include "../../Integer.h"
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Interfaces/Headers/ICollection.h"
 #include "../../Datatypes/Headers/DtFecha.h"
@@ -18,7 +18,6 @@ class Funcion : public ICollectible{
      int NroSala;
      DtFecha Fecha;
      DtHora Horario;
-     IDictionary * peliculas;
      IDictionary * reservas;
      IDictionary * salas;
   public:
@@ -29,7 +28,7 @@ class Funcion : public ICollectible{
      int getNroSala() const;
      DtFecha getFecha() const;
      DtHora getHorario() const;
-     void AsociarSalaPelicula(Sala* sala, Pelicula* peli);
+     void AsociarSala(Sala* sala);
 
      void setNroFuncion(int);
      void setNroSala(int);
