@@ -11,19 +11,16 @@ Reserva::Reserva(int cant, float costo){
   this->Costo = costo;
 }
 
-/*Reserva::Reserva create(){
-
-}
-Reserva::Reserva add(){
-
-}*/
-
 int Reserva::getCantAsientos() const{
   return this->CantAsientos;
 }
 
 float Reserva::getCosto() const{
   return this->Costo;
+}
+
+Usuario* Reserva::getUsuario() const{
+  return this->user;
 }
 
 void Reserva::setCantAsientos(int cant){
@@ -34,6 +31,9 @@ void Reserva::setCosto(float costo) {
     this->Costo = costo;
 }
 
+void Reserva::setUsuario(Usuario* user){
+  this->user = user;
+}
+
 Reserva::~Reserva(){
-  // eliminar reserva de una funcion y peli especifica ?
 }

@@ -21,7 +21,7 @@ void Cine::agregarSalas(int nro, int cap){
     }
     else{
       delete llave;
-      throw invalid_argument ("La sala ya existe");
+      throw invalid_argument ("\nLa sala ya existe");
     }
 }
 
@@ -46,11 +46,22 @@ Sala* Cine::seleccionarSala(int NroSala){
   Integer* llave = new Integer(NroSala);
   if(!salas->member(llave)){
     delete llave;
-    throw invalid_argument("Este cine no contiene este numero de sala");
+    throw invalid_argument("\nEste cine no contiene este numero de sala");
   }
   Sala* sala = (Sala*) salas->find(llave);
   delete llave;
   return sala;
+}
+
+Funcion* Cine::seleccionarFuncion(int NroFuncion){
+  Integer* llave = new Integer(NroFuncion);
+  if(!funciones->member(llave)){
+    delete llave;
+    throw invalid_argument("\nEste cine no contiene esta funcion");
+  }
+  Funcion* funcion = (Funcion*) funciones->find(llave);
+  delete llave;
+  return funcion;
 }
 
 void Cine::agregarPelicula(string Titulo, ICollectible* peli){
@@ -58,10 +69,9 @@ void Cine::agregarPelicula(string Titulo, ICollectible* peli){
   if(!peliculas->member(llave)){
       peliculas->add(llave,peli);
   }
-  else
-  {
+  else{
     delete llave;
-    throw invalid_argument("Este cine ya contiene esta pelicula");
+    throw invalid_argument("\nEste cine ya contiene esta pelicula");
   }
 }
 
@@ -104,7 +114,6 @@ bool Cine::verificarPelicula(string Titulo){
     return false;
   }
 }
-
 
 DtCine Cine::getCine() const{
   return DtCine (this->NroCine,this->Dir);

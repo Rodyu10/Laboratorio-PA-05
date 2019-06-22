@@ -95,10 +95,12 @@ int main(){
                                 getchar();
                                 getline(cin,t);
                                 Pelicula* peli = sis->SeleccionPelicula(t);
-                                sis->ListarCines();
+                                sis->ListarCines(peli->getTitulo());
                                 cout << "Ingrese el numero  del cine" << endl;
                                 cin >> nro;
                                 Cine* cine = sis->SeleccionCine(nro);
+                                if(cine->verificarPelicula(peli->getTitulo()))
+                                throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
                                 bool ingresarMas=true;
                                 while(ingresarMas){
                                   sis->ListarSalas(cine);
@@ -172,11 +174,35 @@ int main(){
                                     if(op!="s" || op!="S")
                                     {
                                         int nroCine = stoi(op);
+                                        int NroFuncion, cantAsientos;
+                                        string pago;
                                         Cine* cine = sis->SeleccionCine(nroCine);
+                                        if(cine->verificarPelicula(peli->getTitulo()))
+                                        throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
                                         sis->ListarFunciones(cine,peli);
+                                        cout << "Ingrese el numero de la funcion, (S) para salir" << endl;
+                                        cin >> NroFuncion;
+                                        sis->SeleccionFuncion(cine,NroFuncion);
+                                        cout << "¿Cuantos asientos desea reservar?" << endl;
+                                        cin >> cantAsientos;
+                                        cout << "¿Desea pagar en credito o debito? (C) o (D)" << endl;
+                                        cin >> pago;
+                                        if(pago=="C" || pago =="c"){
+                                          cout << "Ingrese el nombre de la financiera" << endl;
+                                          cin >> pago;
+                                        }
+                                        else{
+                                          cout << "Ingrese el nombre del banco" << endl;
+                                          cin >> pago;
+                                        }
                                     }
+                                    else
+                                    throw invalid_argument("Se canceló la opeación");
                                 }
+                                else
+                                throw invalid_argument("Se canceló la opeación");
                             }
+                            else
                             throw invalid_argument("Se canceló la opeación");
                           }
                           catch(exception &e){

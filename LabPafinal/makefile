@@ -25,10 +25,10 @@ Integer.o: ./Integer.cpp  ./Integer.h
 Cine.o: ./Clases/Source/Cine.cpp  ./Clases/Headers/Cine.h
 	$(CC) $(CFLAGS) ./Clases/Source/Cine.cpp
 
-Credito.o: ./Clases/Source/Credito.cpp ./Clases/Headers/Credito.h
+Credito.o: ./Clases/Source/Credito.cpp ./Clases/Headers/Credito.h ./Clases/Source/Reserva.cpp
 	$(CC) $(CFLAGS) ./Clases/Source/Credito.cpp
 
-Debito.o: ./Clases/Source/Debito.cpp ./Clases/Headers/Debito.h
+Debito.o: ./Clases/Source/Debito.cpp ./Clases/Headers/Debito.h ./Clases/Source/Reserva.cpp
 	$(CC) $(CFLAGS) ./Clases/Source/Debito.cpp
 
 Funcion.o: ./Clases/Source/Funcion.cpp ./Clases/Headers/Funcion.h

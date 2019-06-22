@@ -32,6 +32,7 @@ class Cine : public ICollectible{
       void ListarSalas();
       void ListarFunciones(Pelicula* peli);
       Sala* seleccionarSala(int NroSala);
+      Funcion* seleccionarFuncion(int NroFuncion);
       void agregarFuncion(Pelicula * peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora);
       void agregarPelicula(string Titulo, ICollectible* Peli);
       bool verificarPelicula(string Titulo);

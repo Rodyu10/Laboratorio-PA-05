@@ -97,18 +97,22 @@ void Sistema::AltaFuncion(Cine* cine, Pelicula* peli, int NroSala){
     int NroFuncion;
     cout << endl << "Ingrese numero de la funcion" << endl;
     cin >> NroFuncion;
-    cout << endl << "Ingrese la fecha de la funcion: formato (DD/MM/AAAA)" << endl;
-    cin >> f;
-    d = f.substr(0,f.find("/"));
-    f = f.substr(f.find("/")+1,f.length()-2);
-    m = f.substr(0,f.find("/"));
-    f = f.substr(f.find("/")+1,f.length()-2);
+    do{
+      cout << endl << "Ingrese la fecha de la funcion: formato (DD/MM/AAAA)" << endl;
+      cin >> f;
+      d = f.substr(0,f.find("/"));
+      f = f.substr(f.find("/")+1,f.length()-2);
+      m = f.substr(0,f.find("/"));
+      f = f.substr(f.find("/")+1,f.length()-2);
+    }while(stoi(d)>31 || stoi(d)<0 || stoi(m)>12 || stoi(m)<0 || stoi(f)<2019);
     DtFecha* fecha = new DtFecha(stoi(d),stoi(m),stoi(f));
-    cout << endl << "Ingrese la hora de la funcion: formato (HH:MM)" << endl;
-    cin >> num;
-    h = num.substr(0,num.find(":"));
-    num = num.substr(num.find(":")+1,num.length()-2);
-    min = num.substr(0,num.find(":"));
+    do{
+      cout << endl << "Ingrese la hora de la funcion: formato (HH:MM)" << endl;
+      cin >> num;
+      h = num.substr(0,num.find(":"));
+      num = num.substr(num.find(":")+1,num.length()-2);
+      min = num.substr(0,num.find(":"));
+    }while(stoi(h)>=24 || stoi(h)<=0 || stoi(min)>59 || stoi(m)<0);
     DtHora* hora = new DtHora(stoi(h),stoi(min));
     cine->agregarFuncion(peli,NroFuncion,NroSala,fecha,hora);
     delete fecha;
@@ -163,12 +167,11 @@ void Sistema::AltaPelicula(string tit, string pos, string sinop, int cine){
   Integer* intllave = new Integer(cine);
   if(cines->member(intllave)){
       StringKey* llave = new StringKey(tit);
+      Pelicula* p=new Pelicula(tit,pos,sinop,0);
       if(!peliculas->member(llave)){
-        Pelicula* p=new Pelicula(tit,pos,sinop,0);
         peliculas->add(llave,p);
       }
       Cine* c = (Cine*) cines->find(intllave);
-      Pelicula* p=new Pelicula(tit,pos,sinop,0);
       c->agregarPelicula(tit,p);
       delete intllave;
   }
@@ -322,7 +325,7 @@ void Sistema::ListarCines(string Titulo){
   system("clear");
   IIterator* i=cines->getIterator();
   if(i->hasCurrent()){
-      cout << "======================LISTA CINES====================="<<endl;
+        cout << "===============LISTA CINES DE PELICULA================"<<endl;
     while(i->hasCurrent()){
       Cine* c = (Cine*) i->getCurrent();
       if(!c->verificarPelicula(Titulo)){
@@ -343,7 +346,7 @@ void Sistema::ListarCines(string Titulo){
 void Sistema::EliminarPelicula(string Titulo){
    StringKey* llave = new StringKey(Titulo);
    if(!peliculas->member(llave)){
-     throw invalid_argument("No existe la pelicula");
+     throw invalid_argument("\nNo existe la pelicula");
      delete llave;
    }
    else{
@@ -358,7 +361,7 @@ Pelicula* Sistema::SeleccionPelicula(string Titulo){
   StringKey* llave = new StringKey(Titulo);
   if(!peliculas->member(llave)){
     delete llave;
-    throw invalid_argument("No existe la película seleccionada");
+    throw invalid_argument("\nNo existe la película seleccionada");
   }
   Pelicula* peli = (Pelicula*) peliculas->find(llave);
   delete llave;
@@ -369,7 +372,7 @@ Cine* Sistema::SeleccionCine(int NroCine){
   Integer* llave = new Integer(NroCine);
   if(!cines->member(llave)){
     delete llave;
-    throw invalid_argument("No existe el cine seleccionado");
+    throw invalid_argument("\nNo existe el cine seleccionado");
   }
   Cine* c = (Cine*) cines->find(llave);
   delete llave;
@@ -380,6 +383,10 @@ Sala* Sistema::SeleccionSala(Cine* cine, int NroSala){
   Sala* sala = cine->seleccionarSala(NroSala);
   return sala;
 }
+
+ Funcion* Sistema::SeleccionFuncion(Cine* cine, int NroFuncion){
+   return cine->seleccionarFuncion(NroFuncion);
+ }
 
 void Sistema::ListarFunciones(Cine* cine, Pelicula* peli){
   system("clear");
