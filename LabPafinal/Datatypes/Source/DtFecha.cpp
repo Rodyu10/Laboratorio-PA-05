@@ -37,5 +37,12 @@ bool DtFecha::operator<(DtFecha fecha){
     return false;
 }
 
+bool DtFecha::operator==(DtFecha fecha){
+  if(this->anio==fecha.getAnio() && this->mes==fecha.getMes() && this->dia==fecha.getDia())
+  return true;
+  else
+  return false;
+}
+
 DtFecha::~DtFecha(){
 }

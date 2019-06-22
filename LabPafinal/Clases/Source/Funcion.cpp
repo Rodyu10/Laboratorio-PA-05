@@ -12,12 +12,24 @@ Funcion::Funcion(int nrofun, int nrosala, DtFecha fecha, DtHora horario){
   this->Fecha = fecha;
   this->Horario = horario;
   reservas = new OrderedDictionary();
-  salas = new OrderedDictionary();
 }
 
 void Funcion::AsociarSala(Sala* sala){
-  Integer* llaveSala = new Integer(sala->getNroSala());
-  salas->add(llaveSala,sala);
+  this->sala = sala;
+}
+
+bool Funcion::VerificarSalaFecha(int NroSala, DtFecha *fecha, DtHora *hora){
+  if(this->sala->getNroSala()==NroSala){
+    DtFecha fechaF = this->getFecha();
+    DtHora horaF = this->getHorario();
+    DtFecha fechaIng = DtFecha(fecha->getDia(),fecha->getMes(),fecha->getAnio());
+    DtHora horaIng = DtHora(hora->getHora(),hora->getMinutos());
+    if(fechaF==fechaIng && horaF==horaIng){
+      cout << endl << "Ya existe una funcion asignada para esta hora y fecha en esta sala" << endl;
+      return true;
+    }
+  }
+  return false;
 }
 
 int Funcion::getNroFuncion() const{

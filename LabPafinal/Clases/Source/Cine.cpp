@@ -16,7 +16,7 @@ Cine::Cine(int nro, string dir){
 void Cine::agregarSalas(int nro, int cap){
     Integer* llave = new Integer(nro);
     if(!salas->member(llave)){
-      Sala* s = new Sala(nro,cap,false);
+      Sala* s = new Sala(nro,cap);
       salas->add(llave,s);
     }
     else{
@@ -27,15 +27,11 @@ void Cine::agregarSalas(int nro, int cap){
 
 void Cine::ListarSalas(){
     IIterator* i = salas->getIterator();
-    cout << "=================LISTA SALAS================"<<endl;
+      cout << "=================SALAS DE CINE=============="<<endl;
     while(i->hasCurrent()){
       Sala* s = (Sala*) i->getCurrent();
       cout << "Nro de Sala: " << s->getNroSala() << endl;
       cout << "Capacidad de Sala: " << s->getCapacidad() << endl;
-      if(s->getOcupado())
-      cout << "Estado: sala ocupada" << endl;
-      else
-      cout << "Estado: sala desocupada" << endl;
       cout << "============================================"<<endl;
       i->next();
     }
@@ -71,23 +67,25 @@ void Cine::agregarPelicula(string Titulo, ICollectible* peli){
 
 void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora){
   Integer* llave = new Integer(NroFuncion);
-  if(!funciones->member(llave)){
+  if(!funciones->find(llave)){
     Integer* llaveSala = new Integer(NroSala);
     Sala* sala = (Sala*) salas->find(llaveSala);
-    if(!sala->getOcupado()){
-        sala->setOcupado(true);
-        DtFecha f = DtFecha(fecha->getDia(),fecha->getMes(),fecha->getAnio());
-        DtHora h = DtHora(hora->getHora(),hora->getMinutos(),hora->getSegundos());
-        Funcion* fun = new Funcion(NroFuncion,NroSala,f,h);
-        peli->AsociarFuncion(fun);
-        fun->AsociarSala(sala);
-        funciones->add(llave,fun);
-        cout << "Funcion agregada exitosamente" << endl << endl;
+    IIterator* i = funciones->getIterator();
+    while(i->hasCurrent()){
+      Funcion* f = (Funcion*) i->getCurrent();
+      if(f->VerificarSalaFecha(NroSala,fecha,hora))
+      return;
+      i->next();
     }
-    else{
-      delete llave;
-      cout << endl << "Esta sala esta ocupada" << endl;
-    }
+    delete i;
+    DtFecha f = DtFecha(fecha->getDia(),fecha->getMes(),fecha->getAnio());
+    DtHora h = DtHora(hora->getHora(),hora->getMinutos());
+    Funcion* fun = new Funcion(NroFuncion,NroSala,f,h);
+    peli->AsociarFuncion(fun);
+    fun->AsociarSala(sala);
+    funciones->add(llave,fun);
+    cout << endl << "Funcion agregada exitosamente" << endl;
+
   }
   else{
     delete llave;

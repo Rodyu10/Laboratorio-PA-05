@@ -5,10 +5,9 @@ using namespace std;
 DtHora::DtHora(){
 }
 
-DtHora::DtHora(int horas, int minutos, int segundos){
+DtHora::DtHora(int horas, int minutos){
   this->Hora = horas;
   this->Minutos = minutos;
-  this->Segundos = segundos;
 }
 
 int DtHora::getHora() const {
@@ -19,8 +18,11 @@ int DtHora::getMinutos() const {
   return this->Minutos;
 }
 
-int DtHora::getSegundos() const {
-  return this->Segundos;
+bool DtHora::operator==(DtHora hora){
+    if(this->Hora==hora.getHora() && this->Minutos==hora.getMinutos())
+    return true;
+    else
+    return false;
 }
 
 DtHora::~DtHora(){

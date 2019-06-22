@@ -19,7 +19,7 @@ class Funcion : public ICollectible{
      DtFecha Fecha;
      DtHora Horario;
      IDictionary * reservas;
-     IDictionary * salas;
+     Sala * sala;
   public:
      Funcion();
      Funcion(int, int, DtFecha, DtHora);
@@ -29,6 +29,7 @@ class Funcion : public ICollectible{
      DtFecha getFecha() const;
      DtHora getHorario() const;
      void AsociarSala(Sala* sala);
+     bool VerificarSalaFecha(int NroSala,DtFecha *fecha, DtHora *hora);
 
      void setNroFuncion(int);
      void setNroSala(int);

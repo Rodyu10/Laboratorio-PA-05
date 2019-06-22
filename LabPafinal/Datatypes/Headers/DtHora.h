@@ -8,13 +8,12 @@ class DtHora{
   private:
     int Hora;
     int Minutos;
-    int Segundos;
   public:
     DtHora();
-    DtHora(int,int,int);
+    DtHora(int,int);
     int getHora() const;
     int getMinutos() const;
-    int getSegundos() const;
+    bool operator==(DtHora hora);
 
     virtual ~DtHora();
 };

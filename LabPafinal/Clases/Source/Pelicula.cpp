@@ -57,7 +57,7 @@ void Pelicula::ListarFunciones(){
           cout << "Numero de Funcion: " << fun->getNroFuncion() << endl;
           cout << "Numero de Sala: " << fun->getNroSala() << endl;
           cout << "Fecha de la Funcion: " << fechaF.getDia() << "/" << fechaF.getMes() << "/" << fechaF.getAnio() << endl;
-          cout << "Hora de la Funcion: " << horaF.getHora() << ":" << horaF.getMinutos() << ":" << horaF.getSegundos() << endl;
+          cout << "Hora de la Funcion: " << horaF.getHora() << ":" << horaF.getMinutos() << endl;
           cout << "==============================================="<<endl;
         }
         i->next();
