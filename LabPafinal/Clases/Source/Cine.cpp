@@ -16,9 +16,8 @@ Cine::Cine(int nro, string dir){
 void Cine::agregarSalas(int nro, int cap){
     Integer* llave = new Integer(nro);
     if(!salas->member(llave)){
-      Sala* s = new Sala(nro,cap);
+      Sala* s = new Sala(nro,cap,false);
       salas->add(llave,s);
-      cout << "Sala agregada" << endl;
     }
     else{
       delete llave;
@@ -26,30 +25,38 @@ void Cine::agregarSalas(int nro, int cap){
     }
 }
 
-void Cine::listarSalas(ICollectible* obj){
+void Cine::listarSalas(){
     IIterator* i = salas->getIterator();
-    if(i->hasCurrent()){
-      while(i->hasCurrent()){
-        Sala* s = (Sala*) i->getCurrent();
-        cout << "Nro de Sala: " << s->getNroSala() << endl;
-        cout <<"-----------------" << endl;
-        cout << "Capacidad de Sala: " << s->getCapacidad() << endl;
-        cout <<"-----------------" << endl;
-        i->next();
-        }
-        delete i;
-      }
-      else{
-        delete i;
-        throw invalid_argument("No hay Salas");
-      }
+    cout << "=================LISTA SALAS================"<<endl;
+    while(i->hasCurrent()){
+      Sala* s = (Sala*) i->getCurrent();
+      cout << "Nro de Sala: " << s->getNroSala() << endl;
+      cout << "Capacidad de Sala: " << s->getCapacidad() << endl;
+      if(s->getOcupado())
+      cout << "Estado: sala ocupada" << endl;
+      else
+      cout << "Estado: sala desocupada" << endl;
+      cout << "============================================"<<endl;
+      i->next();
+    }
+    delete i;
+}
+
+Sala* Cine::seleccionarSala(int NroSala){
+  Integer* llave = new Integer(NroSala);
+  if(!salas->member(llave)){
+    delete llave;
+    throw invalid_argument("Este cine no contiene este numero de sala");
+  }
+  Sala* sala = (Sala*) salas->find(llave);
+  delete llave;
+  return sala;
 }
 
 void Cine::agregarPelicula(string Titulo, ICollectible* peli){
   StringKey* llave = new StringKey(Titulo);
   if(!peliculas->member(llave)){
       peliculas->add(llave,peli);
-      cout << "Pelicula agregada exitosamente" << endl;
   }
   else
   {
@@ -58,43 +65,30 @@ void Cine::agregarPelicula(string Titulo, ICollectible* peli){
   }
 }
 
-void Cine::agregarFuncion(ICollectible* obj){
-    int nroS;
-    cout << "Elija la sala" << endl;
-    cin >> nroS;
-    Integer* llave = new Integer(nroS);
-    if(salas->member(llave)){
-      int nroF,h,d,m,a;
-      cout << " Ingrese el numero de la funcion" << endl;
-      cin >> nroF;
-      cout << " Ingrese el dia" << endl;
-      cin >> d;
-      cout << " Ingrese el mes" << endl;
-      cin >> m;
-      cout << " Ingrese el anio" << endl;
-      cin >> a;
-      cout << "Ingrese el horario de la funcion" << endl;
-      cin >> h;
-
-      DtFecha *fecha = new DtFecha(d,m,a);
-      Funcion * f= new Funcion(nroF, nroS, *fecha, h);
-
-      Integer* key = new Integer(nroF);
-      if(!funciones->member(key)){
-        funciones->add(key,f);
-        cout <<"Funcion agregada exitosamente" << endl;
-      }
-      else{
-        delete fecha;
-        delete f;
-        delete key;
-        throw invalid_argument("Ya existe la funcion");
-      }
+void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora){
+  Integer* llave = new Integer(NroFuncion);
+  if(!funciones->member(llave)){
+    Integer* llaveSala = new Integer(NroSala);
+    Sala* sala = (Sala*) salas->find(llaveSala);
+    if(!sala->getOcupado()){
+        sala->setOcupado(true);
+        DtFecha f = DtFecha(fecha->getDia(),fecha->getMes(),fecha->getAnio());
+        DtHora h = DtHora(hora->getHora(),hora->getMinutos(),hora->getSegundos());
+        Funcion* fun = new Funcion(NroFuncion,NroSala,f,h,peli);
+        fun->AsociarSala(sala);
+        fun->setPelicula(peli);
+        funciones->add(llave,fun);
+        cout << "Funcion agregada exitosamente" << endl << endl;
     }
     else{
-        delete llave;
-        throw invalid_argument("Sala incorrecta");
+      delete llave;
+      throw invalid_argument("Esta sala esta ocupada");
     }
+  }
+  else{
+    delete llave;
+    throw invalid_argument("Ya existe una funcion con ese numero registrado");
+  }
 }
 
 bool Cine::verificarPelicula(string Titulo){

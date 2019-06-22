@@ -6,6 +6,7 @@
 #include "../../Clases/Headers/Funcion.h"
 #include "../../Clases/Headers/Pelicula.h"
 #include "../../Datatypes/Headers/DtFecha.h"
+#include "../../Datatypes/Headers/DtHora.h"
 #include "../../Datatypes/Headers/DtCine.h"
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Interfaces/Headers/IDictionary.h"
@@ -28,8 +29,9 @@ class Cine : public ICollectible{
       Cine(int, string);
 
       void agregarSalas(int, int);
-      void listarSalas(ICollectible* obj);
-      void agregarFuncion(ICollectible* obj);
+      void listarSalas();
+      Sala* seleccionarSala(int NroSala);
+      void agregarFuncion(Pelicula * peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora);
       void agregarPelicula(string Titulo, ICollectible* Peli);
       bool verificarPelicula(string Titulo);
       DtCine getCine() const;

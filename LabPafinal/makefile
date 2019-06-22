@@ -7,8 +7,8 @@ all: Lab
 
 
 
-Lab: main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o Sala.o Comenta.o Opinion.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
-	$(CC) main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o  Sala.o Comenta.o Opinion.o DtFecha.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o Lab
+Lab: main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o Sala.o Comenta.o Opinion.o DtFecha.o DtHora.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
+	$(CC) main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o  Sala.o Comenta.o Opinion.o DtFecha.o DtHora.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o Lab
 
 main.o : main.cpp cabezales.h
 	$(CC) $(CFLAGS) main.cpp cabezales.h
@@ -54,6 +54,9 @@ Opinion.o: ./Clases/Source/Opinion.cpp ./Clases/Headers/Opinion.h
 
 DtFecha.o: ./Datatypes/Source/DtFecha.cpp ./Datatypes/Headers/DtFecha.h 
 	$(CC) $(CFLAGS) ./Datatypes/Source/DtFecha.cpp
+
+DtHora.o: ./Datatypes/Source/DtHora.cpp ./Datatypes/Headers/DtHora.h 
+	$(CC) $(CFLAGS) ./Datatypes/Source/DtHora.cpp
 
 DtPelicula.o: ./Datatypes/Source/DtPelicula.cpp ./Datatypes/Headers/DtPelicula.h 
 	$(CC) $(CFLAGS) ./Datatypes/Source/DtPelicula.cpp

@@ -87,7 +87,23 @@ int main(){
                             cout << "                     ALTA FUNCION" << endl;
                             cout << "==========================================================" << endl;
                             if(sis->esAdmin(nick)){
-                              sis->AltaFuncion();
+                                sis->Control();
+                                string t;
+                                int nro, nroSala;
+                                sis->ListarPeliculas();
+                                cout << "Ingrese el titulo de la pelicula" << endl;
+                                getchar();
+                                getline(cin,t);
+                                Pelicula* peli = sis->SeleccionPelicula(t);
+                                sis->ListarCines();
+                                cout << "Ingrese el numero  del cine" << endl;
+                                cin >> nro;
+                                Cine* cine = sis->SeleccionCine(nro);
+                                sis->ListarSalas(cine);
+                                cout << "Ingrese el numero  de la sala" << endl;
+                                cin >> nroSala;
+                                sis->SeleccionSala(cine,nroSala);
+                                sis->AltaFuncion(cine,peli,nroSala);
                             }
                           }
                           catch(exception &e){
@@ -138,13 +154,19 @@ int main(){
                                 cout << "Poster: " << peli->getPoster() << endl;
                                 cout << "Sinopsis:" << peli->getSinopsis() << endl;
                                 string op;
-                                cout << "¿Desea ver infomacion adicional o salir? (A) aceptar (S) salir" << endl;
+                                cout << "¿Desea ver infomacion adicional? (Y) o (S) para salir" << endl;
                                 cin >> op;
                                 if(op!="s" || op!="S")
                                 {
-                                    int nroCine = stoi(op);
-                                    Cine* cine = sis->SeleccionCine(nroCine);
-                                    sis->ListarFunciones(cine->getNroCine()); // Haciendola...
+                                    sis->ListarCines(pelicula);
+                                    cout << "Seleccione el numero del cine o (S) para salir" << endl;
+                                    cin >> op;
+                                    if(op!="s" || op!="S")
+                                    {
+                                        int nroCine = stoi(op); // Casteo de string en int
+                                        Cine* cine = sis->SeleccionCine(nroCine);
+                                        sis->ListarFunciones(cine->getNroCine()); // Haciendola...
+                                    }
                                 }
                             }
                             throw invalid_argument("Se canceló la opeación");

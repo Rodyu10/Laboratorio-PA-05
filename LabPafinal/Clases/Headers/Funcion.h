@@ -2,10 +2,12 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../../Clases/Headers/Pelicula.h"
+#include "../../Clases/Headers/Sala.h"
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Interfaces/Headers/ICollection.h"
-#include "../../Datatypes/Headers/DtFuncion.h"
 #include "../../Datatypes/Headers/DtFecha.h"
+#include "../../Datatypes/Headers/DtHora.h"
 
 using namespace std;
 
@@ -15,24 +17,26 @@ class Funcion : public ICollectible{
      int NroFuncion;
      int NroSala;
      DtFecha Fecha;
-     int Horario;
-     ICollection * reservas;
+     DtHora Horario;
+     Pelicula * pelicula;
+     IDictionary * reservas;
+     IDictionary * salas;
   public:
      Funcion();
-     Funcion(int, int, DtFecha, int);
+     Funcion(int, int, DtFecha, DtHora, Pelicula*);
 
-     //list getListaFunciones();
-     DtFuncion getFuncion() const;
+     int getNroFuncion() const;
+     int getNroSala() const;
+     DtFecha getFecha() const;
+     DtHora getHorario() const;
+     Pelicula* getPelicula() const;
+     void AsociarSala(Sala* sala);
 
-     int getNroFuncion();
-     int getNroSala();
-     DtFecha getFecha();
-     int getHorario();
-
+     void setPelicula(Pelicula*);
      void setNroFuncion(int);
      void setNroSala(int);
      void setFecha(DtFecha);
-     void setHorario(int);
+     void setHorario(DtHora);
 
      ~Funcion();
 };

@@ -12,17 +12,20 @@ class Sala : public ICollectible{
 
   private:
       int NroSala, Capacidad;
+      bool Ocupado;
   public:
       Sala();
-      Sala(int,int);
+      Sala(int,int,bool);
 
       DtSala getSala() const;
 
       int getNroSala() const;
-      int getCapacidad()const;
+      int getCapacidad() const;
+      bool getOcupado() const;
 
       void setNroSala(int);
       void setCapacidad(int);
+      void setOcupado(bool);
 
       ~Sala();
 

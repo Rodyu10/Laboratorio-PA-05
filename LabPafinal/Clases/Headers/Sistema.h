@@ -7,6 +7,7 @@
 #include "../../Clases/Headers/Pelicula.h"
 #include "../../Clases/Headers/Funcion.h"
 #include "../../Datatypes/Headers/DtFecha.h"
+#include "../../Datatypes/Headers/DtHora.h"
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/IKey.h"
 #include "../../Collections/OrderedDictionary.h"
@@ -27,26 +28,29 @@ class Sistema  {
    void RegistrarUsuario(string, string, string);
    bool VerificarSesion(string, string);
    void IniciarSesion(string,string);
+   bool esAdmin(string);
    void AltaCine(int,string);
    void AltaPelicula(string,string,string,int);
-   void AltaFuncion();
+   void AltaFuncion(Cine* cine, Pelicula* peli, int NroSala);
    void ComentarPelicula(string);
    void PuntuarPelicula(string);
-   void precarga();
+   void Precarga();
    void ListarTitulos();
-   void EliminarPelicula(string Titulo);
    void ListarPeliculas();
-   void VerComentariosPuntaje();
-   Pelicula* SeleccionPelicula(string Titulo);
-   bool esAdmin(string);
    void ListarCines();
    void ListarCines(string Titulo);
-   Cine* SeleccionCine(int NroCine);
    void ListarFunciones(int NroFuncion);
+   void ListarSalas(Cine* cine);
+   void EliminarPelicula(string Titulo);
+   void Eliminar2(string Titulo);
+   void VerComentariosPuntaje();
+   Pelicula* SeleccionPelicula(string Titulo);
+   Cine* SeleccionCine(int NroCine);
+   Sala* SeleccionSala(Cine* cine, int NroSala);
+   void SeleccionTitulo(string Titulo);
    float PagaCredito(string NombreFinanciera, int CantAsientos);
    float PagaDebito(string NombreBanco, int CantAsientos);
    void CrearReserva();
-   void Eliminar2(string Titulo);
-   void SeleccionTitulo(string Titulo);
+   void Control();
    ~Sistema();
 };
