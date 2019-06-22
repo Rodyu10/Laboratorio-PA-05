@@ -74,20 +74,19 @@ void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *
         sala->setOcupado(true);
         DtFecha f = DtFecha(fecha->getDia(),fecha->getMes(),fecha->getAnio());
         DtHora h = DtHora(hora->getHora(),hora->getMinutos(),hora->getSegundos());
-        Funcion* fun = new Funcion(NroFuncion,NroSala,f,h,peli);
-        fun->AsociarSala(sala);
-        fun->setPelicula(peli);
+        Funcion* fun = new Funcion(NroFuncion,NroSala,f,h);
+        fun->AsociarSalaPelicula(sala, peli);
         funciones->add(llave,fun);
         cout << "Funcion agregada exitosamente" << endl << endl;
     }
     else{
       delete llave;
-      throw invalid_argument("Esta sala esta ocupada");
+      cout << endl << "Esta sala esta ocupada" << endl;
     }
   }
   else{
     delete llave;
-    throw invalid_argument("Ya existe una funcion con ese numero registrado");
+    cout << endl << "Ya existe una funcion con ese numero registrado" << endl;
   }
 }
 

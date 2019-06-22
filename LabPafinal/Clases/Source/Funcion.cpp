@@ -6,19 +6,21 @@ Funcion::Funcion(){
 
 }
 
-Funcion::Funcion(int nrofun, int nrosala, DtFecha fecha, DtHora horario, Pelicula* pelicula){
+Funcion::Funcion(int nrofun, int nrosala, DtFecha fecha, DtHora horario){
   this->NroFuncion = nrofun;
   this->NroSala = nrosala;
   this->Fecha = fecha;
   this->Horario = horario;
-  this->pelicula = pelicula;
   reservas = new OrderedDictionary();
+  peliculas = new OrderedDictionary();
   salas = new OrderedDictionary();
 }
 
-void Funcion::AsociarSala(Sala* sala){
+void Funcion::AsociarSalaPelicula(Sala* sala, Pelicula* peli){
   Integer* llaveSala = new Integer(sala->getNroSala());
+  StringKey* llave = new StringKey(peli->getTitulo());
   salas->add(llaveSala,sala);
+  peliculas->add(llave,peli);
 }
 
 int Funcion::getNroFuncion() const{
@@ -35,14 +37,6 @@ DtFecha Funcion::getFecha() const{
 
 DtHora Funcion::getHorario() const{
   return this->Horario;
-}
-
-Pelicula* Funcion::getPelicula() const{
-  return this->pelicula;
-}
-
-void Funcion::setPelicula(Pelicula* peli){
-  this->pelicula = peli;
 }
 
 void Funcion::setNroFuncion(int nrofun){

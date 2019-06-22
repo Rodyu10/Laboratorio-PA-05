@@ -93,27 +93,26 @@ void Sistema::AltaCine(int nro, string direc){
 }
 
 void Sistema::AltaFuncion(Cine* cine, Pelicula* peli, int NroSala){
-  string f, d, m, num, h, min;
-  int NroFuncion;
-  cout << "Ingrese numero de la funcion" << endl;
-  cin >> NroFuncion;
-  cout << "Ingrese la fecha de la funcion: formato (DD/MM/AA)" << endl;
-  cin >> f;
-  d = f.substr(0,f.find("/"));
-  f = f.substr(f.find("/")+1,f.length()-2);
-  m = f.substr(0,f.find("/"));
-  f = f.substr(f.find("/")+1,f.length()-2);
-  DtFecha* fecha = new DtFecha(stoi(d),stoi(m),stoi(f));
-  cout << "Ingrese la hora de la funcion: formato (HH:MM:SS)" << endl;
-  cin >> num;
-  h = num.substr(0,num.find(":"));
-  num = num.substr(num.find(":")+1,num.length()-2);
-  min = num.substr(0,num.find(":"));
-  num = num.substr(num.find(":")+1,num.length()-2);
-  DtHora* hora = new DtHora(stoi(h),stoi(min),stoi(num));
-  cine->agregarFuncion(peli,NroFuncion,NroSala,fecha,hora);
-  delete fecha;
-  delete hora;
+    string f, d, m, num, h, min;
+    int NroFuncion;
+    cout << endl << "Ingrese numero de la funcion" << endl;
+    cin >> NroFuncion;
+    cout << endl << "Ingrese la fecha de la funcion: formato (DD/MM/AAAA)" << endl;
+    cin >> f;
+    d = f.substr(0,f.find("/"));
+    f = f.substr(f.find("/")+1,f.length()-2);
+    m = f.substr(0,f.find("/"));
+    f = f.substr(f.find("/")+1,f.length()-2);
+    DtFecha* fecha = new DtFecha(stoi(d),stoi(m),stoi(f));
+    cout << endl << "Ingrese la hora de la funcion: formato (HH:MM)" << endl;
+    cin >> num;
+    h = num.substr(0,num.find(":"));
+    num = num.substr(num.find(":")+1,num.length()-2);
+    min = num.substr(0,num.find(":"));
+    DtHora* hora = new DtHora(stoi(h),stoi(min),00);
+    cine->agregarFuncion(peli,NroFuncion,NroSala,fecha,hora);
+    delete fecha;
+    delete hora;
 }
 
 void Sistema::Control(){

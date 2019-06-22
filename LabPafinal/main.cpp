@@ -99,12 +99,20 @@ int main(){
                                 cout << "Ingrese el numero  del cine" << endl;
                                 cin >> nro;
                                 Cine* cine = sis->SeleccionCine(nro);
-                                sis->ListarSalas(cine);
-                                cout << "Ingrese el numero  de la sala" << endl;
-                                cin >> nroSala;
-                                sis->SeleccionSala(cine,nroSala);
-                                sis->AltaFuncion(cine,peli,nroSala);
-                            }
+                                bool ingresarMas=true;
+                                while(ingresarMas){
+                                  sis->ListarSalas(cine);
+                                  cout << "Ingrese el numero  de la sala" << endl;
+                                  cin >> nroSala;
+                                  sis->SeleccionSala(cine,nroSala);
+                                  sis->AltaFuncion(cine,peli,nroSala);
+                                  cout << "¿Desea ingresar otra funcion para esta pelicula? (Y) o (N)" << endl;
+                                  cin >> t;
+                                  if(t=="N" || t=="n"){
+                                    ingresarMas=false;
+                                  }
+                                }
+                              }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;

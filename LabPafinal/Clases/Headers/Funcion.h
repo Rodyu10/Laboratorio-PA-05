@@ -18,21 +18,19 @@ class Funcion : public ICollectible{
      int NroSala;
      DtFecha Fecha;
      DtHora Horario;
-     Pelicula * pelicula;
+     IDictionary * peliculas;
      IDictionary * reservas;
      IDictionary * salas;
   public:
      Funcion();
-     Funcion(int, int, DtFecha, DtHora, Pelicula*);
+     Funcion(int, int, DtFecha, DtHora);
 
      int getNroFuncion() const;
      int getNroSala() const;
      DtFecha getFecha() const;
      DtHora getHorario() const;
-     Pelicula* getPelicula() const;
-     void AsociarSala(Sala* sala);
+     void AsociarSalaPelicula(Sala* sala, Pelicula* peli);
 
-     void setPelicula(Pelicula*);
      void setNroFuncion(int);
      void setNroSala(int);
      void setFecha(DtFecha);
