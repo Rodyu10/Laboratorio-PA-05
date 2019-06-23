@@ -257,7 +257,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "        VER INFORMACION DE PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            // CODE
+                            sis->VerInfoPelicula();
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
