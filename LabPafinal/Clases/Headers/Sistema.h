@@ -39,7 +39,6 @@ class Sistema  {
    void ListarPeliculas();
    void ListarCines();
    void ListarCines(string Titulo);
-   void ListarCines2(ICollectible *obj);
    void VerInfoPelicula();
    void ListarFunciones(Cine* cine, Pelicula* peli);
    void ListarSalas(Cine* cine);

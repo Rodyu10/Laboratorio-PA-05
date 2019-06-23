@@ -393,24 +393,6 @@ void Sistema::ListarFunciones(Cine* cine, Pelicula* peli){
   cine->ListarFunciones(peli);
 }
 
-void Sistema::ListarCines2(ICollectible *obj){
-  IIterator* i=cines->getIterator();
-  if(i->hasCurrent()){
-    cout << "==========LISTA CINES=========="<<endl;
-    while(i->hasCurrent()){
-      Cine* c = (Cine*) i->getCurrent();
-      cout <<"Nro de Cine: " << c->getNroCine() << endl;
-      cout <<"Direccion: " << c->getDir() << endl;
-      cout <<"-----------------" << endl;
-      i->next();
-    }
-    delete i;
-  }
-  else{
-    throw invalid_argument("No hay Cines");
-  }
-}
-
 void Sistema::VerInfoPelicula(){
   IIterator* i=cines->getIterator();
   Funcion* f = (Funcion*) i->getCurrent();
@@ -422,38 +404,25 @@ void Sistema::VerInfoPelicula(){
   anio= tiempo->tm_year + 1900;
   DtFecha FechFun = f->getFecha();
   DtFecha FechAct = DtFecha(dia,mes,anio);
-  /*int anio = FechFun.getAnio();
-  int mes = FechFun.getMes();
-  int dia = FechFun.getDia();
-  int horario = f->getHorario();
-  int anioA = 1900 + ltm->tm_year;
-  int mesA = 1 + ltm->tm_mon;
-  int diaA = ltm->tm_mday;
-  int horarioA = ltm->tm_hour;*/
   ListarTitulos();
-  string c;
+  string c,e;
   int a;
-  //Funcion* aux = (Funcion*) f->find(llave);
-
-  //cout << sobrecargaFecha(2020,7,24,1900 + ltm->tm_year,1 + ltm->tm_mon,ltm->tm_mday) << endl;
-  // cout << FechFun.getAnio() << "-" << FechFun.getMes() << "-" << FechFun.getDia() << endl;
-  //  cout << 1900 + ltm->tm_year << "-" << mesA << "-" << diaA << endl;
   cout << "Seleccione un titulo si desea. (Ingrese N si no desea continuar)" << endl;
   cin >> c;
   StringKey* llave = new StringKey(c);
   if(c=="N" || c=="n"){
-    throw invalid_argument("Cancelado");
+    throw invalid_argument("Cancelado, regrese al menu");
     delete llave;
   }
   else if(peliculas->member(llave)){
       Pelicula* aux = (Pelicula*) peliculas->find(llave);
-      cout << aux->getPoster() << endl;
-      cout << aux->getSinopsis() << endl;
+      cout << "Poster: " << aux->getPoster() << endl;
+      cout << "Sinopsis: " << aux->getSinopsis() << endl;
       cout << "Desea ver informacion adicional? (S) o (N)" << endl;
-      cin >> c;
-      if(c=="S" || c=="s"){
-        ListarCines2(aux);
-        cout << "Desea finalizar?" << endl;
+      cin >> e;
+      if(e=="S" || e=="s"){
+        ListarCines(c);
+        cout << "Desea finalizar? En caso de querer mas infromacion ingrese (N)" << endl;
         cin >> c;
         if(c=="N" || c=="n"){
           cout << "Seleccione un cine: " << endl;
@@ -463,10 +432,10 @@ void Sistema::VerInfoPelicula(){
             Cine* aux2 = (Cine*) cines->find(key);
             if(FechAct < FechFun){
                     ListarFunciones(aux2,aux);
-                  }
-                  else{
-                    throw invalid_argument("Fecha incorrecta");
-                  }
+            }
+            else{
+                  throw invalid_argument("Fecha incorrecta");
+            }
           }
           else{
               throw invalid_argument("El cine no existe");
