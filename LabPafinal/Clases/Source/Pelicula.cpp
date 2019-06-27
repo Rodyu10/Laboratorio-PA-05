@@ -73,25 +73,28 @@ void Pelicula::ListarFunciones(){
   }
 }
 
-void Pelicula::agregarComentario(ICollectible * obj, string nick){
+void Pelicula::agregarComentario(Pelicula * peli, string nick){
   string com;
   cout <<"Elija un comentario si lo desea, de lo contrario presione 'N' " << endl;
-  cin >> com;
+  getchar();
+  getline(cin,com);
   //StringKey* llave = new StringKey(com);
   if(com == "N" || com == "n"){
     cout << "Ingrese un nuevo comentario" << endl;
-    cin >> com;
+    //getchar();
+    getline(cin,com);
     StringKey* key = new StringKey(com);
     Comenta* c = new Comenta(com,nick);
     comentarios->add(key,c);
     cout << "Comentario agregado" << endl;
   }
   else {
-    Comenta* co;
-    co = BuscarComentario(obj,com);
+    //Pelicula * peli = (Pelicula*) peliculas->find()
+    cout << "PELI Q ELEji " << peli->getTitulo() << endl;
+    Comenta* co = BuscarComentario(peli,com);
     //if(comentarios->member(llave)){
     //Comenta* c = (Comenta*) comentarios->find(llave);
-    cout <<"HOLA" << endl;
+    cout <<"comentario q devuelve " << co->getComentario() << endl;
     co->agregarRespuesta(co,nick);
     /*}
     else{
@@ -120,7 +123,12 @@ Comenta* Pelicula::BuscarComentario(ICollectible * objP, string com){
           Comenta* come = (Comenta*) i->getCurrent();
           StringKey* llave = new StringKey (come->getComentario());
           Comenta* c =(Comenta*) comentarios->find(llave);
-          c->BuscarRespuestas(c,com);
+          Comenta* res = NULL;
+          res = c->BuscarRespuestas(c,com);
+          if(res != NULL){
+             return res;
+            }
+          //cout << "EN buscarcomentario que viene "<< c->getComentario() << endl;
           delete llave;
           i->next();
           }

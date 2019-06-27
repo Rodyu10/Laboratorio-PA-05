@@ -279,7 +279,6 @@ int main(){
                   }
                     cout << "Presione enter para continuar" << endl;
                     getchar();
-                    getchar();
                     system("clear");
                     menuDos ();
                     opc = opcionDos();

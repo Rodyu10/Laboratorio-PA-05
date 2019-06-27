@@ -275,7 +275,7 @@ bool Sistema::esAdmin(string nick){
 void Sistema::VerComentariosPuntaje(){
   IIterator* i=peliculas->getIterator();
   if(i->hasCurrent()){
-      cout << "===============LISTA FUNCIONES================" << endl;
+      cout << "===============LISTA PELICULAS================" << endl;
     while(i->hasCurrent()){
       Pelicula* p = (Pelicula*) i->getCurrent();
       cout << p->getTitulo() << endl;

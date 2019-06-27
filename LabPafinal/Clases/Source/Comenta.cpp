@@ -23,25 +23,36 @@ void Comenta::setComentario(string comentario){
   this->comentario = comentario;
 }
 
-void Comenta::ListarComentariosResp(ICollectible * obj){
-  IIterator* i = comentariosResp->getIterator();
-  if(i->hasCurrent()){
-    cout << "          ========== RESPUESTAS =========="<<endl;
-    while(i->hasCurrent()){
-      Comenta* com = (Comenta*) i->getCurrent();
-      cout <<"          "<< com->getUsers()<< ":" << "   "<< com->getComentario() << endl;
-      cout <<"          -----------------" << endl;
-      cout <<"          ================================"<<endl;
-      i->next();
+void Comenta::ListarComentariosResp(Comenta * obj){
+  if(!comentariosResp->isEmpty()){
+    IIterator* i = comentariosResp->getIterator();
+    if(i->hasCurrent()){
+      cout << "          ========== RESPUESTAS =========="<<endl;
+      while(i->hasCurrent()){
+        Comenta* com = (Comenta*) i->getCurrent();
+        StringKey* llave = new StringKey (com->getComentario());
+        cout <<"          "<< com->getUsers()<< ":" << "   "<< com->getComentario() << endl;
+        cout <<"          -----------------" << endl;
+        cout <<"          ================================"<<endl;
+        Comenta* c =(Comenta*) comentariosResp->find(llave);
+
+        //if(!comentariosResp->isEmpty())
+        //  ListarComentariosResp(c);
+
+        i->next();
+      }
+      delete i;
     }
-    delete i;
+  }
+  else{
+    cout << "No tiene respuestas" << endl;
   }
 }
 
 void Comenta::agregarRespuesta(ICollectible* obj,string nick){
   string com;
   cout << "Ingrese la respuesta al comentario seleccionado" << endl;
-  cin >> com;
+  getline(cin,com);
   StringKey* llave = new StringKey(com);
   Comenta* c = new Comenta(com,nick);
   comentariosResp->add(llave,c);
@@ -62,7 +73,12 @@ Comenta* Comenta::BuscarRespuestas(ICollectible* objC, string com){
           Comenta* come = (Comenta*) i->getCurrent();
           StringKey* llave = new StringKey (come->getComentario());
           Comenta* c =(Comenta*) comentariosResp->find(llave);
-          c->BuscarRespuestas(c,com);
+          Comenta* res = NULL;
+          res = c->BuscarRespuestas(c,com);
+          if(res != NULL){
+             return res;
+            }
+          delete llave;
           i->next();
         }
         delete i;
