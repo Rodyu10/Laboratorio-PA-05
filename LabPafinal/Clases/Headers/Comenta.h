@@ -19,7 +19,7 @@ class Comenta : public ICollectible{
       Comenta();
       Comenta(string, string);
 
-      void ListarComentariosResp(Comenta * obj);
+      void ListarComentariosResp(ICollectible * obj);
       void agregarRespuesta(ICollectible * obj,string nick);
       Comenta* BuscarRespuestas(ICollectible* objR, string com);
       string getUsers() const;

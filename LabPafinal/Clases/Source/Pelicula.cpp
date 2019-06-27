@@ -18,7 +18,7 @@ Pelicula::Pelicula(string titulo, string poster, string sinopsis, float puntaje)
 void Pelicula::ListarComentarios(ICollectible * obj){
   IIterator* i = comentarios->getIterator();
   if(i->hasCurrent()){
-    cout << "==========LISTA COMENTARIOS=========="<<endl;
+    cout << "========== LISTA COMENTARIOS =========="<<endl;
     while(i->hasCurrent()){
       Comenta* com = (Comenta*) i->getCurrent();
       cout << com->getUsers()<< ": " << "   "<< com->getComentario() << endl;
@@ -78,10 +78,8 @@ void Pelicula::agregarComentario(Pelicula * peli, string nick){
   cout <<"Elija un comentario si lo desea, de lo contrario presione 'N' " << endl;
   getchar();
   getline(cin,com);
-  //StringKey* llave = new StringKey(com);
   if(com == "N" || com == "n"){
     cout << "Ingrese un nuevo comentario" << endl;
-    //getchar();
     getline(cin,com);
     StringKey* key = new StringKey(com);
     Comenta* c = new Comenta(com,nick);
@@ -89,17 +87,8 @@ void Pelicula::agregarComentario(Pelicula * peli, string nick){
     cout << "Comentario agregado" << endl;
   }
   else {
-    //Pelicula * peli = (Pelicula*) peliculas->find()
-    cout << "PELI Q ELEji " << peli->getTitulo() << endl;
     Comenta* co = BuscarComentario(peli,com);
-    //if(comentarios->member(llave)){
-    //Comenta* c = (Comenta*) comentarios->find(llave);
-    cout <<"comentario q devuelve " << co->getComentario() << endl;
     co->agregarRespuesta(co,nick);
-    /*}
-    else{
-      cout << "Comentario incorrecto" << endl;
-    }*/
   }
 }
 
@@ -128,11 +117,11 @@ Comenta* Pelicula::BuscarComentario(ICollectible * objP, string com){
           if(res != NULL){
              return res;
             }
-          //cout << "EN buscarcomentario que viene "<< c->getComentario() << endl;
           delete llave;
           i->next();
           }
           delete i;
+          throw invalid_argument("Comentario no existe");
       }
     }
     else{
@@ -140,6 +129,7 @@ Comenta* Pelicula::BuscarComentario(ICollectible * objP, string com){
       throw invalid_argument("Comentario no existe");
     }
   }
+  return 0;
 }
 
 float Pelicula::agregarPuntaje(ICollectible * objP, string user){

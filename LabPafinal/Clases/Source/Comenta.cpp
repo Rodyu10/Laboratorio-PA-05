@@ -23,7 +23,7 @@ void Comenta::setComentario(string comentario){
   this->comentario = comentario;
 }
 
-void Comenta::ListarComentariosResp(Comenta * obj){
+void Comenta::ListarComentariosResp(ICollectible * obj){
   if(!comentariosResp->isEmpty()){
     IIterator* i = comentariosResp->getIterator();
     if(i->hasCurrent()){
@@ -33,19 +33,14 @@ void Comenta::ListarComentariosResp(Comenta * obj){
         StringKey* llave = new StringKey (com->getComentario());
         cout <<"          "<< com->getUsers()<< ":" << "   "<< com->getComentario() << endl;
         cout <<"          -----------------" << endl;
-        cout <<"          ================================"<<endl;
         Comenta* c =(Comenta*) comentariosResp->find(llave);
-
-        //if(!comentariosResp->isEmpty())
-        //  ListarComentariosResp(c);
-
+        c->ListarComentariosResp(c);
+        delete llave;
         i->next();
       }
+      cout <<"          ============= FIN =============="<<endl;
       delete i;
     }
-  }
-  else{
-    cout << "No tiene respuestas" << endl;
   }
 }
 
@@ -85,6 +80,7 @@ Comenta* Comenta::BuscarRespuestas(ICollectible* objC, string com){
       }
     }
   }
+  return 0;
 }
 
 Comenta::~Comenta(){
