@@ -26,7 +26,6 @@ void Sistema::RegistrarUsuario(string nickname, string fotodeperfil, string pass
  if(!usuarios->member(llave)){
    Usuario* u=new Usuario(nickname,fotodeperfil,pass);
    usuarios->add(llave,u);
-   cout << "Usuario registrado exitosamente" << endl;
  }
  else{
     delete llave;
@@ -44,7 +43,7 @@ bool Sistema::VerificarSesion(string nickname, string pass){
     }
     else{
       delete llave;
-      throw invalid_argument("Password incorrecto");
+      return false;
     }
   }
   else{
@@ -53,43 +52,9 @@ bool Sistema::VerificarSesion(string nickname, string pass){
   }
 }
 
-void Sistema::IniciarSesion(string nickname, string pass){
-  if(VerificarSesion(nickname,pass)){
-    cout << "==========================================" << endl;
-    cout << "    INICIO CORRECTAMENTE LA SESION" << endl;
-    cout << "==========================================" << endl;
-  }
-}
-
-void Sistema::AltaCine(int nro, string direc){
-  Integer* llave = new Integer(nro);
-  if(!cines->member(llave)){
-    Cine* c=new Cine(nro, direc);
-    cines->add(llave,c);
-    string res = "Y";
-    int aux = 1;
-    while(aux == 1){
-      if(res == "y" || res == "Y"){
-        int nro,ca;
-        cout << "Ingrese el numero de la Sala" << endl;
-        cin >> nro;
-        cout << "Ingrese la capacidad de la Sala" << endl;
-        cin >> ca;
-        c->agregarSalas(nro,ca);
-
-        cout << "Desea agregar mas salas al cine (Y o N)?" << endl;
-        cin >> res;
-        system("clear");
-      }
-      else{
-        aux=0;
-      }
-    }
-  }
-  else{
-    delete llave;
-    throw invalid_argument("El numero de cine ya existe");
-  }
+void Sistema::AltaCine(Cine* cine){
+  Integer* llave = new Integer(cine->getNroCine());
+  cines->add(llave,cine);
 }
 
 void Sistema::AltaFuncion(Cine* cine, Pelicula* peli, int NroSala){

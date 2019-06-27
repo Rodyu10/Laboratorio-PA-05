@@ -25,6 +25,10 @@ void Cine::agregarSalas(int nro, int cap){
     }
 }
 
+void Cine::agregarFinanciera(string, float){
+  // FALTA
+}
+
 void Cine::ListarSalas(){
     IIterator* i = salas->getIterator();
       cout << "=================SALAS DE CINE=============="<<endl;
@@ -123,6 +127,10 @@ int Cine::getNroCine() const{
   return this->NroCine;
 }
 
+int Cine::getPrecioEntrada() const{
+  return this->PrecioEntrada;
+}
+
 string Cine::getDir() const{
   return this->Dir;
 }
@@ -133,6 +141,10 @@ void Cine::setNroCine(int nro){
 
 void Cine::setDir(string dir){
   this->Dir = dir;
+}
+
+void Cine::setPrecioEntrada(int precio){
+  this->PrecioEntrada = precio;
 }
 
 Cine::~Cine(){

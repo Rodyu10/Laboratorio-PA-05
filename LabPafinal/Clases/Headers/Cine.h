@@ -19,16 +19,18 @@ using namespace std;
 class Cine : public ICollectible{
 
   private:
-      int NroCine;
+      int NroCine, PrecioEntrada;
       string Dir;
       IDictionary * funciones;
       IDictionary * salas;
       IDictionary * peliculas;
+      ICollection * financieras;
   public:
       Cine();
       Cine(int, string);
 
       void agregarSalas(int, int);
+      void agregarFinanciera(string, float);
       void ListarSalas();
       void ListarFunciones(Pelicula* peli);
       Sala* seleccionarSala(int NroSala);
@@ -40,9 +42,11 @@ class Cine : public ICollectible{
 
       int getNroCine() const;
       string getDir() const;
+      int getPrecioEntrada() const;
 
       void setNroCine(int);
       void setDir(string);
+      void setPrecioEntrada(int);
 
       ~Cine();
 };

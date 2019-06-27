@@ -32,6 +32,7 @@ int main(){
               cout << "Ingrese su contraseña" << endl;
               cin >> pass;
               sis->RegistrarUsuario(nick,foto,pass);
+              cout << endl << "Usuario registrado exitosamente" << endl;
             }
             catch(exception &e){
             cout << e.what() << endl;
@@ -46,15 +47,16 @@ int main(){
               string nick,pass;
               cout << "Ingrese su usuario" << endl;
               cin >> nick;
-              cout << "Ingrese su contraseña" << endl;
-              cin >> pass;
-              sis->IniciarSesion(nick,pass);
-
-              getchar();
-              getchar();
-              system("clear");
-              menuDos();
-              int opc = opcionDos();
+              do{
+                cout << "Ingrese su contraseña, (S) para salir" << endl;
+                cin >> pass;
+                if(!sis->VerificarSesion(nick,pass) && (pass!="S" && pass!="s"))
+                cout << "Contraseña incorrecta" << endl;
+              }while(!sis->VerificarSesion(nick,pass) && (pass!="S" && pass!="s"));
+              if(sis->VerificarSesion(nick,pass)){
+                system("clear");
+                menuDos();
+                int opc = opcionDos();
                 while (opc!=0)
                 {
                   system("clear");
@@ -66,14 +68,56 @@ int main(){
                             cout << "                       ALTA CINE" << endl;
                             cout << "==========================================================" << endl;
                             if(sis->esAdmin(nick)){
-                              string dir;
-                              int nro;
-                              cout << "Ingrese el numero del cine" << endl;
-                              cin >> nro;
-                              cout << "Ingrese la direccion del cine" << endl;
-                              getchar();
-                              getline(cin,dir);
-                              sis->AltaCine(nro,dir);
+                              string dir, op;
+                              int NroCine=3, NroSala=1;
+                              do{
+                                cout << "Ingrese la direccion del cine, (S) para salir" << endl;
+                                getchar();
+                                getline(cin,dir);
+                                if(dir!="S" && dir!="s"){
+                                  Cine* cine = new Cine(NroCine,dir);
+                                  string cap;
+                                  do{
+                                    cout << "Ingrese la capacidad de la sala, (S) para salir" << endl;
+                                    cin >> cap;
+                                    if(cap!="S" && cap!="s"){
+                                      cine->agregarSalas(NroSala, stoi(cap));
+                                      NroSala++;
+                                    }
+                                    if(NroSala==1)
+                                    cout << "Debe ingresar al menos una sala" << endl;
+                                  }while((cap!="S" && cap!="s") || NroSala==1);
+                                  int precio;
+                                  float descuento;
+                                  cout << endl << "Ingrese el precio de entrada de este cine" << endl;
+                                  cin >> precio;
+                                  cine->setPrecioEntrada(precio);
+                                  do{
+                                    cout << endl << "Ingrese el nombre de la financiera asociada, (S) para salir" << endl;
+                                    cin >> op;
+                                    if(op!="S" && op!="s"){
+                                      cout << "Ingrese el procentaje de descuento de la financiera" << endl;
+                                      cin >> descuento;
+                                      if(op!="S" && op!="s"){
+                                        cine->agregarFinanciera(op,descuento);
+                                        cout << "Financiera agregada exitosamente" << endl;
+                                      }
+                                    }
+                                  }while((op!="S" && op!="s"));
+                                  cout << "¿Confirma el alta de este cine? (Y) o (N)" << endl;
+                                  cin >> op;
+                                  if(op=="Y" || op=="y"){
+                                    sis->AltaCine(cine);
+                                    cout << "Cine agregado exitosamente" << endl << endl;
+                                    NroCine ++;
+                                  }
+                                  else{
+                                    delete cine;
+                                    cout << "Operacion cancelada" << endl << endl;
+                                  }
+                                  NroSala=1;
+                                }
+                              }while(dir!="S" && dir!="s");
                             }
                           }
                           catch(exception &e){
@@ -277,19 +321,20 @@ int main(){
                         }
                       break;
                   }
-                    cout << "Presione enter para continuar" << endl;
+                    cout << endl << "Presione enter para continuar" << endl;
                     getchar();
                     system("clear");
                     menuDos ();
                     opc = opcionDos();
                 }
+              }
             }catch(exception &e){
             cout << e.what() << endl;
             }
           }
           break;
         }
-      cout << "Presione enter para continuar" << endl;
+      cout << endl << "Presione enter para continuar" << endl;
       getchar();
       getchar();
       system("clear");

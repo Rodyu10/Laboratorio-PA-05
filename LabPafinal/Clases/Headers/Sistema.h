@@ -27,9 +27,8 @@ class Sistema  {
    static Sistema* getInstance();
    void RegistrarUsuario(string, string, string);
    bool VerificarSesion(string, string);
-   void IniciarSesion(string,string);
    bool esAdmin(string);
-   void AltaCine(int,string);
+   void AltaCine(Cine* cine);
    void AltaPelicula(string,string,string,int);
    void AltaFuncion(Cine* cine, Pelicula* peli, int NroSala);
    void ComentarPelicula(string);
