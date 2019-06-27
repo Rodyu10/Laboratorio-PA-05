@@ -23,22 +23,27 @@ void Comenta::setComentario(string comentario){
   this->comentario = comentario;
 }
 
-void Comenta::ListarComentariosResp(ICollectible * obj){
+void Comenta::ListarComentariosResp(ICollectible * obj, int y){
   if(!comentariosResp->isEmpty()){
     IIterator* i = comentariosResp->getIterator();
     if(i->hasCurrent()){
-      cout << "          ========== RESPUESTAS =========="<<endl;
       while(i->hasCurrent()){
+        for(int x=0;x<y;x++) {
+          cout<<"\t";
+        }
         Comenta* com = (Comenta*) i->getCurrent();
         StringKey* llave = new StringKey (com->getComentario());
-        cout <<"          "<< com->getUsers()<< ":" << "   "<< com->getComentario() << endl;
-        cout <<"          -----------------" << endl;
+        cout << com->getUsers()<< ":" << "   "<< com->getComentario() << endl;
+        for(int x=0;x<y;x++) {
+          cout<<"\t";
+        }
+        cout <<"-----------------" << endl;
         Comenta* c =(Comenta*) comentariosResp->find(llave);
-        c->ListarComentariosResp(c);
+        y++;
+        c->ListarComentariosResp(c, y);
         delete llave;
         i->next();
       }
-      cout <<"          ============= FIN =============="<<endl;
       delete i;
     }
   }

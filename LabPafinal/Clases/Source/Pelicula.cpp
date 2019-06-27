@@ -25,7 +25,7 @@ void Pelicula::ListarComentarios(ICollectible * obj){
       cout <<"------------------------------------------------------" << endl;
       StringKey* llave = new StringKey (com->getComentario());
       Comenta* c =(Comenta*) comentarios->find(llave);
-      c->ListarComentariosResp(c);
+      c->ListarComentariosResp(c, 1);
       delete llave;
       i->next();
     }
