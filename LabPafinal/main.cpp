@@ -319,7 +319,6 @@ int main(){
                                     cin >> pr;
                                   }
                                   sis->PuntuarPelicula(peli,nick,pr);
-                                  Cant++;
                                   Suma = Suma + pr;
                                   promedio = (float) Suma / Cant;
                                   peli->setPuntaje(promedio);
@@ -482,7 +481,24 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "  VER COMENTARIOS Y PUNTAJES DE PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            sis->VerComentariosPuntaje();
+                            ICollection* peliculas = sis->ListarPeliculas();
+                            ListarTitulos(peliculas);
+                            string t;
+                            cout << "Seleccione la pelicula deseada" << endl;
+                            getchar();
+                            getline(cin,t);
+                            Pelicula* peli = sis->SeleccionPelicula(t);
+                            system("clear");
+                            cout << peli->getTitulo() << endl;
+                            cout << "Puntaje promedio: "<< peli->getPuntaje() <<  " (" << Cant << " usuarios)"<< endl;
+                            cout << "=================================" << endl;
+                            peli->ListarComentarios(peli);
+                            cout << "=================================" << endl;
+                            ICollection* lista = peli->ListarPuntajes(peli);
+                            if(lista != 0){
+                              cout << " PUNTAJES " << endl;
+                              ListarPuntaje(lista);
+                            }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;

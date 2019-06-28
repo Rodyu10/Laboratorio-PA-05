@@ -62,7 +62,7 @@ void Sistema::Control(){
 
 void Sistema::ComentarPelicula(Pelicula* peli, string nick, string com){
 
-      peli->agregarComentario(peli, nick, com);
+  peli->agregarComentario(peli, nick, com);
 
 }
 
@@ -74,7 +74,7 @@ void Sistema::agregarCom(Pelicula* peli, Comenta* co, string nick, string com){
 
 void Sistema::PuntuarPelicula(Pelicula* peli, string user, float puntaje){
 
-    peli->AgregarPuntaje(peli, user, puntaje);
+  peli->AgregarPuntaje(peli, user, puntaje);
 
 }
 
@@ -152,35 +152,6 @@ bool Sistema::esAdmin(string nick){
     }
   }
   return false;
-}
-
-void Sistema::VerComentariosPuntaje(){
-  IIterator* i=peliculas->getIterator();
-  if(i->hasCurrent()){
-      cout << "===============LISTA PELICULAS================" << endl;
-    while(i->hasCurrent()){
-      Pelicula* p = (Pelicula*) i->getCurrent();
-      cout << p->getTitulo() << endl;
-      cout << p->getPoster() << endl;
-      cout << "==============================================" << endl;
-      i->next();
-    }
-    string t;
-    cout << "Elija la pelicula deseada" << endl;
-    cin >> t;
-    StringKey* llave = new StringKey(t);
-    if(peliculas->member(llave)){
-        Pelicula* aux = (Pelicula*) peliculas->find(llave);
-        float p = aux-> getPuntaje();
-        //aux->MostrarComentariosPuntajes(aux,t,p,Cant);
-    }
-    delete llave;
-    delete i;
-  }
-  else{
-    delete i;
-    throw invalid_argument("No hay Peliculas");
-  }
 }
 
 ICollection* Sistema::ListarCines(string titulo){
@@ -264,30 +235,3 @@ Cine* Sistema::SeleccionCine(int NroCine){
  Funcion* Sistema::SeleccionFuncion(Cine* cine, int NroFuncion){
    return cine->seleccionarFuncion(NroFuncion);
  }
-
-// float Sistema::PagaCredito(string NombreFinanciera, int CantAsientos){
-//
-// }
-//
-// float Sistema::PagaDebito(string NombreBanco, int CantAsientos){
-//
-// }
-//
-// void Sistema:CrearReserva(){
-//
-// }
-//
-// void Sistema::Eliminar2(string Titulo){
-//   IKey* key = new KeyInteger(Titulo);
-//   ICollectible* /*F*/ = /*Funciones*/->find(key);
-//   delete key;
-//   if(p==NULL){
-//     throw invalid_argument("No hay Peliculas");
-//   }
-//   /*Funciones*/->remove(key);
-//   delete /*F*/;
-// }
-//
-// void Sistema::SeleccionTitulo(string Titulo){
-//
-// }

@@ -163,26 +163,6 @@ void Pelicula::AgregarPuntaje(Pelicula* peli, string user, float puntaje){
   }
 }
 
-void Pelicula::MostrarComentariosPuntajes(ICollectible* obj, string t, float p, int cant){
-  system("clear");
-  cout << t << endl;
-  cout << "Puntaje promedio: "<< p <<  " (" << cant << " usuarios)"<< endl;
-  cout << "=================================" << endl;
-  ListarComentarios(obj);
-  cout << "=================================" << endl;
-  cout << " PUNTAJES " << endl;
-  IIterator* i= opiniones->getIterator();
-  if(i->hasCurrent()){
-      while(i->hasCurrent()){
-      Opinion* o = (Opinion*) i->getCurrent();
-      cout << o->getUser()<<":" << o->getPuntaje() << endl;
-      cout <<"--------------------------------------" << endl;
-      i->next();
-      }
-      delete i;
-    }
-}
-
 DtPelicula Pelicula::getPelicula() const{
    return DtPelicula(this->Titulo, this->Poster, this->Sinopsis, this->Puntaje);
 }

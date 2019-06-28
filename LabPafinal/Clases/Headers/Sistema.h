@@ -40,12 +40,9 @@ class Sistema  {
    ICollection* ListarCines();
    ICollection* ListarCines(string titulo);
    void EliminarPelicula(string Titulo);
-   void Eliminar2(string Titulo);
-   void VerComentariosPuntaje();
    Pelicula* SeleccionPelicula(string Titulo);
    Cine* SeleccionCine(int NroCine);
    Funcion* SeleccionFuncion(Cine* cine, int NroFuncion);
-   void SeleccionTitulo(string Titulo);
    float PagaCredito(string NombreFinanciera, int CantAsientos);
    float PagaDebito(string NombreBanco, int CantAsientos);
    void CrearReserva();
