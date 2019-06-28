@@ -217,7 +217,7 @@ int main(){
                                 cin >> cine;
                                 sis->SeleccionCine(cine);
                                 sis->AltaPelicula(t,p,s,cine);
-                                cout << "Pelicula agrega exitosamente" << endl;
+                                cout << "Pelicula agregada exitosamente" << endl;
                               }
                             }
                             catch(exception &e){
@@ -241,7 +241,7 @@ int main(){
                                 Pelicula* peli = sis->SeleccionPelicula(pelicula);
                                 cout << endl << "==============================================" << endl;
                                 cout << endl << "Poster: " << peli->getPoster() << endl;
-                                cout << "Sinopsis:" << peli->getSinopsis() << endl;
+                                cout << "Sinopsis: " << peli->getSinopsis() << endl;
                                 cout << endl << "==============================================" << endl;
                                 string op;
                                 cout << endl<<"¿Desea ver los cines para esta pelicula? (Y) o (N) para salir" << endl;

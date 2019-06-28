@@ -12,7 +12,7 @@ class DtCine: public ICollectible{
   public:
     DtCine();
     DtCine(int,string);
-    
+
     int getNroCine() const;
     string getDireccion() const;
 

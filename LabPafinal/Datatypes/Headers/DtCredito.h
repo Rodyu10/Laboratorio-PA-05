@@ -15,8 +15,8 @@ class DtCredito: public DtReserva{
       DtCredito(int, float, string, float);
 
       float getCosto() const;
-      string getFinanciera();
-      float getDescuento();
+      string getFinanciera() const;
+      float getDescuento() const;
 
-      virtual~DtCredito();
+      ~DtCredito();
 };

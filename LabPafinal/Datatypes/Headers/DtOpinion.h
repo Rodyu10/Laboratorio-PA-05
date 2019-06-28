@@ -17,6 +17,6 @@ class DtOpinion: public ICollectible{
       float getPuntaje() const;
       string getUser () const;
 
-      virtual~DtOpinion();
+      ~DtOpinion();
 
 };

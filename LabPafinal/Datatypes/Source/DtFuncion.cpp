@@ -13,19 +13,19 @@ DtFuncion::DtFuncion(int nrofun, int nrosala, DtFecha fecha, DtHora horario){
   this->Horario = horario;
 }
 
-int DtFuncion::getNroFuncion(){
+int DtFuncion::getNroFuncion() const{
   return this->NroFuncion;
 }
 
-int DtFuncion::getNroSala(){
+int DtFuncion::getNroSala() const{
   return this->NroSala;
 }
 
-DtFecha DtFuncion::getFecha(){
+DtFecha DtFuncion::getFecha() const{
   return this->Fecha;
 }
 
-DtHora DtFuncion::getHorario(){
+DtHora DtFuncion::getHorario() const{
   return this->Horario;
 }
 

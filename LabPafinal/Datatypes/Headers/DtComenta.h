@@ -14,6 +14,6 @@ class DtComenta{
 
       string getComentario() const;
 
-      virtual~DtComenta();
+      ~DtComenta();
 
 };

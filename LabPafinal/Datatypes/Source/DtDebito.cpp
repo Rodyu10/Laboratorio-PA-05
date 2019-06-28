@@ -15,7 +15,7 @@ DtDebito::DtDebito(int cantAsientos, float costo, string banco)
   return this->Costo*this->CantAsientos;
 }*/
 
-string DtDebito::getBanco(){
+string DtDebito::getBanco() const{
   return this->Banco;
 }
 

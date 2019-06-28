@@ -19,10 +19,10 @@ class DtFuncion: public ICollectible{
      DtFuncion();
      DtFuncion(int, int, DtFecha, DtHora);
 
-     int getNroFuncion();
-     int getNroSala();
-     DtFecha getFecha();
-     DtHora getHorario();
+     int getNroFuncion() const;
+     int getNroSala() const;
+     DtFecha getFecha() const;
+     DtHora getHorario() const;
 
      ~DtFuncion();
 };

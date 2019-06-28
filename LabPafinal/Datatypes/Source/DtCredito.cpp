@@ -16,11 +16,11 @@ DtCredito::DtCredito(int cantAsientos, float costo, string financiera, float des
   return ((this->Costo*this->CantAsientos)*this->Descuento)/100;
 }*/
 
-string DtCredito::getFinanciera(){
+string DtCredito::getFinanciera() const{
   return this->Financiera;
 }
 
-float DtCredito::getDescuento(){
+float DtCredito::getDescuento() const{
   return this->Descuento;
 }
 
