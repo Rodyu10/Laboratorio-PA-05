@@ -233,7 +233,7 @@ int main(){
                             cout << "Ingrese el título de la película, (S) para salir" << endl;
                             getchar();
                             getline(cin,pelicula);
-                            if(pelicula!="s" || pelicula!="S")
+                            if(pelicula!="s" && pelicula!="S")
                             {
                                 Pelicula* peli = sis->SeleccionPelicula(pelicula);
                                 cout << endl << "==============================================" << endl;
@@ -243,13 +243,13 @@ int main(){
                                 string op;
                                 cout << endl<<"¿Desea ver los cines para esta pelicula? (Y) o (N) para salir" << endl;
                                 cin >> op;
-                                if(op!="n" || op!="N")
+                                if(op!="n" && op!="N")
                                 {
                                     ICollection* cines = sis->ListarCines(pelicula);
                                     ListarCines(cines);
                                     cout << "Seleccione el numero del cine, (S) para salir" << endl;
                                     cin >> op;
-                                    if(op!="s" || op!="S")
+                                    if(op!="s" && op!="S")
                                     {
                                         int nroCine = stoi(op);
                                         int NroFuncion, cantAsientos;
@@ -277,13 +277,13 @@ int main(){
                                         }
                                     }
                                     else
-                                    throw invalid_argument("Se canceló la opeación");
+                                    throw invalid_argument("\nSe canceló la opeación");
                                 }
                                 else
-                                throw invalid_argument("Se canceló la opeación");
+                                throw invalid_argument("\nSe canceló la opeación");
                             }
                             else
-                            throw invalid_argument("Se canceló la opeación");
+                            throw invalid_argument("\nSe canceló la opeación");
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
@@ -345,7 +345,7 @@ int main(){
                               cout << "Ingrese el título de la película, (S) para salir" << endl;
                               getchar();
                               getline(cin,pelicula);
-                              if(pelicula!="s" || pelicula!="S")
+                              if(pelicula!="s" && pelicula!="S")
                               {
                                   Pelicula* peli = sis->SeleccionPelicula(pelicula);
                                   cout << endl << "==============================================" << endl;
@@ -355,13 +355,13 @@ int main(){
                                   string op;
                                   cout << endl<<"¿Desea ver los cines para esta pelicula? (Y) o (N) para salir" << endl;
                                   cin >> op;
-                                  if(op!="n" || op!="N")
+                                  if(op!="n" && op!="N")
                                   {
                                       ICollection* cines = sis->ListarCines(pelicula);
                                       ListarCines(cines);
                                       cout << "Seleccione el numero del cine, (S) para salir" << endl;
                                       cin >> op;
-                                      if(op!="s" || op!="S")
+                                      if(op!="s" && op!="S")
                                       {
                                           int nroCine = stoi(op);
                                           Cine* cine = sis->SeleccionCine(nroCine);
@@ -377,13 +377,13 @@ int main(){
                                           repetir=false;
                                       }
                                       else
-                                      throw invalid_argument("Se canceló la opeación");
+                                      throw invalid_argument("\nSe canceló la opeación");
                                   }
                                   else
-                                  throw invalid_argument("Se canceló la opeación");
+                                  throw invalid_argument("\nSe canceló la opeación");
                               }
                               else
-                              throw invalid_argument("Se canceló la opeación");
+                              throw invalid_argument("\nSe canceló la opeación");
                             }
                           }
                           catch(exception &e){

@@ -101,6 +101,7 @@ void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *
     cout << endl << "Ya existe una funcion con ese numero registrado" << endl;
   }
 }
+
 bool Cine::verificarPelicula(string Titulo){
   StringKey* llave = new StringKey(Titulo);
   if(!peliculas->member(llave)){
