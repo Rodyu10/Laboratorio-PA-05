@@ -32,7 +32,7 @@ class Sistema  {
    void AltaCine(Cine* cine);
    void AltaPelicula(string,string,string,int);
    void ComentarPelicula(string);
-   void PuntuarPelicula(string);
+   void PuntuarPelicula(Pelicula* peli, string user, float puntaje);
    void Precarga();
    ICollection* ListarPeliculas();
    ICollection* ListarCines();

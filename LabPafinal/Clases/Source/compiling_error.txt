@@ -1,0 +1,13 @@
+/home/esteban/github/Laboratorio-PA-05/LabPafinal/Clases/Source/Sistema.cpp:83:6: error: prototype for ‘void Sistema::PuntuarPelicula(Pelicula*, std::__cxx11::string, float)’ does not match any in class ‘Sistema’
+ void Sistema::PuntuarPelicula(Pelicula* peli, string user, float puntaje){
+      ^~~~~~~
+In file included from /home/esteban/github/Laboratorio-PA-05/LabPafinal/Clases/Source/Sistema.cpp:1:0:
+/home/esteban/github/Laboratorio-PA-05/LabPafinal/Clases/Source/../Headers/Sistema.h:35:9: error: candidate is: void Sistema::PuntuarPelicula(std::__cxx11::string)
+    void PuntuarPelicula(string);
+         ^~~~~~~~~~~~~~~
+/home/esteban/github/Laboratorio-PA-05/LabPafinal/Clases/Source/Sistema.cpp:99:3: error: expected unqualified-id before ‘else’
+   else{
+   ^~~~
+/home/esteban/github/Laboratorio-PA-05/LabPafinal/Clases/Source/Sistema.cpp:103:1: error: expected declaration before ‘}’ token
+ }
+ ^

@@ -14,7 +14,7 @@ float Opinion::getPuntaje() const{
   return this->puntaje;
 }
 
-string Opinion::getUser(){
+string Opinion::getUser() const{
     return this->user;
 }
 

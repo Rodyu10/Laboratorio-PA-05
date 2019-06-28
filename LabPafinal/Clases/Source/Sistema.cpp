@@ -2,9 +2,6 @@
 
 using namespace std;
 
-int Cant = 0;
-float Suma = 0;
-
 Sistema::Sistema(){
   usuarios=new OrderedDictionary();
   cines=new OrderedDictionary();
@@ -80,25 +77,10 @@ void Sistema::ComentarPelicula(string nick){
   }
 }
 
-void Sistema::PuntuarPelicula(string user){
-  //ListarTitulos();
-  string t;
-  cout << "Elija la pelicula deseada" << endl;
-  cin >> t;
-  StringKey* llave = new StringKey(t);
-  if(peliculas->member(llave)){
-      Pelicula* aux = (Pelicula*) peliculas->find(llave);
-      float p,promedio;
-      p = aux->agregarPuntaje(aux,user);
-      Cant++;
-      Suma = Suma + p;
-      promedio = (float) Suma / Cant;
-      aux->setPuntaje(promedio);
-  }
-  else{
-    delete llave;
-    throw invalid_argument("Pelicula incorrecta");
-  }
+void Sistema::PuntuarPelicula(Pelicula* peli, string user, float puntaje){
+
+    peli->AgregarPuntaje(peli, user, puntaje);
+
 }
 
 void Sistema::AltaPelicula(string Titulo, string Poster, string Sinopsis, int NroCine){
@@ -195,7 +177,7 @@ void Sistema::VerComentariosPuntaje(){
     if(peliculas->member(llave)){
         Pelicula* aux = (Pelicula*) peliculas->find(llave);
         float p = aux-> getPuntaje();
-        aux->MostrarComentariosPuntajes(aux,t,p,Cant);
+        //aux->MostrarComentariosPuntajes(aux,t,p,Cant);
     }
     delete llave;
     delete i;

@@ -74,6 +74,36 @@ void ListarPeliculas(ICollection* peliculas){
   delete peliculas;
 }
 
+void ListarPuntaje(ICollection* puntajes){
+  IIterator* i= puntajes->getIterator();
+    cout << "================LISTA PUNTAJES==============="<<endl;
+  while(i->hasCurrent()){
+    DtOpinion* o = (DtOpinion*) i->getCurrent();
+    cout << "Usuario: " << o->getUser() << endl;
+    cout << "Puntaje: " << o->getPuntaje() << endl;
+    cout << "==============================================" << endl;
+    puntajes->remove(i->getCurrent());
+    i->next();
+  }
+  delete puntajes;
+}
+
+int ChequeoUsuario(ICollection* puntajes, string user){
+  IIterator* i= puntajes->getIterator();
+  int aux = 0;
+  while(i->hasCurrent()){
+    DtOpinion* o = (DtOpinion*) i->getCurrent();
+    if(o->getUser() == user){
+      int aux = 1;
+      return aux;
+    }
+    puntajes->remove(i->getCurrent());
+    i->next();
+  }
+  delete puntajes;
+  return aux;
+}
+
 void ListarTitulos(ICollection* peliculas){
   IIterator* i = peliculas->getIterator();
     cout << "=================LISTA TITULOS================"<<endl;

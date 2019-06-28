@@ -19,7 +19,7 @@ class Opinion : public ICollectible{
       Opinion(float, string);
 
       float getPuntaje() const;
-      string getUser ();
+      string getUser () const;
       void setPuntaje(float);
 
       ~Opinion();

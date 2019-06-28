@@ -7,6 +7,9 @@
 
 using namespace std;
 
+int Cant = 0;
+float Suma = 0;
+
 int main(){
   system("clear");
   menu();
@@ -295,12 +298,60 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "            PUNTUAR PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            sis->PuntuarPelicula(nick);
+                            ICollection* peliculas = sis->ListarPeliculas();
+                            ListarTitulos(peliculas);
+                            string t;
+                            cout << "Seleccione la pelicula deseada" << endl;
+                            getchar();
+                            getline(cin,t);
+                            Pelicula* peli = sis->SeleccionPelicula(t);
+                            float promedio;
+                            ICollection* lista = peli->ListarPuntajes(peli);
+                            if(lista != 0){
+                              ListarPuntaje(lista);
+                              ICollection* lista2 = peli->ListarPuntajes(peli);
+                              int chequeo = ChequeoUsuario(lista2, nick);
+                               if(chequeo == 1){
+                                  //REMPLAZA PUNTAJE SI YA HABIA PUNTUADO;
+                                  float pr;
+                                  cout << "Ingrese el puntaje para remplazar" << endl;
+                                  cin >> pr;
+                                  sis->PuntuarPelicula(peli,nick,pr);
+                                  Cant++;
+                                  Suma = Suma + pr;
+                                  promedio = (float) Suma / Cant;
+                                  peli->setPuntaje(promedio);
+                                  }
+                              else{
+                                  // PUNTUACION NUEVA SI YA HAY PUNTAJES
+                                  float pr;
+                                  cout << "Ingrese el nuevo puntaje" << endl;
+                                  cin >> pr;
+                                  sis->PuntuarPelicula(peli,nick,pr);
+                                  Cant++;
+                                  Suma = Suma + pr;
+                                  promedio = (float) Suma / Cant;
+                                  peli->setPuntaje(promedio);
+                                  }
+                              }
+                          else{
+                            // PUNTUACION NUEVA
+                            cout << "La pelicula no contiene ningun puntaje aun" << endl;
+                            float pr;
+                            cout << "Ingrese el nuevo puntaje" << endl;
+                            cin >> pr;
+                            sis->PuntuarPelicula(peli,nick,pr);
+                            Cant++;
+                            Suma = Suma + pr;
+                            promedio = (float) Suma / Cant;
+                            peli->setPuntaje(promedio);
+                            cout <<"Su puntaje ha sido agregado" << endl;
+                              }
                           }
-                          catch(exception &e){
-                          cout << e.what() << endl;
+                            catch(exception &e){
+                            cout << e.what() << endl;
+                            }
                           }
-                        }
                         break;
                     case 6:{
                           try{

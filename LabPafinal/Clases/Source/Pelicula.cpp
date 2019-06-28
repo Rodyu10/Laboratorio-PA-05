@@ -126,53 +126,42 @@ Comenta* Pelicula::BuscarComentario(ICollectible * objP, string com){
   return 0;
 }
 
-float Pelicula::agregarPuntaje(ICollectible * objP, string user){
+ICollection* Pelicula::ListarPuntajes(Pelicula* peli){
   IIterator* i= opiniones->getIterator();
-  bool aux = false;
-  string auxi;
+  ICollection * res = new List();
   if(i->hasCurrent()){
-        cout << "==========LISTA PUNTAJES=========="<<endl;
-        while(i->hasCurrent()){
-          Opinion* o = (Opinion*) i->getCurrent();
-          cout <<"Usuario: "<< o->getUser() <<"/   Puntaje: " << o->getPuntaje() << endl;
-          cout <<"-----------------" << endl;
-          if(o->getUser() == user){
-            // REMPLAZA PUNTAJE SI YA HABIA PUNTUADO;
-            aux = true;
-            float p;
-            cout << "Ingrese el puntaje para remplazar" << endl;
-            cin >> p;
-            o->setPuntaje(p);
-            delete i;
-            return p;
-          }
-          i->next();
-        }
-        if(aux == false){
-          // PUNTUACION NUEVA SI YA HAY PUNTAJES
-          float p;
-          cout << "Ingrese el nuevo puntaje" << endl;
-          cin >> p;
-          Opinion* op = new Opinion(p,user);
-          StringKey* llave = new StringKey(user);
-          opiniones->add(llave,op);
-          delete i;
-          return p;
-        }
-   }
-   else{
-    // PUNTUACION NUEVA
-    cout << "La pelicula no contiene ningun puntaje aun" << endl;
-    float p;
-    cout << "Ingrese el nuevo puntaje" << endl;
-    cin >> p;
-    StringKey* llave = new StringKey(user);
-    Opinion* op = new Opinion(p,user);
-    opiniones->add(llave,op);
-    delete i;
-    return p;
+    while(i->hasCurrent()){
+      DtOpinion* o = (DtOpinion*) i->getCurrent();
+      DtOpinion* op = new DtOpinion(o->getPuntaje(), o->getUser());
+      res->add(op);
+      i->next();
+      }
+      delete i;
+      return res;
     }
-  return 0;
+    return 0;
+}
+
+void Pelicula::AgregarPuntaje(Pelicula* peli, string user, float puntaje){
+  IIterator* i= opiniones->getIterator();
+  if(i->hasCurrent()){
+    while(i->hasCurrent()){
+      Opinion* o = (Opinion*) i->getCurrent();
+      if(o->getUser() == user){
+        o->setPuntaje(puntaje);
+      }
+      i->next();
+    }
+    delete i;
+    Opinion* op = new Opinion(puntaje,user);
+    StringKey* llave = new StringKey(user);
+    opiniones->add(llave,op);
+  }
+  else{
+    Opinion* op = new Opinion(puntaje,user);
+    StringKey* llave = new StringKey(user);
+    opiniones->add(llave,op);
+  }
 }
 
 void Pelicula::MostrarComentariosPuntajes(ICollectible* obj, string t, float p, int cant){

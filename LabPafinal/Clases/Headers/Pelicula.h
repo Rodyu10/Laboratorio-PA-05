@@ -7,6 +7,7 @@
 #include "../../Collections/OrderedDictionary.h"
 #include "../../Collections/List.h"
 #include "../../Datatypes/Headers/DtPelicula.h"
+#include "../../Datatypes/Headers/DtOpinion.h"
 #include "../../Clases/Headers/Comenta.h"
 #include "../../Clases/Headers/Opinion.h"
 #include "../../Clases/Headers/Funcion.h"
@@ -34,7 +35,8 @@ class Pelicula : public ICollectible{
       void ListarComentarios(ICollectible * obj);
       ICollection* ListarFunciones();
       void agregarComentario(Pelicula * peli, string nick);
-      float agregarPuntaje(ICollectible * obj, string);
+      ICollection* ListarPuntajes(Pelicula* peli);
+      void AgregarPuntaje(Pelicula* peli, string user, float puntaje);
       void MostrarComentariosPuntajes(ICollectible* obj, string t, float p, int cant);
       Comenta* BuscarComentario(ICollectible * objC, string com);
       void AsociarFuncion(Funcion* funcion);
