@@ -65,5 +65,11 @@ void Funcion::setHorario(DtHora horario){
 }
 
 Funcion::~Funcion(){
-  // eliminar una funcion especifica de una pelicula
+  IIterator* i = reservas->getIterator();
+  while(i->hasCurrent()){
+      Reserva* r = (Reserva*) i->getCurrent();
+      delete r;
+  }
+  delete i;
+  delete reservas;
 }

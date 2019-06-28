@@ -39,7 +39,7 @@ class Sistema  {
    ICollection* ListarPeliculas();
    ICollection* ListarCines();
    ICollection* ListarCines(string titulo);
-   void EliminarPelicula(string Titulo);
+   void EliminarPelicula(Pelicula* peli);
    Pelicula* SeleccionPelicula(string Titulo);
    Cine* SeleccionCine(int NroCine);
    Funcion* SeleccionFuncion(Cine* cine, int NroFuncion);

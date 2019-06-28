@@ -39,6 +39,7 @@ class Cine : public ICollectible{
       void agregarFuncion(Pelicula * peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora);
       void agregarPelicula(string Titulo, Pelicula* Peli);
       bool verificarPelicula(string Titulo);
+      void EliminarPelicula(Pelicula* peli);
       DtCine getCine() const;
 
       int getNroCine() const;

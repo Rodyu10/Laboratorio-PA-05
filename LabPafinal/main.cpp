@@ -364,11 +364,14 @@ int main(){
                             cout << "            ELIMINAR PELICULA" << endl;
                             cout << "==========================================" << endl;
                             if(sis->esAdmin(nick)){
+                              ICollection* peliculas = sis->ListarPeliculas();
+                              ListarTitulos(peliculas);
                               string t;
-                              cout << "Ingrese el titulo de la pelicula que desea eliminar" << endl;
+                              cout << "Seleccione la pelicula deseada" << endl;
                               getchar();
                               getline(cin,t);
-                              sis->EliminarPelicula(t);
+                              Pelicula* peli = sis->SeleccionPelicula(t);
+                              sis->EliminarPelicula(peli);
                             }
                           }
                           catch(exception &e){

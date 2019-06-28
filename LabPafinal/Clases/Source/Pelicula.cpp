@@ -200,5 +200,23 @@ void Pelicula::setPuntaje(float puntaje){
 }
 
 Pelicula::~Pelicula(){
-  // ELIMINAR PELICULA FUNCION
+  IIterator* i = funciones->getIterator();
+  while(i->hasCurrent()){
+      Funcion* f = (Funcion*) i->getCurrent();
+      delete f;
+  }
+  i = opiniones->getIterator();
+  while(i->hasCurrent()){
+      Opinion* o = (Opinion*) i->getCurrent();
+      delete o;
+  }
+  i = comentarios->getIterator();
+  while(i->hasCurrent()){
+      Comenta* c = (Comenta*) i->getCurrent();
+      delete c;
+  }
+  delete i;
+  delete funciones;
+  delete opiniones;
+  delete comentarios;
 }

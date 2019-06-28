@@ -81,5 +81,9 @@ Comenta* Comenta::BuscarRespuestas(ICollectible* objC, string com){
 }
 
 Comenta::~Comenta(){
-  // ELIMINAR Comenta
+  IIterator* i = comentariosResp->getIterator();
+  while(i->hasCurrent()){
+      Comenta* c = (Comenta*) i->getCurrent();
+      delete c;
+  }
 }

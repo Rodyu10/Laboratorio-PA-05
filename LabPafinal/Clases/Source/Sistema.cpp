@@ -196,18 +196,19 @@ ICollection* Sistema::ListarCines(){
   }
 }
 
-void Sistema::EliminarPelicula(string Titulo){
-   StringKey* llave = new StringKey(Titulo);
-   if(!peliculas->member(llave)){
-     throw invalid_argument("\nNo existe la pelicula");
-     delete llave;
-   }
-   else{
-   Pelicula* p = (Pelicula*) peliculas->find(llave);
-   peliculas->remove(llave);
-   cout << "Pelicula eliminada" << endl;
-   delete p;
-   }
+void Sistema::EliminarPelicula(Pelicula* peli){
+
+ StringKey* llave = new StringKey(peli->getTitulo());
+ peliculas->remove(llave);
+ IIterator* i = cines->getIterator();
+ while(i->hasCurrent()){
+      Cine* c = (Cine*) i->getCurrent();
+      if(c->verificarPelicula(peli->getTitulo())){
+        c->EliminarPelicula(peli);
+      }
+      i->next();
+     }
+   delete i;
 }
 
 Pelicula* Sistema::SeleccionPelicula(string Titulo){

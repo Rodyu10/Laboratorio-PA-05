@@ -114,6 +114,13 @@ bool Cine::verificarPelicula(string Titulo){
   }
 }
 
+void Cine::EliminarPelicula(Pelicula* peli){
+
+  StringKey* llave = new StringKey(peli->getTitulo());
+  peliculas->remove(llave);
+  delete peli;
+}
+
 int Cine::CantFunciones(){
   return funciones->getSize();
 }

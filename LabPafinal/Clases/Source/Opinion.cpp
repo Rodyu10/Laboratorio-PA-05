@@ -23,5 +23,5 @@ void Opinion::setPuntaje(float puntaje){
 }
 
 Opinion::~Opinion(){
-  // ELIMINAR Opinion
+  
 }
