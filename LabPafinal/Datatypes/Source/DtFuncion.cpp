@@ -6,19 +6,11 @@ DtFuncion::DtFuncion(){
 
 }
 
-DtFuncion::DtFuncion(int nrofun, int nrosala, DtFecha fecha, int horario){
+DtFuncion::DtFuncion(int nrofun, int nrosala, DtFecha fecha, DtHora horario){
   this->NroFuncion = nrofun;
   this->NroSala = nrosala;
   this->Fecha = fecha;
   this->Horario = horario;
-}
-
-/*list DtFuncion::getListaFunciones(){
-
-}*/
-
-DtFuncion DtFuncion::getFuncion() const{
-  return DtFuncion (this->NroFuncion,this->NroSala,this->Fecha,this->Horario);
 }
 
 int DtFuncion::getNroFuncion(){
@@ -33,10 +25,9 @@ DtFecha DtFuncion::getFecha(){
   return this->Fecha;
 }
 
-int DtFuncion::getHorario(){
+DtHora DtFuncion::getHorario(){
   return this->Horario;
 }
 
 DtFuncion::~DtFuncion(){
-  // eliminar una funcion especifica de una pelicula
 }

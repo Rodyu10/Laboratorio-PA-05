@@ -5,6 +5,7 @@
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Collections/OrderedDictionary.h"
+#include "../../Collections/List.h"
 #include "../../Datatypes/Headers/DtPelicula.h"
 #include "../../Clases/Headers/Comenta.h"
 #include "../../Clases/Headers/Opinion.h"
@@ -31,7 +32,7 @@ class Pelicula : public ICollectible{
 
       DtPelicula getPelicula() const;
       void ListarComentarios(ICollectible * obj);
-      void ListarFunciones();
+      ICollection* ListarFunciones();
       void agregarComentario(Pelicula * peli, string nick);
       float agregarPuntaje(ICollectible * obj, string);
       void MostrarComentariosPuntajes(ICollectible* obj, string t, float p, int cant);

@@ -49,3 +49,8 @@ void menu();
 int opcion();
 void menu2();
 int opcion2();
+void ListarPeliculas(ICollection* peliculas);
+void ListarCines(ICollection* cines);
+void ListarSalas(ICollection* salas);
+void ListarTitulos(ICollection* peliculas);
+void ListarFunciones(ICollection* funciones);

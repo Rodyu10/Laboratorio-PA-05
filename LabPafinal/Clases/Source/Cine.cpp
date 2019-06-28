@@ -29,21 +29,18 @@ void Cine::agregarFinanciera(string, float){
   // FALTA
 }
 
-void Cine::ListarSalas(){
-    IIterator* i = salas->getIterator();
-      cout << "=================SALAS DE CINE=============="<<endl;
-    while(i->hasCurrent()){
-      Sala* s = (Sala*) i->getCurrent();
-      cout << "Nro de Sala: " << s->getNroSala() << endl;
-      cout << "Capacidad de Sala: " << s->getCapacidad() << endl;
-      cout << "============================================"<<endl;
-      i->next();
-    }
-    delete i;
-}
-
-void Cine::ListarFunciones(Pelicula *peli){
-    peli->ListarFunciones();
+ICollection* Cine::ListarSalas(){
+  system("clear");
+  IIterator* i = salas->getIterator();
+  ICollection * res = new List();
+  while(i->hasCurrent()){
+    Sala* s = (Sala*) i->getCurrent();
+    DtSala* sala = new DtSala(s->getNroSala(),s->getCapacidad());
+    res->add(sala);
+    i->next();
+  }
+  delete i;
+  return res;
 }
 
 Sala* Cine::seleccionarSala(int NroSala){
@@ -68,7 +65,7 @@ Funcion* Cine::seleccionarFuncion(int NroFuncion){
   return funcion;
 }
 
-void Cine::agregarPelicula(string Titulo, ICollectible* peli){
+void Cine::agregarPelicula(string Titulo, Pelicula* peli){
   StringKey* llave = new StringKey(Titulo);
   if(!peliculas->member(llave)){
       peliculas->add(llave,peli);
@@ -98,15 +95,12 @@ void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *
     peli->AsociarFuncion(fun);
     fun->AsociarSala(sala);
     funciones->add(llave,fun);
-    cout << endl << "Funcion agregada exitosamente" << endl;
-
   }
   else{
     delete llave;
     cout << endl << "Ya existe una funcion con ese numero registrado" << endl;
   }
 }
-
 bool Cine::verificarPelicula(string Titulo){
   StringKey* llave = new StringKey(Titulo);
   if(!peliculas->member(llave)){
@@ -117,6 +111,10 @@ bool Cine::verificarPelicula(string Titulo){
     delete llave;
     return false;
   }
+}
+
+int Cine::CantFunciones(){
+  return funciones->getSize();
 }
 
 DtCine Cine::getCine() const{

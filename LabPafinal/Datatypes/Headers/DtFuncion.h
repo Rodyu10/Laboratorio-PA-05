@@ -3,27 +3,26 @@
 #include <stdlib.h>
 
 #include "../../Datatypes/Headers/DtFecha.h"
+#include "../../Datatypes/Headers/DtHora.h"
+#include "../../Interfaces/Headers/ICollectible.h"
 
 using namespace std;
 
-class DtFuncion{
+class DtFuncion: public ICollectible{
 
   private:
      int NroFuncion;
      int NroSala;
      DtFecha Fecha;
-     int Horario;
+     DtHora Horario;
   public:
      DtFuncion();
-     DtFuncion(int, int, DtFecha, int);
-
-     //list getListaFunciones();
-     DtFuncion getFuncion() const;
+     DtFuncion(int, int, DtFecha, DtHora);
 
      int getNroFuncion();
      int getNroSala();
      DtFecha getFecha();
-     int getHorario();
+     DtHora getHorario();
 
-     virtual~DtFuncion();
+     ~DtFuncion();
 };

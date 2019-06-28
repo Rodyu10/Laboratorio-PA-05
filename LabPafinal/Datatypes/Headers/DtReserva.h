@@ -12,11 +12,8 @@ class DtReserva{
       DtReserva();
       DtReserva(int, float);
 
-      //Reserva create();
-      //Reserva add();
-
       int getCantAsientos() const;
       float getCosto() const;
 
-      virtual~DtReserva();
+      ~DtReserva();
 };

@@ -37,10 +37,10 @@ void Pelicula::ListarComentarios(ICollectible * obj){
   }
 }
 
-void Pelicula::ListarFunciones(){
+ICollection* Pelicula::ListarFunciones(){
   system("clear");
   IIterator* i = funciones->getIterator();
-  cout << "=================LISTA FUNCIONES================"<<endl;
+  ICollection* res = new List();
   if(!funciones->isEmpty()){
       while(i->hasCurrent()){
         Funcion* fun = (Funcion*) i->getCurrent();
@@ -53,19 +53,13 @@ void Pelicula::ListarFunciones(){
         anio= tiempo->tm_year + 1900;
         DtFecha fechaActual = DtFecha(dia,mes,anio);
         if(fechaActual<fechaF){
-          DtHora horaF = fun->getHorario();
-          cout << "Numero de Funcion: " << fun->getNroFuncion() << endl;
-          cout << "Numero de Sala: " << fun->getNroSala() << endl;
-          cout << "Fecha de la Funcion: " << fechaF.getDia() << "/" << fechaF.getMes() << "/" << fechaF.getAnio() << endl;
-          if(horaF.getMinutos()==0)
-          cout << "Hora de la Funcion: " << horaF.getHora() << ":" << "00" << endl;
-          else
-          cout << "Hora de la Funcion: " << horaF.getHora() << ":" << horaF.getMinutos() << endl;
-          cout << "==============================================="<<endl;
+          DtFuncion* funcion = new DtFuncion(fun->getNroFuncion(),fun->getNroSala(),fun->getFecha(),fun->getHorario());
+          res->add(funcion);
         }
         i->next();
       }
       delete i;
+      return res;
   }
   else{
     delete i;

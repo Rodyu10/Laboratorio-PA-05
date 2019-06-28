@@ -19,5 +19,4 @@ int DtSala::getCapacidad() const{
 }
 
 DtSala::~DtSala(){
-  // ELIMINAR Sala
 }

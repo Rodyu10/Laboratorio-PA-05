@@ -11,9 +11,11 @@ class DtHora{
   public:
     DtHora();
     DtHora(int,int);
+    
     int getHora() const;
     int getMinutos() const;
+
     bool operator==(DtHora hora);
 
-    virtual ~DtHora();
+    ~DtHora();
 };

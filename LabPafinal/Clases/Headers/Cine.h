@@ -12,6 +12,7 @@
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/IKey.h"
 #include "../../Collections/OrderedDictionary.h"
+#include "../../Collections/List.h"
 #include "../../Integer.h"
 
 using namespace std;
@@ -31,12 +32,12 @@ class Cine : public ICollectible{
 
       void agregarSalas(int, int);
       void agregarFinanciera(string, float);
-      void ListarSalas();
-      void ListarFunciones(Pelicula* peli);
+      ICollection* ListarSalas();
       Sala* seleccionarSala(int NroSala);
       Funcion* seleccionarFuncion(int NroFuncion);
+      int CantFunciones();
       void agregarFuncion(Pelicula * peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora);
-      void agregarPelicula(string Titulo, ICollectible* Peli);
+      void agregarPelicula(string Titulo, Pelicula* Peli);
       bool verificarPelicula(string Titulo);
       DtCine getCine() const;
 

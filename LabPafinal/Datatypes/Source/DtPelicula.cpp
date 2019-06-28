@@ -12,14 +12,6 @@ DtPelicula::DtPelicula(string titulo, string poster, string sinopsis, float punt
   this->Puntaje = puntaje;
 }
 
-/*list Pelicula::getListaPeliculas(){
-  // MUESTRA TODAS LAS PELICULAS
-}*/
-
-DtPelicula DtPelicula::getPelicula() const{
-   return DtPelicula(this->Titulo, this->Poster, this->Sinopsis, this->Puntaje);
-}
-
 string DtPelicula::getTitulo() const{
   return this->Titulo;
 }
@@ -37,5 +29,4 @@ float DtPelicula::getPuntaje() const{
 }
 
 DtPelicula::~DtPelicula(){
-  // ELIMINAR PELICULA FUNCION
 }

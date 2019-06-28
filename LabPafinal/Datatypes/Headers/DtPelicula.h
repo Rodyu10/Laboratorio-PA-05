@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
 #include <stdlib.h>
+#include "../../Interfaces/Headers/ICollectible.h"
 
 using namespace std;
 
-class DtPelicula{
+class DtPelicula : public ICollectible{
 
   private:
       string Titulo;
@@ -15,14 +16,11 @@ class DtPelicula{
       DtPelicula();
       DtPelicula(string, string, string, float);
 
-      //list getListaPeliculas();
-      DtPelicula getPelicula() const;
-
       string getTitulo() const;
       string getPoster()const;
       string getSinopsis() const;
       float getPuntaje() const;
 
-      virtual~DtPelicula();
+      ~DtPelicula();
 
 };

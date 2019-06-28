@@ -10,9 +10,10 @@ class DtUsuario{
   public:
     DtUsuario();
     DtUsuario(string,string,string);
+    
     string getNickname() const;
     string getFotoPerfil() const;
     string getPassword() const;
 
-    virtual ~DtUsuario();
+    ~DtUsuario();
 };

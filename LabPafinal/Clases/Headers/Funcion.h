@@ -8,6 +8,7 @@
 #include "../../Interfaces/Headers/ICollection.h"
 #include "../../Datatypes/Headers/DtFecha.h"
 #include "../../Datatypes/Headers/DtHora.h"
+#include "../../Datatypes/Headers/DtFuncion.h"
 
 using namespace std;
 

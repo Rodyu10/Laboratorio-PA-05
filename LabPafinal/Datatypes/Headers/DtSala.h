@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
 #include <stdlib.h>
+#include "../../Interfaces/Headers/ICollectible.h"
 
 using namespace std;
 
-class DtSala {
+class DtSala : public ICollectible{
 
   private:
       int NroSala, Capacidad;
@@ -15,6 +16,6 @@ class DtSala {
       int getNroSala() const;
       int getCapacidad()const;
 
-      virtual ~DtSala();
+      ~DtSala();
 
 };

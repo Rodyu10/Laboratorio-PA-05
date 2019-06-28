@@ -57,3 +57,80 @@ int opcionDos()
     while ((op < 0) || (op > 9));
     return op;
 }
+
+void ListarPeliculas(ICollection* peliculas){
+  IIterator* i = peliculas->getIterator();
+    cout << "================LISTA PELICULAS==============="<<endl;
+  while(i->hasCurrent()){
+    DtPelicula* p = (DtPelicula*) i->getCurrent();
+    cout << p->getTitulo() << endl;
+    cout << "Poster: " << p->getPoster() << endl;
+    cout << "Sinopsis: " << p->getSinopsis() << endl;
+    cout << "Puntaje: " << p->getPuntaje() << endl;
+    cout << "==============================================" << endl;
+    peliculas->remove(i->getCurrent());
+    i->next();
+  }
+  delete peliculas;
+}
+
+void ListarTitulos(ICollection* peliculas){
+  IIterator* i = peliculas->getIterator();
+    cout << "=================LISTA TITULOS================"<<endl;
+  while(i->hasCurrent()){
+    DtPelicula* p = (DtPelicula*) i->getCurrent();
+    cout << p->getTitulo() << endl;
+    cout << "==============================================" << endl;
+    peliculas->remove(i->getCurrent());
+    i->next();
+  }
+  delete peliculas;
+}
+
+void ListarCines(ICollection* cines){
+  IIterator* i = cines->getIterator();
+    cout << "==================LISTA CINES================="<<endl;
+  while(i->hasCurrent()){
+    DtCine* c = (DtCine*) i->getCurrent();
+    cout << "Numero de cine: " << c->getNroCine() << endl;
+    cout << "Direccion: " << c->getDireccion() << endl;
+    cout << "==============================================" << endl;
+    cines->remove(i->getCurrent());
+    i->next();
+  }
+  delete cines;
+}
+
+void ListarSalas(ICollection* salas){
+    IIterator* i = salas->getIterator();
+      cout << "=================SALAS DE CINE=============="<<endl;
+    while(i->hasCurrent()){
+      DtSala* s = (DtSala*) i->getCurrent();
+      cout << "Nro de Sala: " << s->getNroSala() << endl;
+      cout << "Capacidad de Sala: " << s->getCapacidad() << endl;
+      cout << "============================================"<<endl;
+      i->next();
+    }
+    delete i;
+}
+
+void ListarFunciones(ICollection* funciones){
+  system("clear");
+  IIterator* i = funciones->getIterator();
+    cout << "=================LISTA FUNCIONES================"<<endl;
+  while(i->hasCurrent()){
+    DtFuncion* fun = (DtFuncion*) i->getCurrent();
+    DtFecha fechaF = fun->getFecha();
+    DtHora horaF = fun ->getHorario();
+    cout << "Numero de Funcion: " << fun->getNroFuncion() << endl;
+    cout << "Numero de Sala: " << fun->getNroSala() << endl;
+    cout << "Fecha de la Funcion: " << fechaF.getDia() << "/" << fechaF.getMes() << "/" << fechaF.getAnio() << endl;
+    if(horaF.getMinutos()==0)
+    cout << "Hora de la Funcion: " << horaF.getHora() << ":" << "00" << endl;
+    else
+    cout << "Hora de la Funcion: " << horaF.getHora() << ":" << horaF.getMinutos() << endl;
+    cout << "================================================"<<endl;
+    i->next();
+  }
+  delete i;
+}

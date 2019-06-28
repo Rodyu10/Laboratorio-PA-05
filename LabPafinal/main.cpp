@@ -134,29 +134,55 @@ int main(){
                                 sis->Control();
                                 string t;
                                 int nro, nroSala;
-                                sis->ListarPeliculas();
+                                ICollection* peliculas = sis->ListarPeliculas();
+                                ListarPeliculas(peliculas);
                                 cout << "Ingrese el titulo de la pelicula" << endl;
                                 getchar();
                                 getline(cin,t);
                                 Pelicula* peli = sis->SeleccionPelicula(t);
-                                sis->ListarCines(peli->getTitulo());
+                                ICollection* cines = sis->ListarCines(peli->getTitulo());
+                                ListarCines(cines);
                                 cout << "Ingrese el numero  del cine" << endl;
                                 cin >> nro;
                                 Cine* cine = sis->SeleccionCine(nro);
                                 if(cine->verificarPelicula(peli->getTitulo()))
                                 throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
+
                                 bool ingresarMas=true;
                                 while(ingresarMas){
-                                  sis->ListarSalas(cine);
+                                  ICollection* salas = cine->ListarSalas();
+                                  ListarSalas(salas);
                                   cout << "Ingrese el numero  de la sala" << endl;
                                   cin >> nroSala;
-                                  sis->SeleccionSala(cine,nroSala);
-                                  sis->AltaFuncion(cine,peli,nroSala);
+                                  Sala* sala = cine->seleccionarSala(nroSala);
+                                  string f, d, m, num, h, min;
+                                  int NroFuncion=cine->CantFunciones()+1;
+                                  do{
+                                    cout << endl << "Ingrese la fecha de la funcion: formato (DD/MM/AAAA)" << endl;
+                                    cin >> f;
+                                    d = f.substr(0,f.find("/"));
+                                    f = f.substr(f.find("/")+1,f.length()-2);
+                                    m = f.substr(0,f.find("/"));
+                                    f = f.substr(f.find("/")+1,f.length()-2);
+                                  }while(stoi(d)>31 || stoi(d)<0 || stoi(m)>12 || stoi(m)<0 || stoi(f)<2019);
+                                  DtFecha* fecha = new DtFecha(stoi(d),stoi(m),stoi(f));
+                                  do{
+                                    cout << endl << "Ingrese la hora de la funcion: formato (HH:MM)" << endl;
+                                    cin >> num;
+                                    h = num.substr(0,num.find(":"));
+                                    num = num.substr(num.find(":")+1,num.length()-2);
+                                    min = num.substr(0,num.find(":"));
+                                  }while(stoi(h)>=24 || stoi(h)<=0 || stoi(min)>59 || stoi(m)<0);
+                                  DtHora* hora = new DtHora(stoi(h),stoi(min));
+                                  cine->agregarFuncion(peli,NroFuncion,sala->getNroSala(),fecha,hora);
+                                  cout << "Funcion agregada exitosamente" << endl << endl;
+                                  NroFuncion++;
+                                  delete fecha;
+                                  delete hora;
                                   cout << "¿Desea ingresar otra funcion para esta pelicula? (Y) o (N)" << endl;
                                   cin >> t;
-                                  if(t=="N" || t=="n"){
-                                    ingresarMas=false;
-                                  }
+                                  if(t=="N" || t=="n")
+                                  ingresarMas=false;
                                 }
                               }
                           }
@@ -182,9 +208,13 @@ int main(){
                                 cout << "Ingrese la sinopsis de la pelicula" << endl;
                                 getchar();
                                 getline(cin,s);
+                                ICollection* cines = sis->ListarCines();
+                                ListarCines(cines);
                                 cout << "Ingrese el numero del cine" << endl;
                                 cin >> cine;
+                                sis->SeleccionCine(cine);
                                 sis->AltaPelicula(t,p,s,cine);
+                                cout << "Pelicula agrega exitosamente" << endl;
                               }
                             }
                             catch(exception &e){
@@ -197,7 +227,8 @@ int main(){
                             cout << "===========================================================" << endl;
                             cout << "                       CREAR RESERVA" << endl;
                             cout << "===========================================================" << endl;
-                            sis->ListarTitulos();
+                            ICollection* peliculas = sis->ListarPeliculas();
+                            ListarTitulos(peliculas);
                             string pelicula;
                             cout << "Ingrese el título de la película, (S) para salir" << endl;
                             getchar();
@@ -205,14 +236,17 @@ int main(){
                             if(pelicula!="s" || pelicula!="S")
                             {
                                 Pelicula* peli = sis->SeleccionPelicula(pelicula);
+                                cout << endl << "==============================================" << endl;
                                 cout << endl << "Poster: " << peli->getPoster() << endl;
                                 cout << "Sinopsis:" << peli->getSinopsis() << endl;
+                                cout << endl << "==============================================" << endl;
                                 string op;
-                                cout << endl<<"¿Desea ver infomacion adicional? (Y) o (N) para salir" << endl;
+                                cout << endl<<"¿Desea ver los cines para esta pelicula? (Y) o (N) para salir" << endl;
                                 cin >> op;
                                 if(op!="n" || op!="N")
                                 {
-                                    sis->ListarCines(pelicula);
+                                    ICollection* cines = sis->ListarCines(pelicula);
+                                    ListarCines(cines);
                                     cout << "Seleccione el numero del cine, (S) para salir" << endl;
                                     cin >> op;
                                     if(op!="s" || op!="S")
@@ -223,7 +257,9 @@ int main(){
                                         Cine* cine = sis->SeleccionCine(nroCine);
                                         if(cine->verificarPelicula(peli->getTitulo()))
                                         throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
-                                        sis->ListarFunciones(cine,peli);
+
+                                        ICollection* funciones = peli->ListarFunciones();
+                                        ListarFunciones(funciones);
                                         cout << "Ingrese el numero de la funcion, (S) para salir" << endl;
                                         cin >> NroFuncion;
                                         sis->SeleccionFuncion(cine,NroFuncion);
@@ -301,7 +337,54 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "        VER INFORMACION DE PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            sis->VerInfoPelicula();
+                            bool repetir=true;
+                            while(repetir){
+                              ICollection* peliculas = sis->ListarPeliculas();
+                              ListarTitulos(peliculas);
+                              string pelicula;
+                              cout << "Ingrese el título de la película, (S) para salir" << endl;
+                              getchar();
+                              getline(cin,pelicula);
+                              if(pelicula!="s" || pelicula!="S")
+                              {
+                                  Pelicula* peli = sis->SeleccionPelicula(pelicula);
+                                  cout << endl << "==============================================" << endl;
+                                  cout << "Poster: " << peli->getPoster() << endl;
+                                  cout << "Sinopsis:" << peli->getSinopsis() << endl;
+                                  cout << "==============================================" << endl;
+                                  string op;
+                                  cout << endl<<"¿Desea ver los cines para esta pelicula? (Y) o (N) para salir" << endl;
+                                  cin >> op;
+                                  if(op!="n" || op!="N")
+                                  {
+                                      ICollection* cines = sis->ListarCines(pelicula);
+                                      ListarCines(cines);
+                                      cout << "Seleccione el numero del cine, (S) para salir" << endl;
+                                      cin >> op;
+                                      if(op!="s" || op!="S")
+                                      {
+                                          int nroCine = stoi(op);
+                                          Cine* cine = sis->SeleccionCine(nroCine);
+                                          if(cine->verificarPelicula(peli->getTitulo()))
+                                          throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
+
+                                          ICollection* funciones = peli->ListarFunciones();
+                                          ListarFunciones(funciones);
+                                          string t;
+                                          cout << "¿Desea ver informacion de otra pelicula? (Y) o (N)" << endl;
+                                          cin >> t;
+                                          if(t=="N" || t=="n")
+                                          repetir=false;
+                                      }
+                                      else
+                                      throw invalid_argument("Se canceló la opeación");
+                                  }
+                                  else
+                                  throw invalid_argument("Se canceló la opeación");
+                              }
+                              else
+                              throw invalid_argument("Se canceló la opeación");
+                            }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
@@ -321,7 +404,8 @@ int main(){
                         }
                       break;
                   }
-                    cout << endl << "Presione enter para continuar" << endl;
+                    cout << "Presione enter para continuar" << endl;
+                    getchar();
                     getchar();
                     system("clear");
                     menuDos ();

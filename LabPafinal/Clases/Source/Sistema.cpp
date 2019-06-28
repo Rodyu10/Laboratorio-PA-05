@@ -57,33 +57,6 @@ void Sistema::AltaCine(Cine* cine){
   cines->add(llave,cine);
 }
 
-void Sistema::AltaFuncion(Cine* cine, Pelicula* peli, int NroSala){
-    string f, d, m, num, h, min;
-    int NroFuncion;
-    cout << endl << "Ingrese numero de la funcion" << endl;
-    cin >> NroFuncion;
-    do{
-      cout << endl << "Ingrese la fecha de la funcion: formato (DD/MM/AAAA)" << endl;
-      cin >> f;
-      d = f.substr(0,f.find("/"));
-      f = f.substr(f.find("/")+1,f.length()-2);
-      m = f.substr(0,f.find("/"));
-      f = f.substr(f.find("/")+1,f.length()-2);
-    }while(stoi(d)>31 || stoi(d)<0 || stoi(m)>12 || stoi(m)<0 || stoi(f)<2019);
-    DtFecha* fecha = new DtFecha(stoi(d),stoi(m),stoi(f));
-    do{
-      cout << endl << "Ingrese la hora de la funcion: formato (HH:MM)" << endl;
-      cin >> num;
-      h = num.substr(0,num.find(":"));
-      num = num.substr(num.find(":")+1,num.length()-2);
-      min = num.substr(0,num.find(":"));
-    }while(stoi(h)>=24 || stoi(h)<=0 || stoi(min)>59 || stoi(m)<0);
-    DtHora* hora = new DtHora(stoi(h),stoi(min));
-    cine->agregarFuncion(peli,NroFuncion,NroSala,fecha,hora);
-    delete fecha;
-    delete hora;
-}
-
 void Sistema::Control(){
   if(cines->isEmpty()){
     throw invalid_argument("Aun no hay cines ingresados");
@@ -91,7 +64,7 @@ void Sistema::Control(){
 }
 
 void Sistema::ComentarPelicula(string nick){
-  ListarTitulos();
+  //ListarTitulos();
   string t;
   cout << "Elija la pelicula deseada" << endl;
   cin >> t;
@@ -108,7 +81,7 @@ void Sistema::ComentarPelicula(string nick){
 }
 
 void Sistema::PuntuarPelicula(string user){
-  ListarTitulos();
+  //ListarTitulos();
   string t;
   cout << "Elija la pelicula deseada" << endl;
   cin >> t;
@@ -128,23 +101,16 @@ void Sistema::PuntuarPelicula(string user){
   }
 }
 
-void Sistema::AltaPelicula(string tit, string pos, string sinop, int cine){
-  Integer* intllave = new Integer(cine);
-  if(cines->member(intllave)){
-      StringKey* llave = new StringKey(tit);
-      Pelicula* p=new Pelicula(tit,pos,sinop,0);
-      if(!peliculas->member(llave)){
-        peliculas->add(llave,p);
-      }
-      Cine* c = (Cine*) cines->find(intllave);
-      c->agregarPelicula(tit,p);
-      delete intllave;
+void Sistema::AltaPelicula(string Titulo, string Poster, string Sinopsis, int NroCine){
+  Integer* intllave = new Integer(NroCine);
+  StringKey* llave = new StringKey(Titulo);
+  Pelicula* p = new Pelicula(Titulo,Poster,Sinopsis,0);
+  if(!peliculas->member(llave)){
+    peliculas->add(llave,p);
   }
-  else
-  {
-    delete intllave;
-    throw invalid_argument("No existe el numero del cine seleccionado");
-  }
+  Cine* cine = (Cine*) cines->find(intllave);
+  cine->agregarPelicula(Titulo,p);
+  delete intllave;
 }
 
 void Sistema::Precarga(){
@@ -175,50 +141,24 @@ void Sistema::Precarga(){
   c2->agregarSalas(2,33);
 }
 
-void Sistema::ListarPeliculas(){
+ICollection* Sistema::ListarPeliculas(){
   system("clear");
   IIterator* i=peliculas->getIterator();
+  ICollection * res = new List();
   if(i->hasCurrent()){
-      cout << "================LISTA PELICULAS==============="<<endl;
     while(i->hasCurrent()){
       Pelicula* p = (Pelicula*) i->getCurrent();
-      cout << p->getTitulo() << endl;
-      cout << "Poster: " << p->getPoster() << endl;
-      cout << "Sinopsis: " << p->getSinopsis() << endl;
-      cout << "Puntaje: " << p->getPuntaje() << endl;
-      cout << "==============================================" << endl;
+      DtPelicula* peli = new DtPelicula(p->getTitulo(),p->getPoster(),p->getSinopsis(),p->getPuntaje());
+      res->add(peli);
       i->next();
     }
     delete i;
+    return res;
   }
   else{
     delete i;
     throw invalid_argument("No hay peliculas registradas");
   }
-}
-
- void Sistema::ListarTitulos(){
-   system("clear");
-   IIterator* i=peliculas->getIterator();
-   if(i->hasCurrent()){
-       cout << "=====================LISTA TITULOS===================="<<endl;
-     while(i->hasCurrent()){
-       Pelicula* p = (Pelicula*) i->getCurrent();
-       cout << p->getTitulo() << endl;
-       cout << "======================================================" << endl;
-       i->next();
-     }
-     delete i;
-   }
-   else{
-     delete i;
-     throw invalid_argument("No hay peliculas registradas");
-   }
-}
-
-void Sistema::ListarSalas(Cine* cine){
-  system("clear");
-  cine->ListarSalas();
 }
 
 bool Sistema::esAdmin(string nick){
@@ -266,45 +206,45 @@ void Sistema::VerComentariosPuntaje(){
   }
 }
 
-void Sistema::ListarCines(){
+ICollection* Sistema::ListarCines(string titulo){
   system("clear");
   IIterator* i=cines->getIterator();
+  ICollection * res = new List();
   if(i->hasCurrent()){
-      cout << "=================LISTA CINES==================" << endl;
     while(i->hasCurrent()){
       Cine* c = (Cine*) i->getCurrent();
-      cout <<"Nro de Cine: " << c->getNroCine() << endl;
-      cout <<"Direccion: " << c->getDir() << endl;
-      cout << "==============================================" << endl;
-      i->next();
-    }
-    delete i;
-  }
-  else{
-    delete i;
-    throw invalid_argument("No hay Cines");
-  }
-}
-
-void Sistema::ListarCines(string Titulo){
-  system("clear");
-  IIterator* i=cines->getIterator();
-  if(i->hasCurrent()){
-        cout << "===============LISTA CINES DE PELICULA================"<<endl;
-    while(i->hasCurrent()){
-      Cine* c = (Cine*) i->getCurrent();
-      if(!c->verificarPelicula(Titulo)){
-        cout <<"Numero de Cine: " << c->getNroCine() << endl;
-        cout <<"Direccion: " << c->getDir() << endl;
-        cout << "======================================================" << endl;
+      if(!c->verificarPelicula(titulo)){
+        DtCine* cine = new DtCine(c->getNroCine(),c->getDir());
+        res->add(cine);
       }
       i->next();
     }
     delete i;
+    return res;
   }
   else{
     delete i;
-    throw invalid_argument("No hay Cines");
+    throw invalid_argument("No hay cines registrados");
+  }
+}
+
+ICollection* Sistema::ListarCines(){
+  system("clear");
+  IIterator* i=cines->getIterator();
+  ICollection * res = new List();
+  if(i->hasCurrent()){
+    while(i->hasCurrent()){
+      Cine* c = (Cine*) i->getCurrent();
+      DtCine* cine = new DtCine(c->getNroCine(),c->getDir());
+      res->add(cine);
+      i->next();
+    }
+    delete i;
+    return res;
+  }
+  else{
+    delete i;
+    throw invalid_argument("No hay cines registrados");
   }
 }
 
@@ -344,77 +284,9 @@ Cine* Sistema::SeleccionCine(int NroCine){
   return c;
 }
 
-Sala* Sistema::SeleccionSala(Cine* cine, int NroSala){
-  Sala* sala = cine->seleccionarSala(NroSala);
-  return sala;
-}
-
  Funcion* Sistema::SeleccionFuncion(Cine* cine, int NroFuncion){
    return cine->seleccionarFuncion(NroFuncion);
  }
-
-void Sistema::ListarFunciones(Cine* cine, Pelicula* peli){
-  system("clear");
-  cine->ListarFunciones(peli);
-}
-
-void Sistema::VerInfoPelicula(){
-  IIterator* i=cines->getIterator();
-  Funcion* f = (Funcion*) i->getCurrent();
-  int dia,mes,anio;
-  time_t fecha = time(NULL);
-  struct tm *tiempo = localtime(&fecha);
-  dia = tiempo->tm_mday;
-  mes = tiempo->tm_mon + 1;
-  anio= tiempo->tm_year + 1900;
-  DtFecha FechFun = f->getFecha();
-  DtFecha FechAct = DtFecha(dia,mes,anio);
-  ListarTitulos();
-  string c,e;
-  int a;
-  cout << "Seleccione un titulo si desea. (Ingrese N si no desea continuar)" << endl;
-  cin >> c;
-  StringKey* llave = new StringKey(c);
-  if(c=="N" || c=="n"){
-    throw invalid_argument("Cancelado, regrese al menu");
-    delete llave;
-  }
-  else if(peliculas->member(llave)){
-      Pelicula* aux = (Pelicula*) peliculas->find(llave);
-      cout << "Poster: " << aux->getPoster() << endl;
-      cout << "Sinopsis: " << aux->getSinopsis() << endl;
-      cout << "Desea ver informacion adicional? (S) o (N)" << endl;
-      cin >> e;
-      if(e=="S" || e=="s"){
-        ListarCines(c);
-        cout << "Desea finalizar? En caso de querer mas infromacion ingrese (N)" << endl;
-        cin >> c;
-        if(c=="N" || c=="n"){
-          cout << "Seleccione un cine: " << endl;
-          cin >> a;
-          Integer* key = new Integer(a);
-          if(cines->member(key)){
-            Cine* aux2 = (Cine*) cines->find(key);
-            if(FechAct < FechFun){
-                    ListarFunciones(aux2,aux);
-            }
-            else{
-                  throw invalid_argument("Fecha incorrecta");
-            }
-          }
-          else{
-              throw invalid_argument("El cine no existe");
-          }
-        }
-        else{
-          throw invalid_argument("Nos vemos!");
-        }
-      }
-      else{
-        throw invalid_argument("Hasta luego");
-      }
-  }
-}
 
 // float Sistema::PagaCredito(string NombreFinanciera, int CantAsientos){
 //

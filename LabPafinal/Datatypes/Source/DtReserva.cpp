@@ -11,13 +11,6 @@ DtReserva::DtReserva(int cant, float costo){
   this->Costo = costo;
 }
 
-/*Reserva::Reserva create(){
-
-}
-Reserva::Reserva add(){
-
-}*/
-
 int DtReserva::getCantAsientos() const{
   return this->CantAsientos;
 }
@@ -27,5 +20,4 @@ float DtReserva::getCosto() const{
 }
 
 DtReserva::~DtReserva(){
-  // eliminar reserva de una funcion y peli especifica ?
 }

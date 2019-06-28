@@ -73,10 +73,10 @@ DtReserva.o: ./Datatypes/Source/DtReserva.cpp ./Datatypes/Headers/DtReserva.h
 DtCine.o: ./Datatypes/Source/DtCine.cpp ./Datatypes/Headers/DtCine.h 
 	$(CC) $(CFLAGS) ./Datatypes/Source/DtCine.cpp
 
-DtCredito.o: ./Datatypes/Source/DtCredito.cpp ./Datatypes/Headers/DtCredito.h 
+DtCredito.o: ./Datatypes/Source/DtCredito.cpp ./Datatypes/Headers/DtCredito.h ./Datatypes/Source/DtReserva.cpp
 	$(CC) $(CFLAGS) ./Datatypes/Source/DtCredito.cpp
 
-DtDebito.o: ./Datatypes/Source/DtDebito.cpp ./Datatypes/Headers/DtDebito.h 
+DtDebito.o: ./Datatypes/Source/DtDebito.cpp ./Datatypes/Headers/DtDebito.h ./Datatypes/Source/DtReserva.cpp
 	$(CC) $(CFLAGS) ./Datatypes/Source/DtDebito.cpp
 
 DtSala.o: ./Datatypes/Source/DtSala.cpp ./Datatypes/Headers/DtSala.h 

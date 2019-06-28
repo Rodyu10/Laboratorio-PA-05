@@ -11,6 +11,7 @@
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/IKey.h"
 #include "../../Collections/OrderedDictionary.h"
+#include "../../Collections/List.h"
 #include "../../String.h"
 #include "../../Integer.h"
 
@@ -30,23 +31,17 @@ class Sistema  {
    bool esAdmin(string);
    void AltaCine(Cine* cine);
    void AltaPelicula(string,string,string,int);
-   void AltaFuncion(Cine* cine, Pelicula* peli, int NroSala);
    void ComentarPelicula(string);
    void PuntuarPelicula(string);
    void Precarga();
-   void ListarTitulos();
-   void ListarPeliculas();
-   void ListarCines();
-   void ListarCines(string Titulo);
-   void VerInfoPelicula();
-   void ListarFunciones(Cine* cine, Pelicula* peli);
-   void ListarSalas(Cine* cine);
+   ICollection* ListarPeliculas();
+   ICollection* ListarCines();
+   ICollection* ListarCines(string titulo);
    void EliminarPelicula(string Titulo);
    void Eliminar2(string Titulo);
    void VerComentariosPuntaje();
    Pelicula* SeleccionPelicula(string Titulo);
    Cine* SeleccionCine(int NroCine);
-   Sala* SeleccionSala(Cine* cine, int NroSala);
    Funcion* SeleccionFuncion(Cine* cine, int NroFuncion);
    void SeleccionTitulo(string Titulo);
    float PagaCredito(string NombreFinanciera, int CantAsientos);
