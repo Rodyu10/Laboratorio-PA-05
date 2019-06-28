@@ -60,21 +60,16 @@ void Sistema::Control(){
   }
 }
 
-void Sistema::ComentarPelicula(string nick){
-  //ListarTitulos();
-  string t;
-  cout << "Elija la pelicula deseada" << endl;
-  cin >> t;
-  StringKey* llave = new StringKey(t);
-  if(peliculas->member(llave)){
-      Pelicula* aux = (Pelicula*) peliculas->find(llave);
-      aux->ListarComentarios(aux);
-      aux->agregarComentario(aux,nick);
-  }
-  else{
-    delete llave;
-    throw invalid_argument("Pelicula incorrecta");
-  }
+void Sistema::ComentarPelicula(Pelicula* peli, string nick, string com){
+
+      peli->agregarComentario(peli, nick, com);
+
+}
+
+void Sistema::agregarCom(Pelicula* peli, Comenta* co, string nick, string com){
+
+  peli->agregaCom(peli, co, nick, com);
+
 }
 
 void Sistema::PuntuarPelicula(Pelicula* peli, string user, float puntaje){

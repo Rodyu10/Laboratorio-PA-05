@@ -25,7 +25,7 @@ void Pelicula::ListarComentarios(ICollectible * obj){
       cout <<"------------------------------------------------------" << endl;
       StringKey* llave = new StringKey (com->getComentario());
       Comenta* c =(Comenta*) comentarios->find(llave);
-      c->ListarComentariosResp(c, 1);
+      c->ListarComentariosResp(c,com->getComentario());
       delete llave;
       i->next();
     }
@@ -67,23 +67,23 @@ ICollection* Pelicula::ListarFunciones(){
   }
 }
 
-void Pelicula::agregarComentario(Pelicula * peli, string nick){
-  string com;
-  cout <<"Elija un comentario si lo desea, de lo contrario presione 'N' " << endl;
-  getchar();
-  getline(cin,com);
-  if(com == "N" || com == "n"){
-    cout << "Ingrese un nuevo comentario" << endl;
-    getline(cin,com);
-    StringKey* key = new StringKey(com);
-    Comenta* c = new Comenta(com,nick);
-    comentarios->add(key,c);
-    cout << "Comentario agregado" << endl;
-  }
-  else {
-    Comenta* co = BuscarComentario(peli,com);
-    co->agregarRespuesta(co,nick);
-  }
+void Pelicula::agregarComentario(Pelicula * peli, string nick, string com){
+
+  StringKey* key = new StringKey(com);
+  Comenta* c = new Comenta(com,nick);
+  comentarios->add(key,c);
+}
+
+ICollectible* Pelicula::buscoComentario(Pelicula* peli, string com){
+
+  ICollectible* co = BuscarComentario(peli,com);
+  return co;
+
+}
+
+void Pelicula::agregaCom(Pelicula* peli, Comenta* co, string nick, string com){
+
+  co->agregarRespuesta(co, nick, com);
 }
 
 void Pelicula::AsociarFuncion(Funcion* funcion){
@@ -115,12 +115,11 @@ Comenta* Pelicula::BuscarComentario(ICollectible * objP, string com){
           i->next();
           }
           delete i;
-          throw invalid_argument("Comentario no existe");
       }
     }
     else{
       delete llave;
-      throw invalid_argument("Comentario no existe");
+      return 0;
     }
   }
   return 0;

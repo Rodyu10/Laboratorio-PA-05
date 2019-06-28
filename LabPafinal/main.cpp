@@ -217,7 +217,7 @@ int main(){
                                 cin >> cine;
                                 sis->SeleccionCine(cine);
                                 sis->AltaPelicula(t,p,s,cine);
-                                cout << "Pelicula agregada exitosamente" << endl;
+                                cout << "Pelicula agrega exitosamente" << endl;
                               }
                             }
                             catch(exception &e){
@@ -241,7 +241,7 @@ int main(){
                                 Pelicula* peli = sis->SeleccionPelicula(pelicula);
                                 cout << endl << "==============================================" << endl;
                                 cout << endl << "Poster: " << peli->getPoster() << endl;
-                                cout << "Sinopsis: " << peli->getSinopsis() << endl;
+                                cout << "Sinopsis:" << peli->getSinopsis() << endl;
                                 cout << endl << "==============================================" << endl;
                                 string op;
                                 cout << endl<<"¿Desea ver los cines para esta pelicula? (Y) o (N) para salir" << endl;
@@ -313,9 +313,11 @@ int main(){
                               int chequeo = ChequeoUsuario(lista2, nick);
                                if(chequeo == 1){
                                   //REMPLAZA PUNTAJE SI YA HABIA PUNTUADO;
-                                  float pr;
-                                  cout << "Ingrese el puntaje para remplazar" << endl;
-                                  cin >> pr;
+                                  float pr = 0;
+                                  while (pr<1 || pr>5){
+                                    cout << "Ingrese el puntaje para remplazar" << endl;
+                                    cin >> pr;
+                                  }
                                   sis->PuntuarPelicula(peli,nick,pr);
                                   Cant++;
                                   Suma = Suma + pr;
@@ -324,9 +326,11 @@ int main(){
                                   }
                               else{
                                   // PUNTUACION NUEVA SI YA HAY PUNTAJES
-                                  float pr;
-                                  cout << "Ingrese el nuevo puntaje" << endl;
-                                  cin >> pr;
+                                  float pr = 0;
+                                  while (pr<1 || pr>5){
+                                    cout << "Ingrese el nuevo puntaje" << endl;
+                                    cin >> pr;
+                                  }
                                   sis->PuntuarPelicula(peli,nick,pr);
                                   Cant++;
                                   Suma = Suma + pr;
@@ -337,9 +341,11 @@ int main(){
                           else{
                             // PUNTUACION NUEVA
                             cout << "La pelicula no contiene ningun puntaje aun" << endl;
-                            float pr;
-                            cout << "Ingrese el nuevo puntaje" << endl;
-                            cin >> pr;
+                            float pr = 0;
+                            while (pr<1 || pr>5){
+                              cout << "Ingrese el nuevo puntaje" << endl;
+                              cin >> pr;
+                            }
                             sis->PuntuarPelicula(peli,nick,pr);
                             Cant++;
                             Suma = Suma + pr;
@@ -376,7 +382,36 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "            COMENTAR PELICULA" << endl;
                             cout << "==========================================" << endl;
-                            sis->ComentarPelicula(nick);
+                            ICollection* peliculas = sis->ListarPeliculas();
+                            ListarTitulos(peliculas);
+                            string t;
+                            cout << "Seleccione la pelicula deseada" << endl;
+                            getchar();
+                            getline(cin,t);
+                            Pelicula* peli = sis->SeleccionPelicula(t);
+                            peli->ListarComentarios(peli);
+                            string com;
+                            cout <<"Elija un comentario si lo desea, de lo contrario presione 'N' " << endl;
+                            getline(cin,com);
+                            if(com == "N" || com == "n"){
+                              cout << "Ingrese un nuevo comentario" << endl;
+                              getline(cin,com);
+                              sis->ComentarPelicula(peli, nick, com);
+                              cout << "Comentario agregado" << endl;
+                            }
+                            else {
+                              Comenta* co = peli->BuscarComentario(peli,com);
+                              if(co!=NULL){
+                                string res;
+                                cout << "Ingrese la respuesta al comentario seleccionado" << endl;
+                                getline(cin,res);
+                                sis->agregarCom(peli, co, nick, res);
+                                cout << "Respuesta agregada" << endl;
+                                }
+                                else{
+                                  throw invalid_argument("El comentario ingresado es incorrecto");
+                                }
+                              }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;

@@ -6,6 +6,7 @@
 #include "../../Clases/Headers/Cine.h"
 #include "../../Clases/Headers/Pelicula.h"
 #include "../../Clases/Headers/Funcion.h"
+#include "../../Clases/Headers/Comenta.h"
 #include "../../Datatypes/Headers/DtFecha.h"
 #include "../../Datatypes/Headers/DtHora.h"
 #include "../../Interfaces/Headers/IDictionary.h"
@@ -31,7 +32,8 @@ class Sistema  {
    bool esAdmin(string);
    void AltaCine(Cine* cine);
    void AltaPelicula(string,string,string,int);
-   void ComentarPelicula(string);
+   void ComentarPelicula(Pelicula* peli, string nick, string com);
+   void agregarCom(Pelicula* peli, Comenta* co, string nick, string com);
    void PuntuarPelicula(Pelicula* peli, string user, float puntaje);
    void Precarga();
    ICollection* ListarPeliculas();

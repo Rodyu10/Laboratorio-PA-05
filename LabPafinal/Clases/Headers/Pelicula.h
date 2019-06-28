@@ -34,11 +34,13 @@ class Pelicula : public ICollectible{
       DtPelicula getPelicula() const;
       void ListarComentarios(ICollectible * obj);
       ICollection* ListarFunciones();
-      void agregarComentario(Pelicula * peli, string nick);
+      void agregarComentario(Pelicula * peli, string nick, string com);
+      ICollectible* buscoComentario(Pelicula* peli, string com);
       ICollection* ListarPuntajes(Pelicula* peli);
       void AgregarPuntaje(Pelicula* peli, string user, float puntaje);
       void MostrarComentariosPuntajes(ICollectible* obj, string t, float p, int cant);
       Comenta* BuscarComentario(ICollectible * objC, string com);
+      void agregaCom(Pelicula* peli, Comenta* co, string nick, string com);
       void AsociarFuncion(Funcion* funcion);
       string getTitulo()const;
       string getPoster()const;
