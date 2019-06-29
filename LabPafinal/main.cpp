@@ -29,10 +29,10 @@ int main(){
               cout << "Ingrese su nombre de usuario" << endl;
               getchar();
               getline(cin,nick);
-              cout << "Ingrese su foto de perfil" << endl;
+              cout << endl << "Ingrese su foto de perfil" << endl;
               getchar();
               getline(cin,foto);
-              cout << "Ingrese su contraseña" << endl;
+              cout << endl << "Ingrese su contraseña" << endl;
               cin >> pass;
               sis->RegistrarUsuario(nick,foto,pass);
               cout << endl << "Usuario registrado exitosamente" << endl;
@@ -51,7 +51,7 @@ int main(){
               cout << "Ingrese su usuario" << endl;
               cin >> nick;
               do{
-                cout << "Ingrese su contraseña, (S) para salir" << endl;
+                cout << endl <<"Ingrese su contraseña, (S) para salir" << endl;
                 cin >> pass;
                 if(!sis->VerificarSesion(nick,pass) && (pass!="S" && pass!="s"))
                 cout << "Contraseña incorrecta" << endl;
@@ -68,16 +68,14 @@ int main(){
                   {
                     case 1:{
                           try{
-                            cout << "==========================================================" << endl;
-                            cout << "                       ALTA CINE" << endl;
-                            cout << "==========================================================" << endl;
-                            cout << "==========================================================" << endl;
-                            cout << "                       ALTA CINE" << endl;
-                            cout << "==========================================================" << endl;
                             if(sis->esAdmin(nick)){
                               string dir, op;
-                              int NroCine=3, NroSala=1;
-                              do{
+                              bool repetir=true;
+                              while(repetir){
+                              cout << "==========================================================" << endl;
+                              cout << "                       ALTA CINE" << endl;
+                              cout << "==========================================================" << endl;
+                              int NroCine=sis->CantCines()+1, NroSala=1;
                                 cout << "Ingrese la direccion del cine, (S) para salir" << endl;
                                 getchar();
                                 getline(cin,dir);
@@ -88,7 +86,7 @@ int main(){
                                   Cine* cine = new Cine(NroCine,precio,dir);
                                   string cap;
                                   do{
-                                    cout << "Ingrese la capacidad de la sala, (S) para salir" << endl;
+                                    cout << endl << "Ingrese la capacidad de la sala " << NroSala << ", (S) para salir" << endl;
                                     cin >> cap;
                                     if(cap!="S" && cap!="s"){
                                       cine->agregarSalas(NroSala, stoi(cap));
@@ -98,23 +96,26 @@ int main(){
                                     cout << "Debe ingresar al menos una sala" << endl;
                                   }while((cap!="S" && cap!="s") || NroSala==1);
                                   float descuento;
+                                  NroSala=1;
                                   do{
-                                    cout << endl << "Ingrese el nombre de la financiera asociada, (S) para salir" << endl;
+                                    cout << endl << "Ingrese el nombre de la financiera asociada " << NroSala << ", (S) para salir" << endl;
                                     cin >> op;
                                     if(op!="S" && op!="s"){
-                                      cout << "Ingrese el procentaje de descuento de la financiera" << endl;
+                                      cout <<"Ingrese el procentaje de descuento de la financiera" << endl;
                                       cin >> descuento;
                                       if(op!="S" && op!="s"){
-                                        if(cine->agregarFinanciera(op,descuento))
-                                        cout << "Financiera agregada exitosamente" << endl;
+                                        if(cine->agregarFinanciera(op,descuento)){
+                                          NroSala++;
+                                          cout << "Financiera agregada exitosamente" << endl;
+                                        }
                                         else
-                                        cout << "Esta financiera ya existe" << endl;
+                                        cout << "Esta financiera ya se encuentra asociada al cine" << endl;
                                       }
                                     }
                                   }while((op!="S" && op!="s"));
-                                  cout << "¿Confirma el alta de este cine? (S) o (N)" << endl;
+                                  cout << endl << "¿Confirma el alta de este cine? (S) o (N)" << endl;
                                   cin >> op;
-                                  if(op=="Y" || op=="y"){
+                                  if(op=="S" || op=="s"){
                                     sis->AltaCine(cine);
                                     cout << "Cine agregado exitosamente" << endl << endl;
                                     NroCine ++;
@@ -123,9 +124,11 @@ int main(){
                                     delete cine;
                                     cout << "Operacion cancelada" << endl << endl;
                                   }
-                                  NroSala=1;
+                                  system("clear");
                                 }
-                              }while(dir!="S" && dir!="s");
+                                else
+                                repetir=false;
+                              }
                             }
                           }
                           catch(exception &e){
@@ -138,8 +141,8 @@ int main(){
                             cout << "==========================================================" << endl;
                             cout << "                     ALTA FUNCION" << endl;
                             cout << "==========================================================" << endl;
+                            sis->Control();
                             if(sis->esAdmin(nick)){
-                                sis->Control();
                                 string t;
                                 int nro, nroSala;
                                 ICollection* peliculas = sis->ListarPeliculas();
@@ -155,7 +158,6 @@ int main(){
                                 Cine* cine = sis->SeleccionCine(nro);
                                 if(cine->verificarPelicula(peli->getTitulo()))
                                 throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
-
                                 bool ingresarMas=true;
                                 while(ingresarMas){
                                   ICollection* salas = cine->ListarSalas();
@@ -197,6 +199,7 @@ int main(){
                           catch(exception &e){
                           cout << e.what() << endl;
                           }
+                          getchar();
                         }
                         break;
                       case 3:{
@@ -204,30 +207,40 @@ int main(){
                               cout << "==========================================================" << endl;
                               cout << "                    ALTA PELICULA" << endl;
                               cout << "==========================================================" << endl;
+                              sis->Control();
                               if(sis->esAdmin(nick)){
                                 string t,p,s;
                                 int cine;
                                 cout << "Ingrese el titulo de la pelicula" << endl;
                                 getchar();
                                 getline(cin,t);
-                                cout << "Ingrese el poster de la pelicula" << endl;
-                                getchar();
-                                getline(cin,p);
-                                cout << "Ingrese la sinopsis de la pelicula" << endl;
-                                getchar();
-                                getline(cin,s);
-                                ICollection* cines = sis->ListarCines();
-                                ListarCines(cines);
-                                cout << "Ingrese el numero del cine" << endl;
-                                cin >> cine;
-                                sis->SeleccionCine(cine);
-                                sis->AltaPelicula(t,p,s,cine);
-                                cout << "Pelicula agregada exitosamente" << endl;
+                                Pelicula* peli = sis->verificarPelicula(t);
+                                if(!peli){
+                                  cout << endl << "Ingrese el poster de la pelicula" << endl;
+                                  getchar();
+                                  getline(cin,p);
+                                  cout << endl << "Ingrese la sinopsis de la pelicula" << endl;
+                                  getchar();
+                                  getline(cin,s);
+                                }
+                                else{
+                                  p = peli->getPoster();
+                                  s = peli->getSinopsis();
+                                }
+                                  ICollection* cines = sis->ListarCines();
+                                  ListarCines(cines);
+                                  cout << "Ingrese el numero del cine" << endl;
+                                  cin >> cine;
+                                  sis->SeleccionCine(cine);
+                                  sis->AltaPelicula(t,p,s,cine);
+
+                                cout << endl <<"Pelicula agregada exitosamente" << endl;
                               }
                             }
                             catch(exception &e){
                             cout << e.what() << endl;
                             }
+                            getchar();
                           }
                           break;
                     case 4:{
@@ -235,6 +248,7 @@ int main(){
                             cout << "===========================================================" << endl;
                             cout << "                       CREAR RESERVA" << endl;
                             cout << "===========================================================" << endl;
+                            sis->Control();
                             bool repetir=true;
                             while(repetir){
                               ICollection* peliculas = sis->ListarPeliculas();
@@ -246,12 +260,12 @@ int main(){
                               if(pelicula!="s" && pelicula!="S")
                               {
                                   Pelicula* peli = sis->SeleccionPelicula(pelicula);
-                                  cout << endl << "==============================================" << endl;
+                                  cout << endl << "==============================================================" << endl;
                                   cout << "Poster: " << peli->getPoster() << endl;
                                   cout << "Sinopsis: " << peli->getSinopsis() << endl;
-                                  cout << "==============================================" << endl;
+                                  cout << "==============================================================" << endl;
                                   string op;
-                                  cout << endl<<"¿Desea ver los cines para esta pelicula? (S) o (N) para salir" << endl;
+                                  cout << endl << "¿Desea ver los cines para esta pelicula? (S) o (N)" << endl;
                                   cin >> op;
                                   if(op!="n" && op!="N")
                                   {
@@ -281,7 +295,9 @@ int main(){
                                           float costo=0, descuento=0;
                                           costo = cine->getPrecioEntrada()*cantAsientos;
                                           if(nombreBF=="C" || nombreBF =="c"){
-                                            cout << endl << "Ingrese el nombre de la financiera" << endl;
+                                            ICollection* financieras = cine->ListarFinancieras();
+                                            ListarFinancieras(financieras);
+                                            cout << "Ingrese el nombre de la financiera" << endl;
                                             cin >> nombreBF;
                                             if(cine->verificarFinanciera(nombreBF)){
                                               cout << endl << "Tiene descuento de " << cine->DescuentoFinanciera(nombreBF) << "%" << endl;
@@ -289,7 +305,7 @@ int main(){
                                             }
                                             else{
                                               cout << "Esta financiera no esta asociada al cine" << endl;
-                                              cout << "No tiene descuento" << endl;
+                                              cout << "Por lo tanto no se obtiene un descuento" << endl;
                                             }
                                             CrDe=false;
                                           }
@@ -307,17 +323,20 @@ int main(){
                                           }
                                       }
                                   }
+                                  string res;
+                                  cout << endl << "¿Desea crear una reserva para otra pelicula? (S) o (N)" << endl;
+                                  cin >> res;
+                                  if(res=="n" || res=="N")
+                                  repetir=false;
                               }
-                              string res;
-                              cout << endl << "¿Desea reservar una funcion para otra pelicula? (S) o (N)" << endl;
-                              cin >> res;
-                              if(res=="n" || res=="N")
-                              repetir=false;
+                              else
+                              throw invalid_argument("\nSe cancelo la operacion");
                             }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
                           }
+                          getchar();
                         }
                         break;
                     case 5:{
@@ -325,6 +344,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "            PUNTUAR PELICULA" << endl;
                             cout << "==========================================" << endl;
+                            sis->Control();
                             ICollection* peliculas = sis->ListarPeliculas();
                             ListarTitulos(peliculas);
                             string t;
@@ -345,7 +365,7 @@ int main(){
                                     cout << "Ingrese el puntaje para remplazar" << endl;
                                     cin >> pr;
                                   }
-                                  sis->PuntuarPelicula(peli,nick,pr);
+                                  peli->AgregarPuntaje(peli,nick,pr);
                                   Suma = Suma + pr;
                                   promedio = (float) Suma / Cant;
                                   peli->setPuntaje(promedio);
@@ -357,7 +377,7 @@ int main(){
                                     cout << "Ingrese el nuevo puntaje" << endl;
                                     cin >> pr;
                                   }
-                                  sis->PuntuarPelicula(peli,nick,pr);
+                                  peli->AgregarPuntaje(peli,nick,pr);
                                   Cant++;
                                   Suma = Suma + pr;
                                   promedio = (float) Suma / Cant;
@@ -366,13 +386,13 @@ int main(){
                               }
                           else{
                             // PUNTUACION NUEVA
-                            cout << "La pelicula no contiene ningun puntaje aun" << endl;
+                            cout << endl << "La pelicula no contiene ningun puntaje aun" << endl;
                             float pr = 0;
                             while (pr<1 || pr>5){
                               cout << "Ingrese el nuevo puntaje" << endl;
                               cin >> pr;
                             }
-                            sis->PuntuarPelicula(peli,nick,pr);
+                            peli->AgregarPuntaje(peli,nick,pr);
                             Cant++;
                             Suma = Suma + pr;
                             promedio = (float) Suma / Cant;
@@ -383,6 +403,7 @@ int main(){
                             catch(exception &e){
                             cout << e.what() << endl;
                             }
+                            getchar();
                           }
                         break;
                     case 6:{
@@ -390,6 +411,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "            ELIMINAR PELICULA" << endl;
                             cout << "==========================================" << endl;
+                            sis->Control();
                             if(sis->esAdmin(nick)){
                               ICollection* peliculas = sis->ListarPeliculas();
                               ListarTitulos(peliculas);
@@ -411,6 +433,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "            COMENTAR PELICULA" << endl;
                             cout << "==========================================" << endl;
+                            sis->Control();
                             ICollection* peliculas = sis->ListarPeliculas();
                             ListarTitulos(peliculas);
                             string t;
@@ -423,19 +446,19 @@ int main(){
                             cout <<"Elija un comentario si lo desea, de lo contrario presione 'N' " << endl;
                             getline(cin,com);
                             if(com == "N" || com == "n"){
-                              cout << "Ingrese un nuevo comentario" << endl;
+                              cout << endl << "Ingrese un nuevo comentario" << endl;
                               getline(cin,com);
-                              sis->ComentarPelicula(peli, nick, com);
-                              cout << "Comentario agregado" << endl;
+                              peli->agregarComentario(peli, nick, com);
+                              cout << endl << "Comentario agregado" << endl;
                             }
                             else {
                               Comenta* co = peli->BuscarComentario(peli,com);
                               if(co!=NULL){
                                 string res;
-                                cout << "Ingrese la respuesta al comentario seleccionado" << endl;
+                                cout << endl << "Ingrese la respuesta al comentario seleccionado" << endl;
                                 getline(cin,res);
-                                sis->agregarCom(peli, co, nick, res);
-                                cout << "Respuesta agregada" << endl;
+                                peli->agregaCom(peli, co, nick, res);
+                                cout << endl << "Respuesta agregada" << endl;
                                 }
                                 else{
                                   throw invalid_argument("El comentario ingresado es incorrecto");
@@ -452,6 +475,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "        VER INFORMACION DE PELICULA" << endl;
                             cout << "==========================================" << endl;
+                            sis->Control();
                             bool repetir=true;
                             while(repetir){
                               ICollection* peliculas = sis->ListarPeliculas();
@@ -463,10 +487,10 @@ int main(){
                               if(pelicula!="s" && pelicula!="S")
                               {
                                   Pelicula* peli = sis->SeleccionPelicula(pelicula);
-                                  cout << endl << "==============================================" << endl;
+                                  cout << endl << "==============================================================" << endl;
                                   cout << "Poster: " << peli->getPoster() << endl;
                                   cout << "Sinopsis:" << peli->getSinopsis() << endl;
-                                  cout << "==============================================" << endl;
+                                  cout << "==============================================================" << endl;
                                   string op;
                                   cout << endl<<"¿Desea ver los cines para esta pelicula? (S) o (N) para salir" << endl;
                                   cin >> op;
@@ -485,25 +509,22 @@ int main(){
 
                                           ICollection* funciones = peli->ListarFunciones();
                                           ListarFunciones(funciones);
-                                          string t;
-                                          cout << "¿Desea ver informacion de otra pelicula? (S) o (N)" << endl;
-                                          cin >> t;
-                                          if(t=="N" || t=="n")
-                                          repetir=false;
                                       }
-                                      else
-                                      throw invalid_argument("\nSe canceló la opeación");
                                   }
-                                  else
-                                  throw invalid_argument("\nSe canceló la opeación");
+                                  string t;
+                                  cout << endl << "¿Desea ver informacion de otra pelicula? (S) o (N)" << endl;
+                                  cin >> t;
+                                  if(t=="N" || t=="n")
+                                  repetir=false;
                               }
                               else
-                              throw invalid_argument("\nSe canceló la opeación");
+                              throw invalid_argument("\nSe cancelo la operacion");
                             }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
                           }
+                          getchar();
                         }
                         break;
                     case 9:{
@@ -511,6 +532,7 @@ int main(){
                             cout << "==========================================" << endl;
                             cout << "  VER COMENTARIOS Y PUNTAJES DE PELICULA" << endl;
                             cout << "==========================================" << endl;
+                            sis->Control();
                             ICollection* peliculas = sis->ListarPeliculas();
                             ListarTitulos(peliculas);
                             string t;
@@ -538,7 +560,6 @@ int main(){
                   }
                     cout << "Presione enter para continuar" << endl;
                     getchar();
-                    getchar();
                     system("clear");
                     menuDos ();
                     opc = opcionDos();
@@ -550,7 +571,7 @@ int main(){
           }
           break;
         }
-      cout << endl << "Presione enter para continuar" << endl;
+      cout << "Presione enter para continuar" << endl;
       getchar();
       getchar();
       system("clear");

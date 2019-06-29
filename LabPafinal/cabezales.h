@@ -54,4 +54,5 @@ void ListarCines(ICollection* cines);
 void ListarSalas(ICollection* salas);
 void ListarTitulos(ICollection* peliculas);
 void ListarFunciones(ICollection* funciones);
+void ListarFinancieras(ICollection* financieras);
 int ChequeoUsuario(ICollection* peliculas, string user);

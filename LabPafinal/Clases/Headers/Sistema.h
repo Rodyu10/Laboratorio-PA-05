@@ -32,9 +32,6 @@ class Sistema  {
    bool esAdmin(string);
    void AltaCine(Cine* cine);
    void AltaPelicula(string,string,string,int);
-   void ComentarPelicula(Pelicula* peli, string nick, string com);
-   void agregarCom(Pelicula* peli, Comenta* co, string nick, string com);
-   void PuntuarPelicula(Pelicula* peli, string user, float puntaje);
    void Precarga();
    ICollection* ListarPeliculas();
    ICollection* ListarCines();
@@ -44,9 +41,8 @@ class Sistema  {
    Cine* SeleccionCine(int NroCine);
    Funcion* SeleccionFuncion(Cine* cine, int NroFuncion);
    Usuario* obtenerUsuario(string nick);
-   float PagaCredito(string NombreFinanciera, int CantAsientos);
-   float PagaDebito(string NombreBanco, int CantAsientos);
-   void CrearReserva();
+   Pelicula* verificarPelicula(string Titulo);
+   int CantCines();
    void Control();
    ~Sistema();
 };

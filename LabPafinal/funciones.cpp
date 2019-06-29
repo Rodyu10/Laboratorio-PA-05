@@ -18,9 +18,9 @@ void menu()
 
 void menuDos()
 {
-  cout << "====================================" << endl;
-  cout << "            MENU USUARIO" << endl;
-  cout << "====================================" << endl;
+  cout << "==========================================" << endl;
+  cout << "               MENU USUARIO" << endl;
+  cout << "==========================================" << endl;
   cout << "1-Alta Cine" << endl;
   cout << "2-Alta Funcion" << endl;
   cout << "3-Alta Pelicula" << endl;
@@ -31,7 +31,7 @@ void menuDos()
   cout << "8-Ver informacion de Pelicula" << endl;
   cout << "9-Ver comentarios y puntaje de Pelicula" << endl;
   cout << "0-Volver al menu principal" << endl;
-  cout << "====================================" << endl;
+  cout << "==========================================" << endl;
 }
 
 int opcion()
@@ -60,14 +60,14 @@ int opcionDos()
 
 void ListarPeliculas(ICollection* peliculas){
   IIterator* i = peliculas->getIterator();
-    cout << "================LISTA PELICULAS==============="<<endl;
+    cout << "======================LISTA PELICULAS====================="<<endl;
   while(i->hasCurrent()){
     DtPelicula* p = (DtPelicula*) i->getCurrent();
     cout << p->getTitulo() << endl;
     cout << "Poster: " << p->getPoster() << endl;
     cout << "Sinopsis: " << p->getSinopsis() << endl;
     cout << "Puntaje: " << p->getPuntaje() << endl;
-    cout << "==============================================" << endl;
+    cout << "==========================================================" << endl;
     peliculas->remove(i->getCurrent());
     i->next();
   }
@@ -118,6 +118,21 @@ void ListarTitulos(ICollection* peliculas){
   }
   delete i;
   delete peliculas;
+}
+
+void ListarFinancieras(ICollection* financieras){
+  IIterator* i = financieras->getIterator();
+    cout << "==========LISTA FINANCIERAS ASOCIADAS========="<<endl;
+  while(i->hasCurrent()){
+    DtFinanciera* f = (DtFinanciera*) i->getCurrent();
+    cout << "Nombre: "<< f->getFinanciera() << endl;
+    cout << "Descuento: "<< f->getDescuento() << "%" << endl;
+    cout << "==============================================" << endl;
+    financieras->remove(i->getCurrent());
+    i->next();
+  }
+  delete i;
+  delete financieras;
 }
 
 void ListarCines(ICollection* cines){

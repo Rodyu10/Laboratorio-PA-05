@@ -10,6 +10,7 @@
 #include "../../Datatypes/Headers/DtHora.h"
 #include "../../Datatypes/Headers/DtCine.h"
 #include "../../Datatypes/Headers/DtSala.h"
+#include "../../Datatypes/Headers/DtFinanciera.h"
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/IKey.h"
@@ -37,6 +38,7 @@ class Cine : public ICollectible{
       bool verificarFinanciera(string);
       float DescuentoFinanciera(string);
       ICollection* ListarSalas();
+      ICollection* ListarFinancieras();
       Sala* seleccionarSala(int NroSala);
       Funcion* seleccionarFuncion(int NroFuncion);
       int CantFunciones();

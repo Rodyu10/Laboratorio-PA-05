@@ -3,7 +3,6 @@
 using namespace std;
 
 Funcion::Funcion(){
-
 }
 
 Funcion::Funcion(int nrofun, int nrosala, DtFecha fecha, DtHora horario){

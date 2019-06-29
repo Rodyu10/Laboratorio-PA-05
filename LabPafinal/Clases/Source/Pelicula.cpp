@@ -33,7 +33,7 @@ void Pelicula::ListarComentarios(ICollectible * obj){
   }
   else{
     delete i;
-    cout << "La pelicula no tiene comentarios aun" << endl;
+    cout << endl <<  "La pelicula no tiene comentarios aun" << endl;
   }
 }
 

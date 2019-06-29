@@ -70,6 +70,20 @@ ICollection* Cine::ListarSalas(){
   return res;
 }
 
+ICollection* Cine::ListarFinancieras(){
+  system("clear");
+  IIterator* i = financieras->getIterator();
+  ICollection * res = new List();
+  while(i->hasCurrent()){
+    Financiera* f = (Financiera*) i->getCurrent();
+    DtFinanciera* fin = new DtFinanciera(f->getFinanciera(),f->getDescuento());
+    res->add(fin);
+    i->next();
+  }
+  delete i;
+  return res;
+}
+
 Sala* Cine::seleccionarSala(int NroSala){
   Integer* llave = new Integer(NroSala);
   if(!salas->member(llave)){
@@ -142,7 +156,6 @@ bool Cine::verificarPelicula(string Titulo){
 }
 
 void Cine::EliminarPelicula(Pelicula* peli){
-
   StringKey* llave = new StringKey(peli->getTitulo());
   peliculas->remove(llave);
   delete peli;
