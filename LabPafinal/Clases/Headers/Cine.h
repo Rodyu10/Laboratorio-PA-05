@@ -38,6 +38,7 @@ class Cine : public ICollectible{
       bool verificarFinanciera(string);
       float DescuentoFinanciera(string);
       ICollection* ListarSalas();
+      ICollection* ListarFunciones(string Titulo);
       ICollection* ListarFinancieras();
       Sala* seleccionarSala(int NroSala);
       Funcion* seleccionarFuncion(int NroFuncion);
@@ -45,7 +46,7 @@ class Cine : public ICollectible{
       void agregarFuncion(Pelicula * peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora);
       void agregarPelicula(string Titulo, Pelicula* Peli);
       bool verificarPelicula(string Titulo);
-      void EliminarPelicula(Pelicula* peli);
+      void EliminarPelicula(string Titulo);
 
       int getNroCine() const;
       string getDir() const;

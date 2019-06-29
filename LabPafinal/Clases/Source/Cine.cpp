@@ -84,6 +84,12 @@ ICollection* Cine::ListarFinancieras(){
   return res;
 }
 
+ICollection*  Cine::ListarFunciones(string Titulo){
+  StringKey* llave = new StringKey(Titulo);
+  Pelicula* peli = (Pelicula*) peliculas->find(llave);
+  return peli->ListarFunciones();
+}
+
 Sala* Cine::seleccionarSala(int NroSala){
   Integer* llave = new Integer(NroSala);
   if(!salas->member(llave)){
@@ -118,9 +124,11 @@ void Cine::agregarPelicula(string Titulo, Pelicula* peli){
 }
 
 void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora){
+    StringKey* llavePeli = new StringKey(peli->getTitulo());
     Integer* llave = new Integer(NroFuncion);
     Integer* llaveSala = new Integer(NroSala);
     Sala* sala = (Sala*) salas->find(llaveSala);
+    Pelicula* p = (Pelicula*) peliculas->find(llavePeli);
     IIterator* i = funciones->getIterator();
     while(i->hasCurrent()){
       Funcion* f = (Funcion*) i->getCurrent();
@@ -132,7 +140,7 @@ void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *
     DtFecha f = DtFecha(fecha->getDia(),fecha->getMes(),fecha->getAnio());
     DtHora h = DtHora(hora->getHora(),hora->getMinutos());
     Funcion* fun = new Funcion(NroFuncion,NroSala,f,h);
-    peli->AsociarFuncion(fun);
+    p->AsociarFuncion(fun);
     fun->AsociarSala(sala);
     funciones->add(llave,fun);
 }
@@ -149,10 +157,20 @@ bool Cine::verificarPelicula(string Titulo){
   }
 }
 
-void Cine::EliminarPelicula(Pelicula* peli){
-  StringKey* llave = new StringKey(peli->getTitulo());
+void Cine::EliminarPelicula(string Titulo){
+  StringKey* llave = new StringKey(Titulo);
+  Pelicula* p = (Pelicula*) peliculas->find(llave);
+  ICollection* fun = p->ObtenerFunciones();
+  IIterator* i = fun->getIterator();
+  while(i->hasCurrent()){
+      Funcion* f = (Funcion*) i->getCurrent();
+      Integer* llaveF = new Integer(f->getNroFuncion());
+      funciones->remove(llaveF);
+      i->next();
+  }
   peliculas->remove(llave);
-  delete peli;
+  delete i;
+  delete p;
 }
 
 int Cine::CantFunciones(){

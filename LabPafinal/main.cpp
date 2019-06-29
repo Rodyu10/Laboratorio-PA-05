@@ -199,7 +199,6 @@ int main(){
                           catch(exception &e){
                           cout << e.what() << endl;
                           }
-                          getchar();
                         }
                         break;
                       case 3:{
@@ -240,7 +239,6 @@ int main(){
                             catch(exception &e){
                             cout << e.what() << endl;
                             }
-                            getchar();
                           }
                           break;
                     case 4:{
@@ -282,7 +280,7 @@ int main(){
                                           if(cine->verificarPelicula(peli->getTitulo()))
                                           throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
 
-                                          ICollection* funciones = peli->ListarFunciones();
+                                          ICollection* funciones = cine->ListarFunciones(peli->getTitulo());
                                           ListarFunciones(funciones);
                                           cout << "Ingrese el numero de la funcion, (S) para salir" << endl;
                                           cin >> NroFuncion;
@@ -339,7 +337,6 @@ int main(){
                           catch(exception &e){
                           cout << e.what() << endl;
                           }
-                          getchar();
                         }
                         break;
                     case 5:{
@@ -406,24 +403,30 @@ int main(){
                             catch(exception &e){
                             cout << e.what() << endl;
                             }
-                            getchar();
                           }
                         break;
                     case 6:{
                           try{
-                            cout << "==========================================" << endl;
-                            cout << "            ELIMINAR PELICULA" << endl;
-                            cout << "==========================================" << endl;
+                            cout << "======================================================" << endl;
+                            cout << "                 ELIMINAR PELICULA" << endl;
+                            cout << "======================================================" << endl;
                             sis->Control();
                             if(sis->esAdmin(nick)){
                               ICollection* peliculas = sis->ListarPeliculas();
                               ListarTitulos(peliculas);
-                              string t;
-                              cout << "Seleccione la pelicula deseada" << endl;
+                              string pelicula, op;
+                              cout << "Ingrese el título de la película" << endl;
                               getchar();
-                              getline(cin,t);
-                              Pelicula* peli = sis->SeleccionPelicula(t);
-                              sis->EliminarPelicula(peli);
+                              getline(cin,pelicula);
+                              Pelicula* peli = sis->SeleccionPelicula(pelicula);
+                              cout << endl << "¿Esta seguro que desea borrar esta pelicula? (S) o (N)" << endl;
+                              cin >> op;
+                              if(op=="S" || op=="s"){
+                                sis->EliminarPelicula(peli);
+                                cout << endl <<"Pelicula eliminada" << endl;
+                              }
+                              else
+                              cout << endl <<"Operacion cancelada" << endl;
                             }
                           }
                           catch(exception &e){
@@ -510,7 +513,7 @@ int main(){
                                           if(cine->verificarPelicula(peli->getTitulo()))
                                           throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
 
-                                          ICollection* funciones = peli->ListarFunciones();
+                                          ICollection* funciones = cine->ListarFunciones(peli->getTitulo());
                                           ListarFunciones(funciones);
                                       }
                                   }
@@ -527,7 +530,6 @@ int main(){
                           catch(exception &e){
                           cout << e.what() << endl;
                           }
-                          getchar();
                         }
                         break;
                     case 9:{
@@ -562,6 +564,7 @@ int main(){
                       break;
                   }
                     cout << "Presione enter para continuar" << endl;
+                    getchar();
                     getchar();
                     system("clear");
                     menuDos ();

@@ -75,14 +75,11 @@ void Pelicula::agregarComentario(Pelicula * peli, string nick, string com){
 }
 
 ICollectible* Pelicula::buscoComentario(Pelicula* peli, string com){
-
   ICollectible* co = BuscarComentario(peli,com);
   return co;
-
 }
 
 void Pelicula::agregaCom(Pelicula* peli, Comenta* co, string nick, string com){
-
   co->agregarRespuesta(co, nick, com);
 }
 
@@ -163,6 +160,17 @@ void Pelicula::AgregarPuntaje(Pelicula* peli, string user, float puntaje){
   }
 }
 
+ICollection* Pelicula::ObtenerFunciones(){
+  IIterator* i = funciones->getIterator();
+  ICollection* res = new List();
+  while(i->hasCurrent()){
+    Funcion* fun = (Funcion*) i->getCurrent();
+    res->add(fun);
+    i->next();
+  }
+  delete i;
+  return res;
+}
 string Pelicula::getTitulo() const{
   return this->Titulo;
 }

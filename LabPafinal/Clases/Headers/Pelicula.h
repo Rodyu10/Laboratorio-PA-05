@@ -40,6 +40,7 @@ class Pelicula : public ICollectible{
       Comenta* BuscarComentario(ICollectible * objC, string com);
       void agregaCom(Pelicula* peli, Comenta* co, string nick, string com);
       void AsociarFuncion(Funcion* funcion);
+      ICollection* ObtenerFunciones();
 
       string getTitulo()const;
       string getPoster()const;
