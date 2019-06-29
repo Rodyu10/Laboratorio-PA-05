@@ -118,8 +118,7 @@ void Cine::agregarPelicula(string Titulo, Pelicula* peli){
 }
 
 void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *fecha, DtHora *hora){
-  Integer* llave = new Integer(NroFuncion);
-  if(!funciones->find(llave)){
+    Integer* llave = new Integer(NroFuncion);
     Integer* llaveSala = new Integer(NroSala);
     Sala* sala = (Sala*) salas->find(llaveSala);
     IIterator* i = funciones->getIterator();
@@ -136,11 +135,6 @@ void Cine::agregarFuncion(Pelicula* peli, int NroFuncion, int NroSala, DtFecha *
     peli->AsociarFuncion(fun);
     fun->AsociarSala(sala);
     funciones->add(llave,fun);
-  }
-  else{
-    delete llave;
-    cout << endl << "Ya existe una funcion con ese numero registrado" << endl;
-  }
 }
 
 bool Cine::verificarPelicula(string Titulo){

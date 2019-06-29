@@ -88,6 +88,10 @@ void Sistema::Precarga(){
   StringKey* llave = new StringKey(p->getTitulo());
   peliculas->add(llave,p);
   c1->agregarPelicula(p->getTitulo(),p);
+  p=new Pelicula("Toy Story 4",
+  "https://toystoryposter.com/images/toystory.jpg","Woody siempre ha tenido claro cuál es su labor\nen el mundo, y cuál es su prioridad: cuidar a\nsu dueño, ya sea Andy o Bonnie. Pero cuando Bonnie\nañade Forky, un nuevo y reluciente juguete a su\nhabitación, arranca una nueva aventura que servirá\npara que los viejos y nuevos amigos le enseñen a Woody\nlo grande que puede ser el mundo para un juguete.",0);
+  llave = new StringKey(p->getTitulo());
+  peliculas->add(llave,p);
   c2->agregarPelicula(p->getTitulo(),p);
   p=new Pelicula("John Wick","https://johnposter.com/images/johnwick.jpg","La ciudad de Nueva York se convierte en el patio\nacribillado a balazos de un exasesino mientras él elimina\na los gánsteres que destruyeron todo lo que él quería.",0);
   llave = new StringKey(p->getTitulo());
@@ -97,7 +101,13 @@ void Sistema::Precarga(){
   llave = new StringKey(p->getTitulo());
   peliculas->add(llave,p);
   c1->agregarPelicula(p->getTitulo(),p);
+  p=new Pelicula("Chuky","https://chukyposter.com/images/chuky.jpg","Mediante un ritual de vudú, el alma de un asesino\nmoribundo trasmigra a un muñeco. Una madre compra el\nmuñeco para su hijo, sin saber que está arrojando a sus\nhijos a los brazos de un ser infernal.",0);
+  llave = new StringKey(p->getTitulo());
+  peliculas->add(llave,p);
   c2->agregarPelicula(p->getTitulo(),p);
+  p=new Pelicula("Chuky","https://chukyposter.com/images/chuky.jpg","Mediante un ritual de vudú, el alma de un asesino\nmoribundo trasmigra a un muñeco. Una madre compra el\nmuñeco para su hijo, sin saber que está arrojando a sus\nhijos a los brazos de un ser infernal.",0);
+  llave = new StringKey(p->getTitulo());
+  peliculas->add(llave,p);
   c3->agregarPelicula(p->getTitulo(),p);
 
   c1->agregarSalas(1,50);

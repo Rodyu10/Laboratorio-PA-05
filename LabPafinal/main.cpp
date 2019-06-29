@@ -313,8 +313,11 @@ int main(){
                                             cout << endl << "Ingrese el nombre del banco" << endl;
                                             cin >> nombreBF;
                                           }
+                                          cout << "Cantidad de asientos: " << cantAsientos << endl;
+                                          cout << "Precio de la entrada: " << cine->getPrecioEntrada() << endl;
+                                          cout << "Precio total: " << costo << endl;
                                           costo=costo-descuento;
-                                          cout << "El precio total es: " << costo << endl;
+                                          cout << "Total a pagar con descuento: " << costo << endl;
                                           cout << endl << "¿Desea crear la reserva? (S) o (N)" << endl;
                                           cin >> op;
                                           if(op=="S" || op=="s"){
