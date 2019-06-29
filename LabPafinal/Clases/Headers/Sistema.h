@@ -42,6 +42,7 @@ class Sistema  {
    Funcion* SeleccionFuncion(Cine* cine, int NroFuncion);
    Usuario* obtenerUsuario(string nick);
    Pelicula* verificarPelicula(string Titulo);
+   void verificarCine(string dir);
    int CantCines();
    void Control();
    ~Sistema();

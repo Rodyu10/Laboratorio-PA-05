@@ -79,6 +79,7 @@ int main(){
                                 cout << "Ingrese la direccion del cine, (S) para salir" << endl;
                                 getchar();
                                 getline(cin,dir);
+                                sis->verificarCine(dir);
                                 if(dir!="S" && dir!="s"){
                                   int precio;
                                   cout << endl << "Ingrese el precio de entrada de este cine" << endl;
@@ -99,7 +100,8 @@ int main(){
                                   NroSala=1;
                                   do{
                                     cout << endl << "Ingrese el nombre de la financiera asociada " << NroSala << ", (S) para salir" << endl;
-                                    cin >> op;
+                                    getchar();
+                                    getline(cin,op);
                                     if(op!="S" && op!="s"){
                                       cout <<"Ingrese el procentaje de descuento de la financiera" << endl;
                                       cin >> descuento;
@@ -198,6 +200,7 @@ int main(){
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
+                          getchar();
                           }
                         }
                         break;
@@ -239,6 +242,7 @@ int main(){
                             catch(exception &e){
                             cout << e.what() << endl;
                             }
+                            getchar();
                           }
                           break;
                     case 4:{
@@ -296,7 +300,8 @@ int main(){
                                             ICollection* financieras = cine->ListarFinancieras();
                                             ListarFinancieras(financieras);
                                             cout << "Ingrese el nombre de la financiera" << endl;
-                                            cin >> nombreBF;
+                                            getchar();
+                                            getline(cin,nombreBF);
                                             if(cine->verificarFinanciera(nombreBF)){
                                               cout << endl << "Tiene descuento de " << cine->DescuentoFinanciera(nombreBF) << "%" << endl;
                                               descuento = costo*(cine->DescuentoFinanciera(nombreBF)/100);
@@ -309,7 +314,8 @@ int main(){
                                           }
                                           else{
                                             cout << endl << "Ingrese el nombre del banco" << endl;
-                                            cin >> nombreBF;
+                                            getchar();
+                                            getline(cin,nombreBF);
                                           }
                                           cout << "Cantidad de asientos: " << cantAsientos << endl;
                                           cout << "Precio de la entrada: " << cine->getPrecioEntrada() << endl;
@@ -331,11 +337,12 @@ int main(){
                                   repetir=false;
                               }
                               else
-                              throw invalid_argument("\nSe cancelo la operacion");
+                              repetir=false;
                             }
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
+                          getchar();
                           }
                         }
                         break;
@@ -402,6 +409,7 @@ int main(){
                           }
                             catch(exception &e){
                             cout << e.what() << endl;
+                            getchar();
                             }
                           }
                         break;
@@ -428,6 +436,7 @@ int main(){
                               else
                               cout << endl <<"Operacion cancelada" << endl;
                             }
+                            getchar();
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
@@ -473,6 +482,7 @@ int main(){
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
+                          getchar();
                           }
                         }
                         break;
@@ -529,6 +539,7 @@ int main(){
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
+                          getchar();
                           }
                         }
                         break;
@@ -559,12 +570,12 @@ int main(){
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
+                          getchar();
                           }
                         }
                       break;
                   }
                     cout << "Presione enter para continuar" << endl;
-                    getchar();
                     getchar();
                     system("clear");
                     menuDos ();

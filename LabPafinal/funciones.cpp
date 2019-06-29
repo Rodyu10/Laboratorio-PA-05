@@ -66,7 +66,6 @@ void ListarPeliculas(ICollection* peliculas){
     cout << p->getTitulo() << endl;
     cout << "Poster: " << p->getPoster() << endl;
     cout << "Sinopsis: " << p->getSinopsis() << endl;
-    cout << "Puntaje: " << p->getPuntaje() << endl;
     cout << "==========================================================" << endl;
     peliculas->remove(i->getCurrent());
     i->next();

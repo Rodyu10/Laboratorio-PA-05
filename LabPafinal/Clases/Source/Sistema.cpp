@@ -214,6 +214,19 @@ Pelicula* Sistema::verificarPelicula(string Titulo){
   }
 }
 
+void Sistema::verificarCine(string dir){
+  IIterator* i = cines->getIterator();
+  while(i->hasCurrent()){
+      Cine* cine = (Cine*) i->getCurrent();
+      if(cine->getDir()==dir){
+        delete i;
+        throw invalid_argument("\nYa existe un cine con esta direccion");
+      }
+      i->next();
+  }
+  delete i;
+}
+
 void Sistema::Precarga(){
   Cine* c1=new Cine(1,180,"Alvariza");
   Integer* intllave = new Integer(c1->getNroCine());
