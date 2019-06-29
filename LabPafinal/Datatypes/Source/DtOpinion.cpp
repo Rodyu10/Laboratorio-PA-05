@@ -19,5 +19,4 @@ string DtOpinion::getUser() const{
 }
 
 DtOpinion::~DtOpinion(){
-  // ELIMINAR opinion
 }

@@ -63,7 +63,7 @@ ICollection* Pelicula::ListarFunciones(){
   }
   else{
     delete i;
-    throw invalid_argument("No hay funciones para esta pelicula");
+    throw invalid_argument("================================================\nNo hay funciones para esta pelicula\n================================================");
   }
 }
 
@@ -161,10 +161,6 @@ void Pelicula::AgregarPuntaje(Pelicula* peli, string user, float puntaje){
     StringKey* llave = new StringKey(user);
     opiniones->add(llave,op);
   }
-}
-
-DtPelicula Pelicula::getPelicula() const{
-   return DtPelicula(this->Titulo, this->Poster, this->Sinopsis, this->Puntaje);
 }
 
 string Pelicula::getTitulo() const{

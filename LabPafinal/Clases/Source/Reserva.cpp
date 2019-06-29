@@ -3,12 +3,12 @@
 using namespace std;
 
 Reserva::Reserva(){
-
 }
 
-Reserva::Reserva(int cant, float costo){
+Reserva::Reserva(int cant, float costo, Usuario* user){
   this->CantAsientos = cant;
   this->Costo = costo;
+  this->user = user;
 }
 
 int Reserva::getCantAsientos() const{

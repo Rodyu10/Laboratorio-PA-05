@@ -7,8 +7,8 @@ all: Lab
 
 
 
-Lab: main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o Sala.o Comenta.o Opinion.o DtFecha.o DtHora.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o
-	$(CC) main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o  Sala.o Comenta.o Opinion.o DtFecha.o DtHora.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o -o Lab
+Lab: main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o Sala.o Comenta.o Opinion.o DtFecha.o DtHora.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o Financiera.o
+	$(CC) main.o Sistema.o String.o Integer.o Cine.o Credito.o Debito.o Funcion.o Pelicula.o Reserva.o Usuario.o  Sala.o Comenta.o Opinion.o DtFecha.o DtHora.o DtPelicula.o DtUsuario.o DtReserva.o DtFuncion.o DtCine.o DtCredito.o DtDebito.o DtSala.o DtComenta.o DtOpinion.o ICollectible.o ICollection.o IIterator.o IDictionary.o IKey.o IOrderedKey.o List.o ListIterator.o ListNode.o OrderedDictionary.o OrderedDictionaryEntry.o Financiera.o -o Lab
 
 main.o : main.cpp cabezales.h
 	$(CC) $(CFLAGS) main.cpp cabezales.h
@@ -24,6 +24,9 @@ Integer.o: ./Integer.cpp  ./Integer.h
 
 Cine.o: ./Clases/Source/Cine.cpp  ./Clases/Headers/Cine.h
 	$(CC) $(CFLAGS) ./Clases/Source/Cine.cpp
+
+Financiera.o: ./Clases/Source/Financiera.cpp ./Clases/Headers/Financiera.h
+	$(CC) $(CFLAGS) ./Clases/Source/Financiera.cpp
 
 Credito.o: ./Clases/Source/Credito.cpp ./Clases/Headers/Credito.h ./Clases/Source/Reserva.cpp
 	$(CC) $(CFLAGS) ./Clases/Source/Credito.cpp

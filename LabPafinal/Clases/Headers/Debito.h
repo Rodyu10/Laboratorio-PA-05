@@ -11,9 +11,8 @@ class Debito: public Reserva{
         string Banco;
     public:
       Debito();
-      Debito(int, float, string);
+      Debito(int, float, Usuario*, string);
 
-      float getCosto() const;
       string getBanco();
 
       void setBanco(string);

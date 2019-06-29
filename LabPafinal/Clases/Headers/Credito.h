@@ -12,11 +12,10 @@ class Credito: public Reserva{
         float Descuento;
     public:
       Credito();
-      Credito(int, float, string, float);
+      Credito(int, float, Usuario*, string, float);
 
-      float getCosto() const;
-      string getFinanciera();
-      float getDescuento();
+      string getFinanciera() const;
+      float getDescuento() const;
 
       void setFinanciera(string);
       void setDescuento(float);

@@ -22,6 +22,10 @@ void Opinion::setPuntaje(float puntaje){
   this->puntaje = puntaje;
 }
 
+void Opinion::setUser(string user){
+  this->user = user;
+}
+
 Opinion::~Opinion(){
-  
+
 }

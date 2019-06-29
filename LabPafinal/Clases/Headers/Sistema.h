@@ -43,6 +43,7 @@ class Sistema  {
    Pelicula* SeleccionPelicula(string Titulo);
    Cine* SeleccionCine(int NroCine);
    Funcion* SeleccionFuncion(Cine* cine, int NroFuncion);
+   Usuario* obtenerUsuario(string nick);
    float PagaCredito(string NombreFinanciera, int CantAsientos);
    float PagaDebito(string NombreBanco, int CantAsientos);
    void CrearReserva();

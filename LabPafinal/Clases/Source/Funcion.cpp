@@ -11,7 +11,7 @@ Funcion::Funcion(int nrofun, int nrosala, DtFecha fecha, DtHora horario){
   this->NroSala = nrosala;
   this->Fecha = fecha;
   this->Horario = horario;
-  reservas = new OrderedDictionary();
+  reservas = new List();
 }
 
 void Funcion::AsociarSala(Sala* sala){
@@ -32,6 +32,17 @@ bool Funcion::VerificarSalaFecha(int NroSala, DtFecha *fecha, DtHora *hora){
   return false;
 }
 
+void Funcion::AltaReserva(Usuario* user, int cantAsientos, float costo, string nombreBF, float descuento, bool CrDe){
+  if(CrDe){
+  Debito* debito = new Debito(cantAsientos,costo,user,nombreBF);
+  reservas->add(debito);
+  }
+  else{
+  Credito* credito = new Credito(cantAsientos,costo,user,nombreBF,descuento);
+  reservas->add(credito);
+  }
+}
+
 int Funcion::getNroFuncion() const{
   return this->NroFuncion;
 }
@@ -48,6 +59,10 @@ DtHora Funcion::getHorario() const{
   return this->Horario;
 }
 
+Sala* Funcion::getSala() const{
+  return this->sala;
+}
+
 void Funcion::setNroFuncion(int nrofun){
   this->NroFuncion = nrofun;
 }
@@ -62,6 +77,10 @@ void Funcion::setFecha(DtFecha fecha){
 
 void Funcion::setHorario(DtHora horario){
   this->Horario = horario;
+}
+
+void Funcion::setSala(Sala* sala){
+  this->sala = sala;
 }
 
 Funcion::~Funcion(){

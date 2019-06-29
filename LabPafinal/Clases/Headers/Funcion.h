@@ -3,9 +3,14 @@
 #include <stdlib.h>
 
 #include "../../Clases/Headers/Sala.h"
+#include "../../Clases/Headers/Usuario.h"
+#include "../../Clases/Headers/Reserva.h"
+#include "../../Clases/Headers/Credito.h"
+#include "../../Clases/Headers/Debito.h"
 #include "../../Integer.h"
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Interfaces/Headers/ICollection.h"
+#include "../../Collections/List.h"
 #include "../../Datatypes/Headers/DtFecha.h"
 #include "../../Datatypes/Headers/DtHora.h"
 #include "../../Datatypes/Headers/DtFuncion.h"
@@ -19,23 +24,27 @@ class Funcion : public ICollectible{
      int NroSala;
      DtFecha Fecha;
      DtHora Horario;
-     IDictionary * reservas;
      Sala * sala;
+     ICollection * reservas;
   public:
      Funcion();
      Funcion(int, int, DtFecha, DtHora);
+
+     void AsociarSala(Sala* sala);
+     void AltaReserva(Usuario* user, int cantAsientos, float costo, string nombreBF, float descuento, bool CrDe);
+     bool VerificarSalaFecha(int NroSala,DtFecha *fecha, DtHora *hora);
 
      int getNroFuncion() const;
      int getNroSala() const;
      DtFecha getFecha() const;
      DtHora getHorario() const;
-     void AsociarSala(Sala* sala);
-     bool VerificarSalaFecha(int NroSala,DtFecha *fecha, DtHora *hora);
+     Sala* getSala() const;
 
      void setNroFuncion(int);
      void setNroSala(int);
      void setFecha(DtFecha);
      void setHorario(DtHora);
+     void setSala(Sala*);
 
      ~Funcion();
 };

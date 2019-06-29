@@ -57,6 +57,7 @@ int main(){
                 cout << "Contraseña incorrecta" << endl;
               }while(!sis->VerificarSesion(nick,pass) && (pass!="S" && pass!="s"));
               if(sis->VerificarSesion(nick,pass)){
+                Usuario* user = sis->obtenerUsuario(nick);
                 system("clear");
                 menuDos();
                 int opc = opcionDos();
@@ -70,6 +71,9 @@ int main(){
                             cout << "==========================================================" << endl;
                             cout << "                       ALTA CINE" << endl;
                             cout << "==========================================================" << endl;
+                            cout << "==========================================================" << endl;
+                            cout << "                       ALTA CINE" << endl;
+                            cout << "==========================================================" << endl;
                             if(sis->esAdmin(nick)){
                               string dir, op;
                               int NroCine=3, NroSala=1;
@@ -78,7 +82,10 @@ int main(){
                                 getchar();
                                 getline(cin,dir);
                                 if(dir!="S" && dir!="s"){
-                                  Cine* cine = new Cine(NroCine,dir);
+                                  int precio;
+                                  cout << endl << "Ingrese el precio de entrada de este cine" << endl;
+                                  cin >> precio;
+                                  Cine* cine = new Cine(NroCine,precio,dir);
                                   string cap;
                                   do{
                                     cout << "Ingrese la capacidad de la sala, (S) para salir" << endl;
@@ -90,11 +97,7 @@ int main(){
                                     if(NroSala==1)
                                     cout << "Debe ingresar al menos una sala" << endl;
                                   }while((cap!="S" && cap!="s") || NroSala==1);
-                                  int precio;
                                   float descuento;
-                                  cout << endl << "Ingrese el precio de entrada de este cine" << endl;
-                                  cin >> precio;
-                                  cine->setPrecioEntrada(precio);
                                   do{
                                     cout << endl << "Ingrese el nombre de la financiera asociada, (S) para salir" << endl;
                                     cin >> op;
@@ -102,12 +105,14 @@ int main(){
                                       cout << "Ingrese el procentaje de descuento de la financiera" << endl;
                                       cin >> descuento;
                                       if(op!="S" && op!="s"){
-                                        cine->agregarFinanciera(op,descuento);
+                                        if(cine->agregarFinanciera(op,descuento))
                                         cout << "Financiera agregada exitosamente" << endl;
+                                        else
+                                        cout << "Esta financiera ya existe" << endl;
                                       }
                                     }
                                   }while((op!="S" && op!="s"));
-                                  cout << "¿Confirma el alta de este cine? (Y) o (N)" << endl;
+                                  cout << "¿Confirma el alta de este cine? (S) o (N)" << endl;
                                   cin >> op;
                                   if(op=="Y" || op=="y"){
                                     sis->AltaCine(cine);
@@ -182,7 +187,7 @@ int main(){
                                   NroFuncion++;
                                   delete fecha;
                                   delete hora;
-                                  cout << "¿Desea ingresar otra funcion para esta pelicula? (Y) o (N)" << endl;
+                                  cout << "¿Desea ingresar otra funcion para esta pelicula? (S) o (N)" << endl;
                                   cin >> t;
                                   if(t=="N" || t=="n")
                                   ingresarMas=false;
@@ -217,7 +222,7 @@ int main(){
                                 cin >> cine;
                                 sis->SeleccionCine(cine);
                                 sis->AltaPelicula(t,p,s,cine);
-                                cout << "Pelicula agrega exitosamente" << endl;
+                                cout << "Pelicula agregada exitosamente" << endl;
                               }
                             }
                             catch(exception &e){
@@ -230,63 +235,85 @@ int main(){
                             cout << "===========================================================" << endl;
                             cout << "                       CREAR RESERVA" << endl;
                             cout << "===========================================================" << endl;
-                            ICollection* peliculas = sis->ListarPeliculas();
-                            ListarTitulos(peliculas);
-                            string pelicula;
-                            cout << "Ingrese el título de la película, (S) para salir" << endl;
-                            getchar();
-                            getline(cin,pelicula);
-                            if(pelicula!="s" && pelicula!="S")
-                            {
-                                Pelicula* peli = sis->SeleccionPelicula(pelicula);
-                                cout << endl << "==============================================" << endl;
-                                cout << endl << "Poster: " << peli->getPoster() << endl;
-                                cout << "Sinopsis:" << peli->getSinopsis() << endl;
-                                cout << endl << "==============================================" << endl;
-                                string op;
-                                cout << endl<<"¿Desea ver los cines para esta pelicula? (Y) o (N) para salir" << endl;
-                                cin >> op;
-                                if(op!="n" && op!="N")
-                                {
-                                    ICollection* cines = sis->ListarCines(pelicula);
-                                    ListarCines(cines);
-                                    cout << "Seleccione el numero del cine, (S) para salir" << endl;
-                                    cin >> op;
-                                    if(op!="s" && op!="S")
-                                    {
-                                        int nroCine = stoi(op);
-                                        int NroFuncion, cantAsientos;
-                                        string pago;
-                                        Cine* cine = sis->SeleccionCine(nroCine);
-                                        if(cine->verificarPelicula(peli->getTitulo()))
-                                        throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
+                            bool repetir=true;
+                            while(repetir){
+                              ICollection* peliculas = sis->ListarPeliculas();
+                              ListarTitulos(peliculas);
+                              string pelicula;
+                              cout << "Ingrese el título de la película, (S) para salir" << endl;
+                              getchar();
+                              getline(cin,pelicula);
+                              if(pelicula!="s" && pelicula!="S")
+                              {
+                                  Pelicula* peli = sis->SeleccionPelicula(pelicula);
+                                  cout << endl << "==============================================" << endl;
+                                  cout << "Poster: " << peli->getPoster() << endl;
+                                  cout << "Sinopsis: " << peli->getSinopsis() << endl;
+                                  cout << "==============================================" << endl;
+                                  string op;
+                                  cout << endl<<"¿Desea ver los cines para esta pelicula? (S) o (N) para salir" << endl;
+                                  cin >> op;
+                                  if(op!="n" && op!="N")
+                                  {
+                                      ICollection* cines = sis->ListarCines(pelicula);
+                                      ListarCines(cines);
+                                      cout << "Seleccione el numero del cine, (S) para salir" << endl;
+                                      cin >> op;
+                                      if(op!="s" && op!="S")
+                                      {
+                                          int nroCine = stoi(op);
+                                          int NroFuncion, cantAsientos;
+                                          string nombreBF;
+                                          Cine* cine = sis->SeleccionCine(nroCine);
+                                          if(cine->verificarPelicula(peli->getTitulo()))
+                                          throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
 
-                                        ICollection* funciones = peli->ListarFunciones();
-                                        ListarFunciones(funciones);
-                                        cout << "Ingrese el numero de la funcion, (S) para salir" << endl;
-                                        cin >> NroFuncion;
-                                        sis->SeleccionFuncion(cine,NroFuncion);
-                                        cout << "¿Cuantos asientos desea reservar?" << endl;
-                                        cin >> cantAsientos;
-                                        cout << "¿Desea pagar en credito o debito? (C) o (D)" << endl;
-                                        cin >> pago;
-                                        if(pago=="C" || pago =="c"){
-                                          cout << "Ingrese el nombre de la financiera" << endl;
-                                          cin >> pago;
-                                        }
-                                        else{
-                                          cout << "Ingrese el nombre del banco" << endl;
-                                          cin >> pago;
-                                        }
-                                    }
-                                    else
-                                    throw invalid_argument("\nSe canceló la opeación");
-                                }
-                                else
-                                throw invalid_argument("\nSe canceló la opeación");
+                                          ICollection* funciones = peli->ListarFunciones();
+                                          ListarFunciones(funciones);
+                                          cout << "Ingrese el numero de la funcion, (S) para salir" << endl;
+                                          cin >> NroFuncion;
+                                          Funcion* funcion = sis->SeleccionFuncion(cine,NroFuncion);
+                                          cout << endl << "¿Cuantos asientos desea reservar?" << endl;
+                                          cin >> cantAsientos;
+                                          cout << endl << "¿Desea pagar en credito o debito? (C) o (D)" << endl;
+                                          cin >> nombreBF;
+                                          bool CrDe=true;
+                                          float costo=0, descuento=0;
+                                          costo = cine->getPrecioEntrada()*cantAsientos;
+                                          if(nombreBF=="C" || nombreBF =="c"){
+                                            cout << endl << "Ingrese el nombre de la financiera" << endl;
+                                            cin >> nombreBF;
+                                            if(cine->verificarFinanciera(nombreBF)){
+                                              cout << endl << "Tiene descuento de " << cine->DescuentoFinanciera(nombreBF) << "%" << endl;
+                                              descuento = costo*(cine->DescuentoFinanciera(nombreBF)/100);
+                                            }
+                                            else{
+                                              cout << "Esta financiera no esta asociada al cine" << endl;
+                                              cout << "No tiene descuento" << endl;
+                                            }
+                                            CrDe=false;
+                                          }
+                                          else{
+                                            cout << endl << "Ingrese el nombre del banco" << endl;
+                                            cin >> nombreBF;
+                                          }
+                                          costo=costo-descuento;
+                                          cout << "El precio total es: " << costo << endl;
+                                          cout << endl << "¿Desea crear la reserva? (S) o (N)" << endl;
+                                          cin >> op;
+                                          if(op=="S" || op=="s"){
+                                            funcion->AltaReserva(user,cantAsientos,costo,nombreBF,cine->DescuentoFinanciera(nombreBF), CrDe);
+                                            cout << "Reserva creada exitosamente" << endl;
+                                          }
+                                      }
+                                  }
+                              }
+                              string res;
+                              cout << endl << "¿Desea reservar una funcion para otra pelicula? (S) o (N)" << endl;
+                              cin >> res;
+                              if(res=="n" || res=="N")
+                              repetir=false;
                             }
-                            else
-                            throw invalid_argument("\nSe canceló la opeación");
                           }
                           catch(exception &e){
                           cout << e.what() << endl;
@@ -441,7 +468,7 @@ int main(){
                                   cout << "Sinopsis:" << peli->getSinopsis() << endl;
                                   cout << "==============================================" << endl;
                                   string op;
-                                  cout << endl<<"¿Desea ver los cines para esta pelicula? (Y) o (N) para salir" << endl;
+                                  cout << endl<<"¿Desea ver los cines para esta pelicula? (S) o (N) para salir" << endl;
                                   cin >> op;
                                   if(op!="n" && op!="N")
                                   {
@@ -459,7 +486,7 @@ int main(){
                                           ICollection* funciones = peli->ListarFunciones();
                                           ListarFunciones(funciones);
                                           string t;
-                                          cout << "¿Desea ver informacion de otra pelicula? (Y) o (N)" << endl;
+                                          cout << "¿Desea ver informacion de otra pelicula? (S) o (N)" << endl;
                                           cin >> t;
                                           if(t=="N" || t=="n")
                                           repetir=false;

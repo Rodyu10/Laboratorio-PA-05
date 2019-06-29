@@ -6,21 +6,17 @@ Credito::Credito(){
 
 }
 
-Credito::Credito(int cantAsientos, float costo, string financiera, float desc)
-  :Reserva(cantAsientos,costo){
+Credito::Credito(int cantAsientos, float costo, Usuario* user, string financiera, float desc)
+  :Reserva(cantAsientos,costo, user){
     this->Financiera = financiera;
     this->Descuento = desc;
 }
 
-/*float Credito::getCosto(){
-  return ((this->Costo*this->CantAsientos)*this->Descuento)/100;
-}*/
-
-string Credito::getFinanciera(){
+string Credito::getFinanciera() const{
   return this->Financiera;
 }
 
-float Credito::getDescuento(){
+float Credito::getDescuento() const{
   return this->Descuento;
 }
 
@@ -33,5 +29,4 @@ void Credito::setDescuento(float desc){
 }
 
 Credito::~Credito(){
-
 }

@@ -13,8 +13,8 @@ class Comenta : public ICollectible{
 
   private:
     string comentario;
-    IDictionary * comentariosResp;
     string users;
+    IDictionary * comentariosResp;
   public:
       Comenta();
       Comenta(string, string);
@@ -22,11 +22,12 @@ class Comenta : public ICollectible{
       void ListarComentariosResp(ICollectible * obj, string c);
       void agregarRespuesta(ICollectible * obj,string nick, string com);
       Comenta* BuscarRespuestas(ICollectible* objR, string com);
+
       string getUsers() const;
       string getComentario() const;
 
       void setComentario(string);
+      void setUsers(string);
 
       ~Comenta();
-
 };

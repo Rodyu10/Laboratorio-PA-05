@@ -31,7 +31,6 @@ class Pelicula : public ICollectible{
       Pelicula();
       Pelicula(string, string, string, float);
 
-      DtPelicula getPelicula() const;
       void ListarComentarios(ICollectible * obj);
       ICollection* ListarFunciones();
       void agregarComentario(Pelicula * peli, string nick, string com);
@@ -41,6 +40,7 @@ class Pelicula : public ICollectible{
       Comenta* BuscarComentario(ICollectible * objC, string com);
       void agregaCom(Pelicula* peli, Comenta* co, string nick, string com);
       void AsociarFuncion(Funcion* funcion);
+
       string getTitulo()const;
       string getPoster()const;
       string getSinopsis() const;

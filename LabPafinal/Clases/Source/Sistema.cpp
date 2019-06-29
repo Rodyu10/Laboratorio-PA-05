@@ -91,10 +91,10 @@ void Sistema::AltaPelicula(string Titulo, string Poster, string Sinopsis, int Nr
 }
 
 void Sistema::Precarga(){
-  Cine* c1=new Cine(1,"Alvariza");
+  Cine* c1=new Cine(1,300,"Alvariza");
   Integer* intllave = new Integer(c1->getNroCine());
   cines->add(intllave,c1);
-  Cine *c2=new Cine(2,"PuntaShopping");
+  Cine *c2=new Cine(2,250,"PuntaShopping");
   intllave = new Integer(c2->getNroCine());
   cines->add(intllave,c2);
   Pelicula* p=new Pelicula("Austin Power vs Doctor Malito","123","123",0);
@@ -116,6 +116,8 @@ void Sistema::Precarga(){
   c1->agregarSalas(2,33);
   c2->agregarSalas(1,66);
   c2->agregarSalas(2,33);
+  c1->agregarFinanciera("BROU",20);
+  c1->agregarFinanciera("Scotia",15);
 }
 
 ICollection* Sistema::ListarPeliculas(){
@@ -233,6 +235,12 @@ Cine* Sistema::SeleccionCine(int NroCine){
   return c;
 }
 
- Funcion* Sistema::SeleccionFuncion(Cine* cine, int NroFuncion){
-   return cine->seleccionarFuncion(NroFuncion);
- }
+Funcion* Sistema::SeleccionFuncion(Cine* cine, int NroFuncion){
+ return cine->seleccionarFuncion(NroFuncion);
+}
+
+Usuario* Sistema::obtenerUsuario(string nick){
+  StringKey* llave = new StringKey(nick);
+  Usuario* user = (Usuario*) usuarios->find(llave);
+  return user;
+}

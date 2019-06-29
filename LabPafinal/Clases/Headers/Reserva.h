@@ -14,7 +14,7 @@ class Reserva : public ICollectible{
       Usuario* user;
   public:
       Reserva();
-      Reserva(int, float);
+      Reserva(int, float, Usuario*);
 
       int getCantAsientos() const;
       float getCosto() const;

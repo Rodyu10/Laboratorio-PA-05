@@ -23,6 +23,10 @@ void Comenta::setComentario(string comentario){
   this->comentario = comentario;
 }
 
+void Comenta::setUsers(string user){
+  this->users = user;
+}
+
 void Comenta::ListarComentariosResp(ICollectible * obj, string c){
   if(!comentariosResp->isEmpty()){
     IIterator* i = comentariosResp->getIterator();

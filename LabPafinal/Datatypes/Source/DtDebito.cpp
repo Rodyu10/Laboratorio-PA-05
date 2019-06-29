@@ -3,22 +3,16 @@
 using namespace std;
 
 DtDebito::DtDebito(){
-
 }
 
-DtDebito::DtDebito(int cantAsientos, float costo, string banco)
-  :DtReserva(cantAsientos,costo){
+DtDebito::DtDebito(int cantAsientos, float costo, Usuario* user, string banco)
+  :DtReserva(cantAsientos,costo, user){
     this->Banco = banco;
 }
-
-/*float Debito::getCosto(){
-  return this->Costo*this->CantAsientos;
-}*/
 
 string DtDebito::getBanco() const{
   return this->Banco;
 }
 
 DtDebito::~DtDebito(){
-
 }

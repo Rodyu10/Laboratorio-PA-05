@@ -5,9 +5,11 @@
 #include "../../Clases/Headers/Sala.h"
 #include "../../Clases/Headers/Funcion.h"
 #include "../../Clases/Headers/Pelicula.h"
+#include "../../Clases/Headers/Financiera.h"
 #include "../../Datatypes/Headers/DtFecha.h"
 #include "../../Datatypes/Headers/DtHora.h"
 #include "../../Datatypes/Headers/DtCine.h"
+#include "../../Datatypes/Headers/DtSala.h"
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/IKey.h"
@@ -25,13 +27,15 @@ class Cine : public ICollectible{
       IDictionary * funciones;
       IDictionary * salas;
       IDictionary * peliculas;
-      ICollection * financieras;
+      IDictionary * financieras;
   public:
       Cine();
-      Cine(int, string);
+      Cine(int, int, string);
 
       void agregarSalas(int, int);
-      void agregarFinanciera(string, float);
+      bool agregarFinanciera(string, float);
+      bool verificarFinanciera(string);
+      float DescuentoFinanciera(string);
       ICollection* ListarSalas();
       Sala* seleccionarSala(int NroSala);
       Funcion* seleccionarFuncion(int NroFuncion);
@@ -40,7 +44,6 @@ class Cine : public ICollectible{
       void agregarPelicula(string Titulo, Pelicula* Peli);
       bool verificarPelicula(string Titulo);
       void EliminarPelicula(Pelicula* peli);
-      DtCine getCine() const;
 
       int getNroCine() const;
       string getDir() const;

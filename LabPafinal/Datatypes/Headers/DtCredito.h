@@ -8,11 +8,11 @@ using namespace std;
 
 class DtCredito: public DtReserva{
     private:
-        string Financiera;
-        float Descuento;
+      string Financiera;
+      float Descuento;
     public:
       DtCredito();
-      DtCredito(int, float, string, float);
+      DtCredito(int, float, Usuario*, string, float);
 
       float getCosto() const;
       string getFinanciera() const;

@@ -11,7 +11,7 @@ class DtDebito: public DtReserva{
         string Banco;
     public:
       DtDebito();
-      DtDebito(int, float, string);
+      DtDebito(int, float, Usuario*, string);
 
       float getCosto() const;
       string getBanco() const;

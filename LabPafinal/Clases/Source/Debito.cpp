@@ -6,14 +6,10 @@ Debito::Debito(){
 
 }
 
-Debito::Debito(int cantAsientos, float costo, string banco)
-  :Reserva(cantAsientos,costo){
+Debito::Debito(int cantAsientos, float costo, Usuario* user, string banco)
+  :Reserva(cantAsientos,costo, user){
     this->Banco = banco;
 }
-
-/*float Debito::getCosto(){
-  return this->Costo*this->CantAsientos;
-}*/
 
 string Debito::getBanco(){
   return this->Banco;
@@ -24,5 +20,4 @@ void Debito::setBanco(string banco){
 }
 
 Debito::~Debito(){
-
 }

@@ -71,6 +71,7 @@ void ListarPeliculas(ICollection* peliculas){
     peliculas->remove(i->getCurrent());
     i->next();
   }
+  delete i;
   delete peliculas;
 }
 
@@ -85,6 +86,7 @@ void ListarPuntaje(ICollection* puntajes){
     puntajes->remove(i->getCurrent());
     i->next();
   }
+  delete i;
   delete puntajes;
 }
 
@@ -114,6 +116,7 @@ void ListarTitulos(ICollection* peliculas){
     peliculas->remove(i->getCurrent());
     i->next();
   }
+  delete i;
   delete peliculas;
 }
 
@@ -128,6 +131,7 @@ void ListarCines(ICollection* cines){
     cines->remove(i->getCurrent());
     i->next();
   }
+  delete i;
   delete cines;
 }
 
@@ -139,9 +143,11 @@ void ListarSalas(ICollection* salas){
       cout << "Nro de Sala: " << s->getNroSala() << endl;
       cout << "Capacidad de Sala: " << s->getCapacidad() << endl;
       cout << "============================================"<<endl;
+      salas->remove(i->getCurrent());
       i->next();
     }
     delete i;
+    delete salas;
 }
 
 void ListarFunciones(ICollection* funciones){
@@ -160,7 +166,9 @@ void ListarFunciones(ICollection* funciones){
     else
     cout << "Hora de la Funcion: " << horaF.getHora() << ":" << horaF.getMinutos() << endl;
     cout << "================================================"<<endl;
+    funciones->remove(i->getCurrent());
     i->next();
   }
   delete i;
+  delete funciones;
 }

@@ -5,12 +5,14 @@ using namespace std;
 Cine::Cine(){
 }
 
-Cine::Cine(int nro, string dir){
+Cine::Cine(int nro, int precio, string dir){
   this->NroCine = nro;
   this->Dir = dir;
+  this->PrecioEntrada = precio;
   salas = new OrderedDictionary();
   funciones = new OrderedDictionary();
   peliculas = new OrderedDictionary();
+  financieras = new OrderedDictionary();
 }
 
 void Cine::agregarSalas(int nro, int cap){
@@ -25,8 +27,33 @@ void Cine::agregarSalas(int nro, int cap){
     }
 }
 
-void Cine::agregarFinanciera(string, float){
-  // FALTA
+bool Cine::agregarFinanciera(string nombre, float descuento){
+  StringKey* llave = new StringKey(nombre);
+  if(!financieras->member(llave)){
+    Financiera* fin = new Financiera(nombre, descuento);
+    financieras->add(llave,fin);
+    return true;
+  }
+  else
+  return false;
+}
+
+bool Cine::verificarFinanciera(string financiera){
+  StringKey* llave = new StringKey(financiera);
+  if(financieras->member(llave))
+  return true;
+  else
+  return false;
+}
+
+float Cine::DescuentoFinanciera(string nombre){
+  StringKey* llave = new StringKey(nombre);
+  if(financieras->member(llave)){
+    Financiera* fin = (Financiera*) financieras->find(llave);
+    return fin->getDescuento();
+  }
+  else
+  return 0;
 }
 
 ICollection* Cine::ListarSalas(){
@@ -123,10 +150,6 @@ void Cine::EliminarPelicula(Pelicula* peli){
 
 int Cine::CantFunciones(){
   return funciones->getSize();
-}
-
-DtCine Cine::getCine() const{
-  return DtCine (this->NroCine,this->Dir);
 }
 
 int Cine::getNroCine() const{

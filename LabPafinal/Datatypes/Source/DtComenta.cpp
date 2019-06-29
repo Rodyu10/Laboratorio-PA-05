@@ -14,5 +14,4 @@ string DtComenta::getComentario() const{
 }
 
 DtComenta::~DtComenta(){
-  // ELIMINAR comentario
 }
