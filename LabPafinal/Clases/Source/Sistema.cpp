@@ -158,14 +158,19 @@ int Sistema::CantCines(){
 void Sistema::EliminarPelicula(Pelicula* peli){
  StringKey* llave = new StringKey(peli->getTitulo());
  IIterator* i = cines->getIterator();
+ IIterator* ii = peliculas->getIterator();
  while(i->hasCurrent()){
       Cine* c = (Cine*) i->getCurrent();
-      if(!c->verificarPelicula(peli->getTitulo())){
-        c->EliminarPelicula(peli->getTitulo());
+      while(ii->hasCurrent()){
+        if(!c->verificarPelicula(peli->getTitulo())){
+          c->EliminarPelicula(peli->getTitulo());
+        }
+        ii->next();
       }
       i->next();
     }
   peliculas->remove(llave);
+  delete ii;
   delete i;
 }
 

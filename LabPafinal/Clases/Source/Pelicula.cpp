@@ -205,21 +205,27 @@ void Pelicula::setPuntaje(float puntaje){
 
 Pelicula::~Pelicula(){
   IIterator* i = funciones->getIterator();
+  IIterator* ii = comentarios->getIterator();
+  IIterator* iii = opiniones->getIterator();
   while(i->hasCurrent()){
+      cout << "entra" << endl;
       Funcion* f = (Funcion*) i->getCurrent();
       delete f;
+      i->next();
   }
-  i = opiniones->getIterator();
-  while(i->hasCurrent()){
-      Opinion* o = (Opinion*) i->getCurrent();
+  while(iii->hasCurrent()){
+      Opinion* o = (Opinion*) iii->getCurrent();
       delete o;
+      iii->next();
   }
-  i = comentarios->getIterator();
-  while(i->hasCurrent()){
-      Comenta* c = (Comenta*) i->getCurrent();
+  while(ii->hasCurrent()){
+      Comenta* c = (Comenta*) ii->getCurrent();
       delete c;
+      ii->next();
   }
   delete i;
+  delete ii;
+  delete iii;
   delete funciones;
   delete opiniones;
   delete comentarios;

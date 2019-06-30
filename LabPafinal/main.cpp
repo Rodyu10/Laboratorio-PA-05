@@ -219,10 +219,8 @@ int main(){
                                 Pelicula* peli = sis->verificarPelicula(t);
                                 if(!peli){
                                   cout << endl << "Ingrese el poster de la pelicula" << endl;
-                                  getchar();
                                   getline(cin,p);
                                   cout << endl << "Ingrese la sinopsis de la pelicula" << endl;
-                                  getchar();
                                   getline(cin,s);
                                 }
                                 else{
@@ -283,7 +281,6 @@ int main(){
                                           Cine* cine = sis->SeleccionCine(nroCine);
                                           if(cine->verificarPelicula(peli->getTitulo()))
                                           throw invalid_argument("\nEl cine seleccionado no contiene la pelicula elegida");
-
                                           ICollection* funciones = cine->ListarFunciones(peli->getTitulo());
                                           ListarFunciones(funciones);
                                           cout << "Ingrese el numero de la funcion, (S) para salir" << endl;
