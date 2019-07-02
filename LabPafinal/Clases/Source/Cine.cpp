@@ -157,7 +157,7 @@ bool Cine::verificarPelicula(string Titulo){
   }
 }
 
-void Cine::EliminarPelicula(string Titulo){
+void Cine::EliminarPelicula(string Titulo, Pelicula* peli){
   StringKey* llave = new StringKey(Titulo);
   Pelicula* p = (Pelicula*) peliculas->find(llave);
   ICollection* fun = p->ObtenerFunciones();
@@ -168,6 +168,7 @@ void Cine::EliminarPelicula(string Titulo){
       funciones->remove(llaveF);
       i->next();
   }
+  peli->EliminarPelicula(peli);
   peliculas->remove(llave);
   delete i;
   delete p;

@@ -83,7 +83,7 @@ void Funcion::setSala(Sala* sala){
 }
 
 Funcion::~Funcion(){
-  IIterator* i = reservas->getIterator();
+  IIterator* i = reservas->getIterator(); 
   while(i->hasCurrent()){
       Reserva* r = (Reserva*) i->getCurrent();
       delete r;

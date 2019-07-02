@@ -370,9 +370,7 @@ int main(){
                                     cin >> pr;
                                   }
                                   peli->AgregarPuntaje(peli,nick,pr);
-                                  Suma = Suma + pr;
-                                  promedio = (float) Suma / Cant;
-                                  peli->setPuntaje(promedio);
+                                  peli->setPuntaje(pr);
                                   }
                               else{
                                   // PUNTUACION NUEVA SI YA HAY PUNTAJES
@@ -564,6 +562,7 @@ int main(){
                               cout << " PUNTAJES " << endl;
                               ListarPuntaje(lista);
                             }
+
                           }
                           catch(exception &e){
                           cout << e.what() << endl;

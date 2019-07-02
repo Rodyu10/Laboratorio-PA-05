@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../../Interfaces/Headers/ICollection.h"
 #include "../../Interfaces/Headers/IDictionary.h"
 #include "../../Interfaces/Headers/ICollectible.h"
 #include "../../Collections/OrderedDictionary.h"
@@ -41,6 +42,8 @@ class Pelicula : public ICollectible{
       void agregaCom(Pelicula* peli, Comenta* co, string nick, string com);
       void AsociarFuncion(Funcion* funcion);
       ICollection* ObtenerFunciones();
+      ICollection* ObtenerComentarios(Pelicula * peli);
+      void EliminarPelicula(Pelicula* peli);
 
       string getTitulo()const;
       string getPoster()const;

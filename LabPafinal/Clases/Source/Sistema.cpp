@@ -159,16 +159,21 @@ void Sistema::EliminarPelicula(Pelicula* peli){
  StringKey* llave = new StringKey(peli->getTitulo());
  IIterator* i = cines->getIterator();
  IIterator* ii = peliculas->getIterator();
- while(i->hasCurrent()){
-      Cine* c = (Cine*) i->getCurrent();
-      while(ii->hasCurrent()){
-        if(!c->verificarPelicula(peli->getTitulo())){
-          c->EliminarPelicula(peli->getTitulo());
+ if(i->hasCurrent()){
+   while(i->hasCurrent()){
+        Cine* c = (Cine*) i->getCurrent();
+        while(ii->hasCurrent()){
+          if(!c->verificarPelicula(peli->getTitulo())){
+            c->EliminarPelicula(peli->getTitulo(), peli);
+          }
+          ii->next();
         }
-        ii->next();
+        i->next();
       }
-      i->next();
     }
+  else{
+    peli->EliminarPelicula(peli);
+  }
   peliculas->remove(llave);
   delete ii;
   delete i;

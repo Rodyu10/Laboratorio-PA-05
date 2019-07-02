@@ -48,6 +48,23 @@ void Comenta::ListarComentariosResp(ICollectible * obj, string c){
   }
 }
 
+void Comenta::EliminoComentariosResp(ICollectible * obj, string c){
+  if(!comentariosResp->isEmpty()){
+    IIterator* i = comentariosResp->getIterator();
+    while(i->hasCurrent()){
+        Comenta* com = (Comenta*) i->getCurrent();
+        StringKey* llave = new StringKey (com->getComentario());
+        Comenta* c =(Comenta*) comentariosResp->find(llave);
+        c->EliminoComentariosResp(c,com->getComentario());
+        comentariosResp->remove(llave);
+        delete llave;
+        i->next();
+      }
+      delete i;
+    }
+}
+
+
 void Comenta::agregarRespuesta(ICollectible* obj, string nick, string com){
 
   StringKey* llave = new StringKey(com);

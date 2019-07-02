@@ -20,6 +20,7 @@ class Comenta : public ICollectible{
       Comenta(string, string);
 
       void ListarComentariosResp(ICollectible * obj, string c);
+      void EliminoComentariosResp(ICollectible * obj, string c);
       void agregarRespuesta(ICollectible * obj,string nick, string com);
       Comenta* BuscarRespuestas(ICollectible* objR, string com);
 

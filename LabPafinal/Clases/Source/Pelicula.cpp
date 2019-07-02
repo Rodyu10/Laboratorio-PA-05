@@ -149,11 +149,13 @@ void Pelicula::AgregarPuntaje(Pelicula* peli, string user, float puntaje){
       i->next();
     }
     delete i;
+    getchar();
     Opinion* op = new Opinion(puntaje,user);
     StringKey* llave = new StringKey(user);
     opiniones->add(llave,op);
   }
   else{
+    getchar();
     Opinion* op = new Opinion(puntaje,user);
     StringKey* llave = new StringKey(user);
     opiniones->add(llave,op);
@@ -171,6 +173,7 @@ ICollection* Pelicula::ObtenerFunciones(){
   delete i;
   return res;
 }
+
 string Pelicula::getTitulo() const{
   return this->Titulo;
 }
@@ -203,20 +206,63 @@ void Pelicula::setPuntaje(float puntaje){
   this->Puntaje = puntaje;
 }
 
+ICollection* Pelicula::ObtenerComentarios(Pelicula * peli){
+  IIterator* i = comentarios->getIterator();
+  ICollection* res = new List();
+  while(i->hasCurrent()){
+    Comenta* com = (Comenta*) i->getCurrent();
+    res->add(com);
+    i->next();
+  }
+  delete i;
+  return res;
+}
+
+void Pelicula::EliminarPelicula(Pelicula* peli){
+  ICollection* ListaOpi = peli->ListarPuntajes(peli);
+  if(ListaOpi != NULL){
+    IIterator* i = ListaOpi->getIterator();
+    while(i->hasCurrent()){
+      Opinion* o = (Opinion*) i->getCurrent();
+      StringKey* llave = new StringKey(o->getUser());
+      opiniones->remove(llave);
+      i->next();
+    }
+    delete i;
+  }
+  ICollection* ListaCom = peli->ObtenerComentarios(peli);
+  if (ListaCom != NULL){
+    IIterator* i = ListaCom->getIterator();
+    while(i->hasCurrent()){
+      Comenta* com = (Comenta*) i->getCurrent();
+      StringKey* llave = new StringKey (com->getComentario());
+      Comenta* c =(Comenta*) comentarios->find(llave);
+      comentarios->remove(llave);
+      c->EliminoComentariosResp(c,com->getComentario());
+      delete llave;
+      i->next();
+    }
+    delete i;
+  }
+}
+
 Pelicula::~Pelicula(){
   IIterator* i = funciones->getIterator();
   IIterator* ii = comentarios->getIterator();
   IIterator* iii = opiniones->getIterator();
-  while(i->hasCurrent()){
-      cout << "entra" << endl;
-      Funcion* f = (Funcion*) i->getCurrent();
-      delete f;
-      i->next();
+  if (i->hasCurrent()) {
+    while(i->hasCurrent()){
+        Funcion* f = (Funcion*) i->getCurrent();
+        delete f;
+        i->next();
+    }
   }
-  while(iii->hasCurrent()){
-      Opinion* o = (Opinion*) iii->getCurrent();
-      delete o;
-      iii->next();
+  if(iii->hasCurrent()){
+    while(iii->hasCurrent()){
+        Opinion* o = (Opinion*) iii->getCurrent();
+        delete o;
+        iii->next();
+    }
   }
   while(ii->hasCurrent()){
       Comenta* c = (Comenta*) ii->getCurrent();
