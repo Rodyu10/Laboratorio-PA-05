@@ -89,7 +89,7 @@ ICollection* Sistema::ListarPeliculas(){
   }
   else{
     delete i;
-    throw invalid_argument("No hay peliculas registradas");
+    throw invalid_argument("==============================================\nNo hay peliculas registradas\n==============================================");
   }
 }
 
